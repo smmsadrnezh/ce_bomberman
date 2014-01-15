@@ -21,7 +21,7 @@ public class MainBoardGraphics implements Runnable {
 	final Cell[][] btns = new Cell[15][15];
 
 	public MainBoardGraphics() {
-		//mainboard and its features
+		//   mainboard and its features
 		JFrame mainBoard = new JFrame("Bomberman");
 		mainBoard.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mainBoard.setVisible(true);
