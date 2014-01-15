@@ -165,16 +165,22 @@ public class MainBoardGraphics implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		btns[5][4].setDisabledIcon(new ImageIcon("images/flame/leftfire.gif"));
+		btns[5][4].setIcon(new ImageIcon("images/flame/leftfire.gif"));
 		
 		
 		btns[5][5].setDisabledIcon(new ImageIcon("images/flame/fire.gif"));
 		btns[5][5].setIcon(new ImageIcon("images/flame/fire.gif"));
 		
-		btns[5][6].setDisabledIcon(new ImageIcon("images/flame/fire.gif"));
-		btns[5][6].setIcon(new ImageIcon("images/flame/fire.gif"));
+		btns[5][6].setDisabledIcon(new ImageIcon("images/flame/rightfire.gif"));
+		btns[5][6].setIcon(new ImageIcon("images/flame/rightfire.gif"));
 		
-		btns[5][5].setDisabledIcon(new ImageIcon("images/flame/fire.gif"));
-		btns[5][5].setIcon(new ImageIcon("images/flame/fire.gif"));
+		btns[4][5].setDisabledIcon(new ImageIcon("images/flame/topfire.gif"));
+		btns[4][5].setIcon(new ImageIcon("images/flame/topfire.gif"));
+		
+		btns[6][5].setDisabledIcon(new ImageIcon("images/flame/bottomfire.gif"));
+		btns[6][5].setIcon(new ImageIcon("images/flame/bottomfire.gif"));
+		
 		
 	}
 }
