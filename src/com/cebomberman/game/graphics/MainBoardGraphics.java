@@ -157,35 +157,97 @@ public class MainBoardGraphics implements Runnable {
 	}
 
 	private void fireUp(int row, int column, int strength) {
+		boolean flag = true;
 		for (int i = row - 1; i > row - strength; i--) {
 			setCellImage(btns[i][column], "images/flame/vfire.gif");
-//			if (btns[i - 1][column].getContent() == "box") {
-//				break;
-//			}
+			if (btns[i - 1][column].getContent() == "box") {
+				setCellImage(btns[i - 1][column], "images/flame/topfire.gif");
+				flag = false;
+				break;
+			}
+			if (btns[i - 1][column].getContent() == "block" || i == 1) {
+				setCellImage(btns[i][column], "images/flame/topfire.gif");
+				flag = false;
+				break;
+			}
 		}
-		setCellImage(btns[row - strength][column], "images/flame/topfire.gif");
+		if (flag) {
+			setCellImage(btns[row - strength][column],
+					"images/flame/topfire.gif");
+		}
 	}
 
 	private void fireDown(int row, int column, int strength) {
+		boolean flag = true;
 		for (int i = row + 1; i < row + strength; i++) {
 			setCellImage(btns[i][column], "images/flame/vfire.gif");
+
+			if (btns[i + 1][column].getContent() == "box") {
+				setCellImage(btns[i + 1][column], "images/flame/downfire.gif");
+				flag = false;
+				break;
+			}
+
+			if (btns[i + 1][column].getContent() == "block" || i == 13) {
+				setCellImage(btns[i][column], "images/flame/bottomfire.gif");
+				flag = false;
+				break;
+			}
+
 		}
-		setCellImage(btns[row + strength][column],
-				"images/flame/bottomfire.gif");
+		if (flag) {
+			setCellImage(btns[row + strength][column],
+					"images/flame/bottomfire.gif");
+		}
 	}
 
 	private void fireRight(int row, int column, int strength) {
+		boolean flag = true;
 		for (int i = column + 1; i < column + strength; i++) {
 			setCellImage(btns[row][i], "images/flame/hfire.gif");
+
+			if (btns[row][i + 1].getContent() == "box") {
+				setCellImage(btns[row][i + 1], "images/flame/rightfire.gif");
+				flag = false;
+				break;
+			}
+
+			if (btns[row][i + 1].getContent() == "block" || i == 13) {
+				setCellImage(btns[row][i], "images/flame/rightfire.gif");
+				flag = false;
+				break;
+			}
+
 		}
-		setCellImage(btns[row][column + strength], "images/flame/rightfire.gif");
+		if (flag) {
+			setCellImage(btns[row][column + strength],
+					"images/flame/rightfire.gif");
+		}
 	}
 
 	private void fireLeft(int row, int column, int strength) {
+		boolean flag = true;
 		for (int i = column - 1; i > column - strength; i--) {
 			setCellImage(btns[row][i], "images/flame/hfire.gif");
+
+			if (btns[row][i - 1].getContent() == "box") {
+				setCellImage(btns[row][i - 1], "images/flame/leftfire.gif");
+				flag = false;
+				break;
+			}
+
+			if (btns[row][i - 1].getContent() == "block" || i == 1) {
+				setCellImage(btns[row][i], "images/flame/leftfire.gif");
+				flag = false;
+				break;
+			}
+
 		}
-		setCellImage(btns[row][column - strength], "images/flame/leftfire.gif");
+		if (flag) {
+			setCellImage(btns[row][column - strength],
+					"images/flame/leftfire.gif");
+		}
+
 	}
 
 	public void fireEffect(int row, int column, int strength) {
@@ -240,7 +302,9 @@ public class MainBoardGraphics implements Runnable {
 
 	public static void main(String[] args) {
 		MainBoardGraphics test = new MainBoardGraphics();
-		test.fireEffect(13, 7, 2);
+		test.btns[3][9].setContent("block");
+		test.btns[5][11].setContent("block");
+		test.fireEffect(3, 11, 4);
 	}
 
 	@Override
@@ -252,36 +316,7 @@ public class MainBoardGraphics implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// btns[5][4].setDisabledIcon(new
-		// ImageIcon("images/flame/leftfire.gif"));
-		// btns[5][4].setIcon(new ImageIcon("images/flame/leftfire.gif"));
-		//
-		//
-		// btns[5][5].setDisabledIcon(new ImageIcon("images/flame/fire.gif"));
-		// btns[5][5].setIcon(new ImageIcon("images/flame/fire.gif"));
-		//
-		// btns[5][6].setDisabledIcon(new
-		// ImageIcon("images/flame/rightfire.gif"));
-		// btns[5][6].setIcon(new ImageIcon("images/flame/rightfire.gif"));
-		//
-		// btns[4][5].setDisabledIcon(new
-		// ImageIcon("images/flame/topfire.gif"));
-		// btns[4][5].setIcon(new ImageIcon("images/flame/topfire.gif"));
-		//
-		// btns[6][5].setDisabledIcon(new
-		// ImageIcon("images/flame/bottomfire.gif"));
-		// btns[6][5].setIcon(new ImageIcon("images/flame/bottomfire.gif"));
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		for (int i = 4; i <= 6; i++)
-			for (int j = 4; j <= 6; j++) {
-				btns[i][j].setDisabledIcon(new ImageIcon(""));
-				btns[i][j].setIcon(new ImageIcon(""));
-			}
+
 	}
 }
 
