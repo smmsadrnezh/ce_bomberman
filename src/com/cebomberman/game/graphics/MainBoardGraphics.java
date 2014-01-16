@@ -16,6 +16,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
 import com.cebomberman.game.controler.ActionListeners;
+import com.cebomberman.game.graphics.GameStarter;
 
 public class MainBoardGraphics implements Runnable {
 	final Cell[][] btns = new Cell[15][15];
@@ -302,6 +303,12 @@ public class MainBoardGraphics implements Runnable {
 
 	public static void main(String[] args) {
 		MainBoardGraphics test = new MainBoardGraphics();
+		GameStarter gameStarter = new GameStarter();
+		JFrame gameLauncher = new JFrame("Game Launcher");
+		gameLauncher.setContentPane(gameStarter);
+		gameLauncher.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		gameLauncher.setVisible(true);
+		gameLauncher.setBounds(10, 10, 641, 330);
 		test.btns[3][9].setContent("block");
 		test.btns[5][11].setContent("block");
 		test.fireEffect(3, 11, 4);
