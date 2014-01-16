@@ -24,5 +24,14 @@
 				<arguments>1.0-name-matches-false-false-*</arguments>
 			</matcher>
 		</filter>
+		<filter>
+			<id>1389899874146</id>
+			<name>sounds</name>
+			<type>29</type>
+			<matcher>
+				<id>org.eclipse.ui.ide.multiFilter</id>
+				<arguments>1.0-name-matches-false-false-*</arguments>
+			</matcher>
+		</filter>
 	</filteredResources>
 </projectDescription>
