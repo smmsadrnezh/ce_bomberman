@@ -21,7 +21,7 @@ public class MainBoardGraphics implements Runnable {
 	final Cell[][] btns = new Cell[15][15];
 
 	public MainBoardGraphics() {
-		//   mainboard and its features
+		// mainboard and its features
 		JFrame mainBoard = new JFrame("Bomberman");
 		mainBoard.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		mainBoard.setVisible(true);
@@ -48,13 +48,11 @@ public class MainBoardGraphics implements Runnable {
 		gameBoard.setBackground(Color.GRAY);
 		gameBoard.setLayout(null);
 
-		
-		
 		final JLabel player = new JLabel();
 		player.setBounds(32, 32, 32, 32);
 		gameBoard.add(player);
-		player.setDisabledIcon(new ImageIcon("player1.gif"));
-		player.setIcon(new ImageIcon("player1.gif"));
+		// player.setDisabledIcon(new ImageIcon("player1.gif"));
+		player.setIcon(new ImageIcon("images/player1.gif"));
 		player.grabFocus();
 		information.addFocusListener(new FocusListener() {
 
@@ -76,19 +74,20 @@ public class MainBoardGraphics implements Runnable {
 				btns[i][j] = new Cell();
 				gameBoard.add(btns[i][j]);
 				btns[i][j].setBounds(32 * (j), 32 * (i), 32, 32);
-				btns[i][j].setEnabled(false);
+				// btns[i][j].setEnabled(false);
 				btns[i][j].setBackground(Color.GRAY);
-				btns[i][j].setBorder(null);
+				// btns[i][j].setBorder(null);
 			}
 		for (int i = 0; i < 15; i++)
 			for (int j = 0; j < 15; j++) {
 				if (i == 0 || i == 14 || j == 0 || j == 14) {
-					btns[i][j].setDisabledIcon(new ImageIcon("brick1.gif"));
-					btns[i][j].setIcon(new ImageIcon("brick1.gif"));
+					// btns[i][j].setDisabledIcon(new ImageIcon(
+					// "images/brick1.gif"));
+					btns[i][j].setIcon(new ImageIcon("images/brick1.gif"));
 				}
 			}
-		btns[5][5].setDisabledIcon(new ImageIcon("images/bomb.gif"));
-		btns[5][5].setIcon(new ImageIcon("images/bomb.gif"));
+		// btns[5][5].setDisabledIcon(new ImageIcon("images/bomb.gif"));
+		// btns[5][5].setIcon(new ImageIcon("images/bomb.gif"));
 		new Thread(this).start();
 		// player.addKeyListener(new KeyListener() {
 		//
@@ -152,8 +151,96 @@ public class MainBoardGraphics implements Runnable {
 
 	}
 
+	private void setCellImage(Cell cell, String imagePath) {
+		// cell.setDisabledIcon(new ImageIcon(imagePath));
+		cell.setIcon(new ImageIcon(imagePath));
+	}
+
+	private void fireUp(int row, int column, int strength) {
+		for (int i = row - 1; i > row - strength; i--) {
+			setCellImage(btns[i][column], "images/flame/vfire.gif");
+//			if (btns[i - 1][column].getContent() == "box") {
+//				break;
+//			}
+		}
+		setCellImage(btns[row - strength][column], "images/flame/topfire.gif");
+	}
+
+	private void fireDown(int row, int column, int strength) {
+		for (int i = row + 1; i < row + strength; i++) {
+			setCellImage(btns[i][column], "images/flame/vfire.gif");
+		}
+		setCellImage(btns[row + strength][column],
+				"images/flame/bottomfire.gif");
+	}
+
+	private void fireRight(int row, int column, int strength) {
+		for (int i = column + 1; i < column + strength; i++) {
+			setCellImage(btns[row][i], "images/flame/hfire.gif");
+		}
+		setCellImage(btns[row][column + strength], "images/flame/rightfire.gif");
+	}
+
+	private void fireLeft(int row, int column, int strength) {
+		for (int i = column - 1; i > column - strength; i--) {
+			setCellImage(btns[row][i], "images/flame/hfire.gif");
+		}
+		setCellImage(btns[row][column - strength], "images/flame/leftfire.gif");
+	}
+
+	public void fireEffect(int row, int column, int strength) {
+		if (row != 1 && row != 13 && column != 1 && column != 13) {
+			setCellImage(btns[row][column], "images/flame/fire.gif");
+			// right fire
+			fireRight(row, column, strength);
+			// left fire
+			fireLeft(row, column, strength);
+			// top fire
+			fireUp(row, column, strength);
+			// down fire
+			fireDown(row, column, strength);
+		} else if (row == 1 && column == 1) {
+			setCellImage(btns[row][column], "images/flame/upleftfire.gif");
+			fireRight(row, column, strength);
+			fireDown(row, column, strength);
+		} else if (row == 1 && column == 13) {
+			setCellImage(btns[row][column], "images/flame/uprightfire.gif");
+			fireLeft(row, column, strength);
+			fireDown(row, column, strength);
+		} else if (row == 13 && column == 1) {
+			setCellImage(btns[row][column], "images/flame/downleftfire.gif");
+			fireRight(row, column, strength);
+			fireUp(row, column, strength);
+		} else if (row == 13 && column == 13) {
+			setCellImage(btns[row][column], "images/flame/downrightfire.gif");
+			fireLeft(row, column, strength);
+			fireUp(row, column, strength);
+		} else if (row == 1) {
+			setCellImage(btns[row][column], "images/flame/hdownfire.gif");
+			fireLeft(row, column, strength);
+			fireRight(row, column, strength);
+			fireDown(row, column, strength);
+		} else if (row == 13) {
+			setCellImage(btns[row][column], "images/flame/hupfire.gif");
+			fireLeft(row, column, strength);
+			fireRight(row, column, strength);
+			fireUp(row, column, strength);
+		} else if (column == 1) {
+			setCellImage(btns[row][column], "images/flame/vrightfire.gif");
+			fireUp(row, column, strength);
+			fireRight(row, column, strength);
+			fireDown(row, column, strength);
+		} else if (column == 13) {
+			setCellImage(btns[row][column], "images/flame/vleftfire.gif");
+			fireLeft(row, column, strength);
+			fireUp(row, column, strength);
+			fireDown(row, column, strength);
+		}
+	}
+
 	public static void main(String[] args) {
-		new MainBoardGraphics();
+		MainBoardGraphics test = new MainBoardGraphics();
+		test.fireEffect(13, 7, 2);
 	}
 
 	@Override
@@ -165,27 +252,40 @@ public class MainBoardGraphics implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		btns[5][4].setDisabledIcon(new ImageIcon("images/flame/leftfire.gif"));
-		btns[5][4].setIcon(new ImageIcon("images/flame/leftfire.gif"));
-		
-		
-		btns[5][5].setDisabledIcon(new ImageIcon("images/flame/fire.gif"));
-		btns[5][5].setIcon(new ImageIcon("images/flame/fire.gif"));
-		
-		btns[5][6].setDisabledIcon(new ImageIcon("images/flame/rightfire.gif"));
-		btns[5][6].setIcon(new ImageIcon("images/flame/rightfire.gif"));
-		
-		btns[4][5].setDisabledIcon(new ImageIcon("images/flame/topfire.gif"));
-		btns[4][5].setIcon(new ImageIcon("images/flame/topfire.gif"));
-		
-		btns[6][5].setDisabledIcon(new ImageIcon("images/flame/bottomfire.gif"));
-		btns[6][5].setIcon(new ImageIcon("images/flame/bottomfire.gif"));
-		
-		
+		// btns[5][4].setDisabledIcon(new
+		// ImageIcon("images/flame/leftfire.gif"));
+		// btns[5][4].setIcon(new ImageIcon("images/flame/leftfire.gif"));
+		//
+		//
+		// btns[5][5].setDisabledIcon(new ImageIcon("images/flame/fire.gif"));
+		// btns[5][5].setIcon(new ImageIcon("images/flame/fire.gif"));
+		//
+		// btns[5][6].setDisabledIcon(new
+		// ImageIcon("images/flame/rightfire.gif"));
+		// btns[5][6].setIcon(new ImageIcon("images/flame/rightfire.gif"));
+		//
+		// btns[4][5].setDisabledIcon(new
+		// ImageIcon("images/flame/topfire.gif"));
+		// btns[4][5].setIcon(new ImageIcon("images/flame/topfire.gif"));
+		//
+		// btns[6][5].setDisabledIcon(new
+		// ImageIcon("images/flame/bottomfire.gif"));
+		// btns[6][5].setIcon(new ImageIcon("images/flame/bottomfire.gif"));
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		for (int i = 4; i <= 6; i++)
+			for (int j = 4; j <= 6; j++) {
+				btns[i][j].setDisabledIcon(new ImageIcon(""));
+				btns[i][j].setIcon(new ImageIcon(""));
+			}
 	}
 }
 
-class Cell extends JButton {
+class Cell extends JLabel {
 	private String content;
 
 	public String getContent() {
