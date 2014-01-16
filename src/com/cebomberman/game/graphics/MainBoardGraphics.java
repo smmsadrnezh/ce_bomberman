@@ -1,21 +1,15 @@
 package com.cebomberman.game.graphics;
 
 import java.awt.Color;
-import java.awt.Frame;
 import java.awt.Panel;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 
-import com.cebomberman.game.controler.ActionListeners;
 import com.cebomberman.game.graphics.GameStarter;
 
 public class MainBoardGraphics implements Runnable {
