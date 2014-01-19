@@ -10,8 +10,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.cebomberman.game.graphics.GameStarter;
-
 public class MainBoardGraphics implements Runnable {
 	public final static Cell[][] btns = new Cell[15][15];
 

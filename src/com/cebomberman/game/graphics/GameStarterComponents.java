@@ -53,7 +53,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
 		ipAddressField = new javax.swing.JTextField();
 		portLable = new javax.swing.JLabel();
 		portNumberField = new javax.swing.JTextField();
-		PasswordField = new javax.swing.JPasswordField();
+		passwordField = new javax.swing.JPasswordField();
 		passwordLable = new javax.swing.JLabel();
 		feedback = new javax.swing.JPanel();
 		fromLable = new javax.swing.JLabel();
@@ -125,16 +125,13 @@ public class GameStarterComponents extends javax.swing.JPanel {
 										.addComponent(
 												gameDescription,
 												javax.swing.GroupLayout.PREFERRED_SIZE,
-												javax.swing.GroupLayout.DEFAULT_SIZE,
+												425,
 												javax.swing.GroupLayout.PREFERRED_SIZE)
-										.addPreferredGap(
-												javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-												16, Short.MAX_VALUE)
+										.addGap(19, 19, 19)
 										.addGroup(
 												welcomeTabLayout
 														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING,
-																false)
+																javax.swing.GroupLayout.Alignment.LEADING)
 														.addComponent(
 																launchMapEditor,
 																javax.swing.GroupLayout.Alignment.TRAILING,
@@ -177,7 +174,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
 										.addGroup(
 												welcomeTabLayout
 														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING)
+																javax.swing.GroupLayout.Alignment.TRAILING)
 														.addComponent(
 																gameDescription,
 																javax.swing.GroupLayout.PREFERRED_SIZE,
@@ -335,15 +332,13 @@ public class GameStarterComponents extends javax.swing.JPanel {
 										.addGroup(
 												gameOptionsTabLayout
 														.createParallelGroup(
-																javax.swing.GroupLayout.Alignment.LEADING)
+																javax.swing.GroupLayout.Alignment.LEADING,
+																false)
 														.addGroup(
 																gameOptionsTabLayout
 																		.createSequentialGroup()
 																		.addComponent(
-																				minutes,
-																				javax.swing.GroupLayout.PREFERRED_SIZE,
-																				86,
-																				javax.swing.GroupLayout.PREFERRED_SIZE)
+																				minutes)
 																		.addPreferredGap(
 																				javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
 																		.addComponent(
@@ -387,22 +382,23 @@ public class GameStarterComponents extends javax.swing.JPanel {
 														.addGroup(
 																gameOptionsTabLayout
 																		.createSequentialGroup()
-																		.addGap(28,
-																				28,
-																				28)
+																		.addGap(43,
+																				43,
+																				43)
 																		.addComponent(
 																				playerNumberLable))
 														.addGroup(
 																gameOptionsTabLayout
 																		.createSequentialGroup()
-																		.addPreferredGap(
-																				javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+																		.addGap(18,
+																				18,
+																				18)
 																		.addComponent(
 																				numberSlider,
 																				javax.swing.GroupLayout.PREFERRED_SIZE,
 																				javax.swing.GroupLayout.DEFAULT_SIZE,
 																				javax.swing.GroupLayout.PREFERRED_SIZE)))
-										.addContainerGap(100, Short.MAX_VALUE)));
+										.addContainerGap(94, Short.MAX_VALUE)));
 
 		starterBody.addTab("Game Options", gameOptionsTab);
 
@@ -419,7 +415,12 @@ public class GameStarterComponents extends javax.swing.JPanel {
 
 		portNumberField.setText("Port Number");
 
-		PasswordField.setText("jPasswordField1");
+		passwordField.setText("jPasswordField1");
+		passwordField.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				passwordFieldActionPerformed(evt);
+			}
+		});
 
 		passwordLable.setText("Server Password:");
 
@@ -446,7 +447,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
 																		.addPreferredGap(
 																				javax.swing.LayoutStyle.ComponentPlacement.RELATED)
 																		.addComponent(
-																				PasswordField))
+																				passwordField))
 														.addGroup(
 																gameOptionsTab1Layout
 																		.createSequentialGroup()
@@ -501,7 +502,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
 														.createParallelGroup(
 																javax.swing.GroupLayout.Alignment.BASELINE)
 														.addComponent(
-																PasswordField,
+																passwordField,
 																javax.swing.GroupLayout.PREFERRED_SIZE,
 																javax.swing.GroupLayout.DEFAULT_SIZE,
 																javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -730,8 +731,11 @@ public class GameStarterComponents extends javax.swing.JPanel {
 		// TODO add your handling code here:
 	}
 
+	private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {
+		// TODO add your handling code here:
+	}
+
 	// Variables declaration - do not modify
-	private javax.swing.JPasswordField PasswordField;
 	private javax.swing.JButton about;
 	private javax.swing.JLabel avatarLable;
 	private javax.swing.JPanel feedback;
@@ -757,6 +761,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
 	private javax.swing.JToggleButton musicSwitch;
 	private javax.swing.JLabel nameLable;
 	private javax.swing.JSlider numberSlider;
+	private javax.swing.JPasswordField passwordField;
 	private javax.swing.JLabel passwordLable;
 	private javax.swing.JLabel playerNumberLable;
 	private javax.swing.JPanel playerProfileTab;
