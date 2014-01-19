@@ -23,6 +23,7 @@ public class GameStarter extends javax.swing.JFrame {
 	@SuppressWarnings("unchecked")
 	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
+		setPreferredSize(new java.awt.Dimension(500, 340));
 		GameStarterComponents starterComponents = new GameStarterComponents();
 		setContentPane(starterComponents);
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -32,10 +33,10 @@ public class GameStarter extends javax.swing.JFrame {
 				getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 641,
+				javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 400,
 				Short.MAX_VALUE));
 		layout.setVerticalGroup(layout.createParallelGroup(
-				javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 330,
+				javax.swing.GroupLayout.Alignment.LEADING).addGap(0, 300,
 				Short.MAX_VALUE));
 
 		pack();
