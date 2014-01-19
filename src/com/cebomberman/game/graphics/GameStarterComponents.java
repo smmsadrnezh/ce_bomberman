@@ -13,8 +13,8 @@ package com.cebomberman.game.graphics;
 	public class GameStarterComponents extends javax.swing.JPanel {
 
 	    /**
-	     * Creates new form MainPage
-	     */
+	 * Creates new form MainPage
+	 */
 	    public GameStarterComponents() {
 	        initComponents();
 	    }
