@@ -42,12 +42,4 @@ public class GameStarter extends javax.swing.JFrame {
 
 		pack();
 	}// </editor-fold>
-
-	/**
-	 * @param args
-	 *            the command line arguments
-	 */
-
-	// Variables declaration - do not modify
-	// End of variables declaration
 }
