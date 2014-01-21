@@ -4,6 +4,9 @@ public class BoxCell {
 	BoxCell(){
 		
 	}
+	public boolean isOpened(){
+		return true ;
+	}
 	private void speedup(){
 		
 	}
