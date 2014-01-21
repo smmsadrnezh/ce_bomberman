@@ -17,20 +17,20 @@ public class MainBoardGraphics extends JFrame {
 	int keyPressed = 0;
 	final JLabel player = new JLabel();
 	public MainBoardGraphics() {
-
-		// mainboard and its features
-		JFrame mainBoard = new JFrame("Bomberman");
-		mainBoard.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		mainBoard.setVisible(true);
-		mainBoard.setBounds(10, 10, 608, 508);
-		mainBoard.setLayout(null);
-		mainBoard.setResizable(false);
-
+		
+		super("Bomberman");
+		
 		// main panel
-		MainBoardGraphicsComponents jp = new MainBoardGraphicsComponents();
-		mainBoard.setContentPane(jp);
+		MainBoardComponents jp = new MainBoardComponents();
+		setContentPane(jp);
 		jp.setLayout(null);
-
+		
+		// mainboard and its features
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setVisible(true);
+		setBounds(10, 10, 608, 508);
+		setLayout(null);
+		setResizable(false);
 	}
 	
 	
