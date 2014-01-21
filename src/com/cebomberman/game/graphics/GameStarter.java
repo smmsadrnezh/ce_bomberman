@@ -14,7 +14,7 @@ public class GameStarter extends javax.swing.JFrame {
 		GameStarterComponents starterComponents = new GameStarterComponents();
 		setContentPane(starterComponents);
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setPreferredSize(new java.awt.Dimension(651, 350));
+		setPreferredSize(new java.awt.Dimension(620, 340));
 		setVisible(true);
 		javax.swing.GroupLayout layout = new javax.swing.GroupLayout(
 				getContentPane());
