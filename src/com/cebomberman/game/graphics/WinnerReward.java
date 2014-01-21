@@ -73,8 +73,9 @@ public class WinnerReward extends Thread {
 	public void run() {
 		// TODO Auto-generated method stub
 		for (int k = 1; k < 7; k++) {
-			for (int j = k; j < 14; j++) {
-				cells[k][j].setBackground(Color.RED);
+			for (int j = k; j < 14; j++) {		
+				cells[k][j].setIcon(new ImageIcon("images/brick1.gif"));
+				cells[k][j].setDisabledIcon(new ImageIcon("images/brick1.gif"));
 				try {
 					Thread.sleep(5);
 				} catch (InterruptedException e) {
@@ -83,7 +84,8 @@ public class WinnerReward extends Thread {
 				}
 			}
 			for (int i = k; i < 14; i++) {
-				cells[i][14 - k].setBackground(Color.RED);
+				cells[i][14 - k].setIcon(new ImageIcon("images/brick1.gif"));
+				cells[i][14 - k].setDisabledIcon(new ImageIcon("images/brick1.gif"));
 				try {
 					Thread.sleep(5);
 				} catch (InterruptedException e) {
@@ -92,7 +94,9 @@ public class WinnerReward extends Thread {
 				}
 			}
 			for (int j = 14 - k; j > 0; j--) {
-				cells[14 - k][j].setBackground(Color.RED);
+				
+				cells[14 - k][j].setIcon(new ImageIcon("images/brick1.gif"));
+				cells[14 - k][j].setDisabledIcon(new ImageIcon("images/brick1.gif"));
 				try {
 					Thread.sleep(5);
 				} catch (InterruptedException e) {
@@ -101,7 +105,8 @@ public class WinnerReward extends Thread {
 				}
 			}
 			for (int i = 14 - k; i > 0; i--) {
-				cells[i][k].setBackground(Color.RED);
+				cells[i][k].setIcon(new ImageIcon("images/brick1.gif"));
+				cells[i][k].setDisabledIcon(new ImageIcon("images/brick1.gif"));
 				try {
 					Thread.sleep(5);
 				} catch (InterruptedException e) {
