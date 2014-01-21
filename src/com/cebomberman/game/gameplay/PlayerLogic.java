@@ -1,18 +1,9 @@
 package com.cebomberman.game.gameplay;
-public class Player {
-	//Images
-	private String upImage ;
-	private String downImage ;
-	private String leftImage ;
-	private String rightImage ;
-	private String upWalkingImage ;
-	private String downWalkingImage ;
-	private String leftWalingImage ;
-	private String rightWalkingImage ;
+public class PlayerLogic {		
 	
-	//
 	private boolean isWinner =false; 
 	private String playerName;
+	private String color;
 	private int currentPositionX ;
 	private int currentPositionY ;
 	private int lifeNumber;
@@ -20,7 +11,7 @@ public class Player {
 	private int bombStrength ;
 	private int bombNumber;
 	
-	public Player() {
+	public PlayerLogic() {
 		
 	}
 	public String getUpImage() {

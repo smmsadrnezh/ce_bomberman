@@ -10,7 +10,7 @@ import com.cebomberman.game.graphics.WinnerReward;
 
 public class Main {
 	public static void main(String[] args) {
-		PlayerBuilder test = new PlayerBuilder();
+		Player test = new Player();
 		new WinnerReward();
 //		MainBoardGraphics test = new MainBoardGraphics();
 
