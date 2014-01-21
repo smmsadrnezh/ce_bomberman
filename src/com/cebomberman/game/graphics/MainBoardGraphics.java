@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 public class MainBoardGraphics implements Runnable {
 	final public Cell[][] cells = new Cell[15][15];
 	int keyPressed = 0;
-
+	final JLabel player = new JLabel();
 	public MainBoardGraphics() {
 
 		// mainboard and its features
@@ -45,7 +45,7 @@ public class MainBoardGraphics implements Runnable {
 		gameBoard.setBackground(Color.GRAY);
 		gameBoard.setLayout(null);
 
-		final JLabel player = new JLabel();
+		//final JLabel player = new JLabel();
 		player.setBounds(32, 32, 32, 32);
 		gameBoard.add(player);
 		// player.setDisabledIcon(new ImageIcon("player1.gif"));
@@ -66,26 +66,7 @@ public class MainBoardGraphics implements Runnable {
 			}
 		});
 
-		for (int i = 0; i < 15; i++)
-			for (int j = 0; j < 15; j++) {
-				cells[i][j] = new Cell();
-				gameBoard.add(cells[i][j]);
-				cells[i][j].setBounds(32 * (j), 32 * (i), 32, 32);
-				// cells[i][j].setEnabled(false);
-				cells[i][j].setBackground(Color.GRAY);
-				// cells[i][j].setBorder(null);
-			}
-		for (int i = 0; i < 15; i++)
-			for (int j = 0; j < 15; j++) {
-				if (i == 0 || i == 14 || j == 0 || j == 14) {
-					// cells[i][j].setDisabledIcon(new ImageIcon(
-					// "images/brick1.gif"));
-					cells[i][j].setIcon(new ImageIcon("images/brick1.gif"));
-				}
-			}
-
-		new Thread(this).start();
-
+	
 		player.addKeyListener(new KeyListener() {
 
 			@Override
@@ -96,7 +77,10 @@ public class MainBoardGraphics implements Runnable {
 				case 37:
 					player.setIcon(new ImageIcon(
 							"images/players/pl2/p2left.gif"));
-					player.setLocation(player.getX() - 5, player.getY());
+					for (int i = 0; i < 5; i++) {
+						player.setLocation(player.getX() - 1, player.getY());
+						
+					}
 					keyPressed = 37;
 					break;
 				case 38:
@@ -123,7 +107,7 @@ public class MainBoardGraphics implements Runnable {
 			public void keyReleased(KeyEvent e) {
 
 				// TODO Auto-generated method stub
-				switch (keyPressed){
+				switch (keyPressed) {
 				case 37:
 					player.setIcon(new ImageIcon("images/players/pl2/left.gif"));
 					break;
@@ -136,8 +120,9 @@ public class MainBoardGraphics implements Runnable {
 				case 40:
 					player.setIcon(new ImageIcon("images/players/pl2/down.gif"));
 					break;
+				}
 			}
-			}
+
 			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
@@ -145,7 +130,28 @@ public class MainBoardGraphics implements Runnable {
 			}
 
 		});
+		
+		for (int i = 0; i < 15; i++)
+			for (int j = 0; j < 15; j++) {
+				cells[i][j] = new Cell();
+				gameBoard.add(cells[i][j]);
+				cells[i][j].setBounds(32 * (j), 32 * (i), 32, 32);
+				// cells[i][j].setEnabled(false);
+				cells[i][j].setBackground(Color.GRAY);
+				// cells[i][j].setBorder(null);
+			}
+		for (int i = 0; i < 15; i++)
+			for (int j = 0; j < 15; j++) {
+				if (i == 0 || i == 14 || j == 0 || j == 14) {
+					// cells[i][j].setDisabledIcon(new ImageIcon(
+					// "images/brick1.gif"));
+					cells[i][j].setIcon(new ImageIcon("images/brick1.gif"));
+				}
+			}
 
+		new Thread(this).start();
+
+		
 	}
 
 	public void setCellContent(int i, int j, String content) {
@@ -274,15 +280,12 @@ public class MainBoardGraphics implements Runnable {
 
 	}
 
+	
+	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+
 
 	}
 }

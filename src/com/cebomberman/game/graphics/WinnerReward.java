@@ -11,11 +11,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class WinnerReward {
+public class WinnerReward extends Thread {
 	//public JLabel cells[][] = new JLabel[15][15];
-
+	JButton cells[][] = new JButton[15][15];
 	public WinnerReward() {
-		JButton cells[][] = new JButton[15][15];
+		
 		// mainboard and its features
 		JFrame mainBoard = new JFrame("Bomberman");
 		mainBoard.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -50,34 +50,66 @@ public class WinnerReward {
 				cells[i][j] = new JButton();
 				gameBoard.add(cells[i][j]);
 				cells[i][j].setBounds(32 * (j), 32 * (i), 32, 32);
-				cells[i][j].setBackground(Color.GRAY);
 				cells[i][j].setVisible(true);
+				cells[i][j].setEnabled(false);	
 			}
 		for (int i = 0; i < 15; i++)
 			for (int j = 0; j < 15; j++) {
 				if (i == 0 || i == 14 || j == 0 || j == 14) {
 					cells[i][j].setIcon(new ImageIcon("images/brick1.gif"));
+					cells[i][j].setDisabledIcon(new ImageIcon("images/brick1.gif"));					
 				}
 			}
+		new Thread(this).start();
 		
 //		cells[5][5].setBackground(Color.GREEN);
 //		gameBoard.repaint();
 		
+	
+
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
 		for (int k = 1; k < 7; k++) {
 			for (int j = k; j < 14; j++) {
 				cells[k][j].setBackground(Color.RED);
+				try {
+					Thread.sleep(5);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			for (int i = k; i < 14; i++) {
 				cells[i][14 - k].setBackground(Color.RED);
+				try {
+					Thread.sleep(5);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			for (int j = 14 - k; j > 0; j--) {
 				cells[14 - k][j].setBackground(Color.RED);
+				try {
+					Thread.sleep(5);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			for (int i = 14 - k; i > 0; i--) {
 				cells[i][k].setBackground(Color.RED);
+				try {
+					Thread.sleep(5);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 		}
-
 	}
 }
