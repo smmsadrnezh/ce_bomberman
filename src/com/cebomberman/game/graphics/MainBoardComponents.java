@@ -12,9 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class MainBoardComponents extends JPanel implements Runnable {
-	
-	public MainBoardComponents(){
 	final CellGraphics[][] cells = new CellGraphics[15][15];
+	public MainBoardComponents(){
+	
 	
 	// information panel
 	Panel information = new Panel();
@@ -80,7 +80,7 @@ public void setCellContent(int i, int j, String content) {
 	setDefaultImages();
 }
 
-private void setCellImage(Cell cell, String imagePath) {
+private void setCellImage(CellGraphics cell, String imagePath) {
 	// cell.setDisabledIcon(new ImageIcon(imagePath));
 	cell.setIcon(new ImageIcon(imagePath));
 }
