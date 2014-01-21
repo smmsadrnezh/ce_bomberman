@@ -1,42 +1,35 @@
 package com.cebomberman.game.controler;
 
-import com.cebomberman.game.graphics.MainBoardGraphics;
+import java.awt.event.KeyEvent;
 
+import javax.swing.ImageIcon;
+
+import com.cebomberman.game.graphics.MainBoardGraphics;
+import com.cebomberman.game.graphics.PlayerGraphics;
+
+import java.awt.event.KeyListener;
 public class ActionListeners {
 	
 	MainBoardGraphics mainBoard = new MainBoardGraphics();
+	
+	
 	ActionListeners(){
 		mainBoard.addKeyListener(new KeyListener() {
-			
-			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				// int a =0;
 				switch (e.getKeyCode()) {
 				case 37:
-					player.setIcon(new ImageIcon(
-							"images/players/pl2/p2left.gif"));
-					for (int i = 0; i < 5; i++) {
-						player.setLocation(player.getX() - 1, player.getY());
-					}
-					keyPressed = 37;
+					PlayerGraphics.leftIcon();
 					break;
 				case 38:
-					player.setIcon(new ImageIcon("images/players/pl2/p2up.gif"));
-					player.setLocation(player.getX(), player.getY() - 5);
-					keyPressed = 38;
+					PlayerGraphics.upIcon();
 					break;
 				case 39:
-					player.setIcon(new ImageIcon(
-							"images/players/pl2/p2right.gif"));
-					player.setLocation(player.getX() + 5, player.getY());
-					keyPressed = 39;
+					PlayerGraphics.rightIcon();
 					break;
 				case 40:
-					player.setIcon(new ImageIcon(
-							"images/players/pl2/p2down.gif"));
-					player.setLocation(player.getX(), player.getY() + 5);
-					keyPressed = 40;
+					PlayerGraphics.downIcon();
 					break;
 				}
 			}
@@ -61,7 +54,6 @@ public class ActionListeners {
 				}
 			}
 	
-			@Override
 			public void keyTyped(KeyEvent e) {
 				// TODO Auto-generated method stub
 	

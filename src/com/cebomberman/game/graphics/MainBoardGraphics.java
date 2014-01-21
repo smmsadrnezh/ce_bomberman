@@ -17,7 +17,6 @@ public class MainBoardGraphics extends JFrame {
 	int keyPressed = 0;
 	final JLabel player = new JLabel();
 	public MainBoardGraphics() {
-		
 		super("Bomberman");
 		
 		// main panel
