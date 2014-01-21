@@ -18,9 +18,6 @@ public class GameStarterComponents extends javax.swing.JPanel {
 	public GameStarterComponents() {
 		initComponents();
 	}
-
-	@SuppressWarnings("unchecked")
-	// <editor-fold defaultstate="collapsed" desc="Generated Code">
 	private void initComponents() {
 
 		launchGame = new javax.swing.JButton();
