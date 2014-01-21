@@ -4,6 +4,8 @@ import javax.swing.ImageIcon;
 
 public class PlayerGraphics {
 
+	private String color;
+	
 	private String upImageLocation;
 	private String downImageLocation;
 	private String rightImageLocation;
@@ -14,17 +16,16 @@ public class PlayerGraphics {
 	private String leftMovingImageLocation;
 	
 	public PlayerGraphics(){
-		this.rightImageLocation = "images/players/"+super.logic.color+"/right.png";
-		this.leftImageLocation = "images/players/"+super.logic.color+"/right.png";
-		this.upImageLocation = "images/players/"+super.logic.color+"/right.png";
-		this.downImageLocation = "images/players/"+super.logic.color+"/right.png";
 		
-		this.righMovingtImageLocation = "images/players/"+super.logic.color+"/right.png";
-		this.leftMovingImageLocation = "images/players/"+super.logic.color+"/right.png";
-		this.upMovingImageLocation = "images/players/"+super.logic.color+"/right.png";
-		this.downMovingImageLocation = "images/players/"+super.logic.color+"/right.png";
+		this.rightImageLocation = "images/players/"+color+"/right.png";
+		this.leftImageLocation = "images/players/"+color+"/left.png";
+		this.upImageLocation = "images/players/"+color+"/up.png";
+		this.downImageLocation = "images/players/"+color+"/down.png";
 		
-		
+		this.righMovingtImageLocation = "images/players/"+color+"/movingright.png";
+		this.leftMovingImageLocation = "images/players/"+color+"/movingleft.png";
+		this.upMovingImageLocation = "images/players/"+color+"/movingup.png";
+		this.downMovingImageLocation = "images/players/"+color+"/movingdown.png";
 		
 }
 	rightImageLocation = /player/color/

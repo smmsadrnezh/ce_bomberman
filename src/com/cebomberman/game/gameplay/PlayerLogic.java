@@ -3,7 +3,6 @@ public class PlayerLogic {
 	
 	private boolean isWinner =false; 
 	private String playerName;
-	private String color;
 	private int currentPositionX ;
 	private int currentPositionY ;
 	private int lifeNumber;
