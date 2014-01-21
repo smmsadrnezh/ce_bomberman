@@ -7,9 +7,10 @@ import com.cebomberman.game.graphics.GameStarter;
 import com.cebomberman.game.graphics.MainBoardGraphics;
 import com.cebomberman.game.graphics.WinnerReward;
 
+
 public class Main {
 	public static void main(String[] args) {
-		
+		PlayerBuilder test = new PlayerBuilder();
 		new WinnerReward();
 //		MainBoardGraphics test = new MainBoardGraphics();
 
@@ -34,4 +35,5 @@ public class Main {
 //		
 //		test.fireEffect(2, 6, 4);
 	}
+
 }

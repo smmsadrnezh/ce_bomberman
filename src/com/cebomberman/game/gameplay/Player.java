@@ -1,9 +1,5 @@
 package com.cebomberman.game.gameplay;
-
-import javax.swing.JLabel;
-
-import com.cebomberman.game.graphics.MainBoardGraphics;
-public class Player extends JLabel {
+public class Player {
 	//Images
 	private String upImage ;
 	private String downImage ;
@@ -16,7 +12,7 @@ public class Player extends JLabel {
 	
 	//
 	private boolean isWinner =false; 
-	private String name;
+	private String playerName;
 	private int currentPositionX ;
 	private int currentPositionY ;
 	private int lifeNumber;
@@ -24,7 +20,7 @@ public class Player extends JLabel {
 	private int bombStrength ;
 	private int bombNumber;
 	
-	Player() {
+	public Player() {
 		
 	}
 	public String getUpImage() {
@@ -74,6 +70,54 @@ public class Player extends JLabel {
 	}
 	public void setRightWalkingImage(String rightWalkingImage) {
 		this.rightWalkingImage = rightWalkingImage;
+	}
+	private int getCurrentPositionX() {
+		return currentPositionX;
+	}
+	private void setCurrentPositionX(int currentPositionX) {
+		this.currentPositionX = currentPositionX;
+	}
+	private int getCurrentPositionY() {
+		return currentPositionY;
+	}
+	private void setCurrentPositionY(int currentPositionY) {
+		this.currentPositionY = currentPositionY;
+	}
+	private int getSpeed() {
+		return speed;
+	}
+	private void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	private int getLifeNumber() {
+		return lifeNumber;
+	}
+	private void setLifeNumber(int lifeNumber) {
+		this.lifeNumber = lifeNumber;
+	}
+	private int getBombStrength() {
+		return bombStrength;
+	}
+	private void setBombStrength(int bombStrength) {
+		this.bombStrength = bombStrength;
+	}
+	private int getBombNumber() {
+		return bombNumber;
+	}
+	private void setBombNumber(int bombNumber) {
+		this.bombNumber = bombNumber;
+	}
+	private boolean isWinner() {
+		return isWinner;
+	}
+	private void setWinner(boolean isWinner) {
+		this.isWinner = isWinner;
+	}
+	private String getPlayerName() {
+		return playerName;
+	}
+	private void setPlayerName(String playerName) {
+		this.playerName = playerName;
 	}
 	
 }
