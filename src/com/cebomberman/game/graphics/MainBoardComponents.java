@@ -8,9 +8,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class MainBoardComponents extends JPanel {
+public class MainBoardComponents extends JPanel implements Runnable {
 	
 	public MainBoardComponents(){
 	final CellGraphics[][] cells = new CellGraphics[15][15];
@@ -29,7 +30,7 @@ public class MainBoardComponents extends JPanel {
 	gameBoard.setBackground(Color.GRAY);
 	gameBoard.setLayout(null);
 
-	//final JLabel player = new JLabel();
+	final JLabel player = new JLabel();
 	player.setBounds(32, 32, 32, 32);
 	gameBoard.add(player);
 	// player.setDisabledIcon(new ImageIcon("player1.gif"));
@@ -198,6 +199,12 @@ public void fireEffect(int row, int column, int strength) {
 	if (cells[row + 1][column].getContent() != "block" && row != 13)
 		fireDown(row, column, strength);
 
+}
+
+@Override
+public void run() {
+	// TODO Auto-generated method stub
+	
 }
 
 }
