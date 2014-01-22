@@ -18,6 +18,7 @@ public class PlayerGraphics extends JLabel {
 
 	private int currentPositionX;
 	private int currentPositionY;
+
 	/**
 	 * 
 	 */
@@ -38,21 +39,23 @@ public class PlayerGraphics extends JLabel {
 				+ "/movingdown.gif";
 
 	}
+
 	/**
 	 * 
 	 * @param righMovingtImageLocation
 	 */
-	public void moveRight(String righMovingtImageLocation) {
-		setIcon(new ImageIcon(righMovingtImageLocation));
+	public void moveRight(String test) {
+		setIcon(new ImageIcon(test));
 		setLocation(this.getX() + 5, this.getY());
 		// keyPressed = 39;
 	}
+
 	/**
 	 * 
 	 * @param leftMovingtImageLocation
 	 */
-	public void moveleft(String leftMovingtImageLocation) {
-		setIcon(new ImageIcon(leftMovingtImageLocation));
+	public void moveLeft(String test) {
+		setIcon(new ImageIcon(leftMovingImageLocation));
 		for (int i = 0; i < 5; i++) {
 			setLocation(getX() - 1, getY());
 			try {
@@ -64,34 +67,39 @@ public class PlayerGraphics extends JLabel {
 		}
 		// keyPressed = 37;
 	}
+
 	/**
 	 * 
 	 * @param upMovingImageLocation
 	 */
-	public void moveUp(String upMovingImageLocation) {
+	public void moveUp() {
 		setIcon(new ImageIcon(upMovingImageLocation));
 		setLocation(getX(), getY() - 5);
 		// keyPressed = 38;
 	}
+
 	/**
 	 * 
 	 * @param downMovingImageLocation
 	 */
-	public void moveDown(String downMovingImageLocation) {
+	public void moveDown() {
 		setIcon(new ImageIcon(downMovingImageLocation));
 		setLocation(getX(), getY() + 5);
 		// keyPressed = 40;
 	}
-/**
+
+	/**
  * 
  */
 	public void loseLifeIcon() {
 
 	}
-/**
- * this method calculates integer x coordinate of player.
- * @return x coordinate of player.
- */
+
+	/**
+	 * this method calculates integer x coordinate of player.
+	 * 
+	 * @return x coordinate of player.
+	 */
 	public int getCurrentPositionX() {
 		currentPositionX = this.getX() / 32;
 		if (this.getX() % 32 > 16)
@@ -99,11 +107,11 @@ public class PlayerGraphics extends JLabel {
 		return currentPositionX;
 	}
 
-
-/**
- * this method calculates integer y coordinate of player.
- * @return y coordinate of player.
- */
+	/**
+	 * this method calculates integer y coordinate of player.
+	 * 
+	 * @return y coordinate of player.
+	 */
 	public int getCurrentPositionY() {
 		currentPositionY = this.getY() / 32;
 		if (this.getY() % 32 > 16)

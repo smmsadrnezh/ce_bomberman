@@ -17,24 +17,31 @@ import java.util.ArrayList;
  */
 
 public class ActionListeners {
-	MainBoardGraphics mainBoard = new MainBoardGraphics();
-	private int playerNumbers;
+	
+	public int playerNumbers = 4;
+	public Player[] players = new Player[playerNumbers] ;
+	MainBoardGraphics mainBoard ;
 	ActionListeners(){
+		for (int i = 0; i < playerNumbers; i++) {
+			players[i] = new Player() ;
+		}
+		mainBoard =  new MainBoardGraphics(players);
+		
 		mainBoard.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				switch (e.getKeyCode()) {
 				case 37:
-					PlayerGraphics.leftIcon();
+					mainBoard.players[0].playerGraphics.moveRight("images/players/yellow/movingright.gif");
 					break;
 				case 38:
-					PlayerGraphics.upIcon();
+					players[0].playerGraphics.moveUp();
 					break;
 				case 39:
-					PlayerGraphics.rightIcon();
+					//players[0].playerGraphics.moveRight();
 					break;
 				case 40:
-					PlayerGraphics.downIcon();
+					players[0].playerGraphics.moveDown();
 					break;
 				}
 			}
@@ -43,23 +50,23 @@ public class ActionListeners {
 			public void keyReleased(KeyEvent e) {
 	
 				// TODO Auto-generated method stub
-				switch (keyPressed) {
-				case 37:
-					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/left.gif"));
-					break;
-				case 38:
-					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/up.gif"));
-					break;
-				case 39:
-					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/right.gif"));
-					break;
-				case 40:
-					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/down.gif"));
-					break;
-				case 13:
-					player.setBombCoordinate();
-					player.playerLogic.bombing();
-				}
+//				switch (e.getKeyCode()) {
+//				case 37:
+//					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/left.gif"));
+//					break;
+//				case 38:
+//					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/up.gif"));
+//					break;
+//				case 39:
+//					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/right.gif"));
+//					break;
+//				case 40:
+//					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/down.gif"));
+//					break;
+//				case 13:
+//					player.setBombCoordinate();
+//					player.playerLogic.bombing();
+//				}
 			}
 	
 			public void keyTyped(KeyEvent e) {
@@ -76,9 +83,6 @@ public class ActionListeners {
 	 */
 	void PlayerBuilder (int playerNumbers){
 		
-		Player[] players = new Player[playerNumbers] ;
-		for (int i = 0; i < playerNumbers; i++) {
-			players[i] = new Player() ;
-		}
+
 	}
 }

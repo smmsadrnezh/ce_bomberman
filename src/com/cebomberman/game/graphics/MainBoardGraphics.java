@@ -11,6 +11,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.cebomberman.game.gameplay.Player;
 /**
  * 
  * @author
@@ -23,11 +25,12 @@ public class MainBoardGraphics extends JFrame {
 	/**
 	 * 
 	 */
-	public MainBoardGraphics() {
+	public Player[] players;
+	public MainBoardGraphics(Player[] players) {
 		super("Bomberman");
-		
+		this.players = players ;
 		// main panel
-		MainBoardComponents jp = new MainBoardComponents();
+		MainBoardComponents jp = new MainBoardComponents(players);
 		setContentPane(jp);
 		jp.setLayout(null);
 		

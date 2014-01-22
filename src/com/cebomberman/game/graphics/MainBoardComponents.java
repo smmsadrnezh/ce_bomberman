@@ -10,6 +10,9 @@ import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import com.cebomberman.game.controler.ActionListeners;
+import com.cebomberman.game.gameplay.Player;
 /**
  * 
  * @author
@@ -17,11 +20,11 @@ import javax.swing.JPanel;
  */
 public class MainBoardComponents extends JPanel implements Runnable {
 	final CellGraphics[][] cells = new CellGraphics[15][15];
-	final JLabel player = new JLabel();
+	Player[] players ; 
 /**
  * 
  */
-	public MainBoardComponents() {
+	public MainBoardComponents(Player[] players) {
 
 		// information panel
 		Panel information = new Panel();
@@ -29,49 +32,49 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		information.setBounds(0, 0, 120, 480);
 		information.setLayout(null);
 		information.setBackground(Color.BLACK);
-
+		
 		// gameBoard panel
 		Panel gameBoard = new Panel();
 		this.add(gameBoard);
 		gameBoard.setBounds(120, 0, 480, 480);
 		gameBoard.setBackground(Color.GRAY);
 		gameBoard.setLayout(null);
-
-		player.setBounds(32, 32, 32, 32);
-		gameBoard.add(player);
-		// player.setDisabledIcon(new ImageIcon("player1.gif"));
-		// player.setIcon(new ImageIcon("images/players/yellow/right.gif"));
-		player.grabFocus();
-		new Thread(this).start();
-		information.addFocusListener(new FocusListener() {
-
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-
-			}
-
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				// TODO Auto-generated method stub
-				player.grabFocus();
-			}
-		});
+		this.players = players ;
+//		Player player1 = new Player() ;
+//		gameBoard.add(player1.playerGraphics) ;
+//		player1.playerGraphics.setBounds(50, 50, 32, 32);
+//		player1.playerGraphics.setBackground(Color.BLUE);
+		for(int i=0;i<4;i++){
+			gameBoard.add(players[i].playerGraphics);
+			players[i].playerGraphics.setBounds(32*i, 32*i, 32, 32);
+			
+		}
+	
+		players[0].playerGraphics.moveRight("images/players/yellow/movingright.gif");
+		players[0].playerGraphics.setBounds(32, 32, 32, 32);
+		
+		players[1].playerGraphics.setIcon(new ImageIcon("images/players/blue/left.gif"));
+		players[1].playerGraphics.setBounds(416, 32, 32, 32);
+		
+		players[2].playerGraphics.setIcon(new ImageIcon("images/players/green/right.gif"));
+		players[2].playerGraphics.setBounds(32, 416, 32, 32);
+		
+		players[3].playerGraphics.setIcon(new ImageIcon("images/players/red/right.gif"));
+		players[3].playerGraphics.setBounds(416, 416, 32, 32);		
+		
+	//	new Thread(this).start();
+		
 
 		for (int i = 0; i < 15; i++)
 			for (int j = 0; j < 15; j++) {
 				cells[i][j] = new CellGraphics();
 				gameBoard.add(cells[i][j]);
 				cells[i][j].setBounds(32 * (j), 32 * (i), 32, 32);
-				// cells[i][j].setEnabled(false);
 				cells[i][j].setBackground(Color.GRAY);
-				// cells[i][j].setBorder(null);
 			}
 		for (int i = 0; i < 15; i++)
 			for (int j = 0; j < 15; j++) {
 				if (i == 0 || i == 14 || j == 0 || j == 14) {
-					// cells[i][j].setDisabledIcon(new ImageIcon(
-					// "images/brick1.gif"));
 					cells[i][j].setIcon(new ImageIcon("images/brick1.gif"));
 				}
 			}
@@ -244,27 +247,27 @@ public class MainBoardComponents extends JPanel implements Runnable {
  */
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
-		for (int i = 0; i < 5; i++) {
-			player.setIcon(new ImageIcon("images/players/yellow/right.gif"));
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			player.setIcon(new ImageIcon(""));
-			try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-		player.setIcon(new ImageIcon("images/players/yellow/right.gif"));
-		// player.setIcon(new ImageIcon("images/players/yellow/right.gif"));
+//		// TODO Auto-generated method stub
+//		for (int i = 0; i < 5; i++) {
+//			player.setIcon(new ImageIcon("images/players/yellow/right.gif"));
+//			try {
+//				Thread.sleep(200);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//
+//			player.setIcon(new ImageIcon(""));
+//			try {
+//				Thread.sleep(200);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//		}
+//		player.setIcon(new ImageIcon("images/players/yellow/right.gif"));
+//		// player.setIcon(new ImageIcon("images/players/yellow/right.gif"));
 	}
 
 }
