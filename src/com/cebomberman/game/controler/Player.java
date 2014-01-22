@@ -6,11 +6,14 @@ import com.cebomberman.game.gameplay.PlayerLogic;
 import com.cebomberman.game.graphics.PlayerGraphics;
 
 public class Player {
-	int playerNumbers;
+	private int playerNumbers;
+	PlayerLogic playerLogic;
+	PlayerGraphics playerGraphics;
 	ArrayList<Player> players = new ArrayList();
+	
 	public Player() {
-		PlayerLogic playerLogic = new PlayerLogic();
-		PlayerGraphics playerGraphics = new PlayerGraphics();
+		playerLogic = new PlayerLogic();
+		playerGraphics = new PlayerGraphics();
 	}
 	void PlayerBuilder (){
 		for (int i = 0; i < playerNumbers; i++) {

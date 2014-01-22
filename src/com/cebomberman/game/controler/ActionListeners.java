@@ -12,7 +12,6 @@ public class ActionListeners {
 		mainBoard.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
-				// int a =0;
 				switch (e.getKeyCode()) {
 				case 37:
 					PlayerGraphics.leftIcon();

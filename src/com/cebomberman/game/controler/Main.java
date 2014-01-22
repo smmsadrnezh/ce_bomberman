@@ -10,9 +10,9 @@ import com.cebomberman.game.graphics.WinnerReward;
 
 public class Main {
 	public static void main(String[] args) {
-		Player test = new Player();
-		new WinnerReward();
-//		MainBoardGraphics test = new MainBoardGraphics();
+		//Player test = new Player();
+		//new WinnerReward();
+		MainBoardGraphics test = new MainBoardGraphics();
 
 		try {
 			// Set System L&F

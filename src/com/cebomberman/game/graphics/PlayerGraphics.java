@@ -1,8 +1,9 @@
 package com.cebomberman.game.graphics;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
-public class PlayerGraphics {
+public class PlayerGraphics extends JLabel{
 
 	private String color;
 	
@@ -15,46 +16,79 @@ public class PlayerGraphics {
 	private String righMovingtImageLocation;
 	private String leftMovingImageLocation;
 	
+	private int currentPositionX ;
+	private int currentPositionY ;
+	
 	public PlayerGraphics(){
 		
-		this.rightImageLocation = "images/players/"+color+"/right.png";
-		this.leftImageLocation = "images/players/"+color+"/left.png";
-		this.upImageLocation = "images/players/"+color+"/up.png";
-		this.downImageLocation = "images/players/"+color+"/down.png";
+		this.rightImageLocation = "images/players/"+color+"/right.gif";
+		this.leftImageLocation = "images/players/"+color+"/left.gif";
+		this.upImageLocation="images/players/"+color+"/up.gif";
+		this.downImageLocation = "images/players/"+color+"/down.gif";
 		
-		this.righMovingtImageLocation = "images/players/"+color+"/movingright.png";
-		this.leftMovingImageLocation = "images/players/"+color+"/movingleft.png";
-		this.upMovingImageLocation = "images/players/"+color+"/movingup.png";
-		this.downMovingImageLocation = "images/players/"+color+"/movingdown.png";
+		this.righMovingtImageLocation = "images/players/"+color+"/movingright.gif";
+		this.leftMovingImageLocation = "images/players/"+color+"/movingleft.gif";
+		this.upMovingImageLocation= "images/players/"+color+"/movingup.gif";
+		this.downMovingImageLocation = "images/players/"+color+"/movingdown.gif";
 		
 }
-	rightImageLocation = /player/color/
-	public void moveRight(String rightImageLocation){
-		player.setIcon(new ImageIcon(
-				"rightImageLocation"));
-		player.setLocation(player.getX() + 5, player.getY());
-		keyPressed = 39;
+	
+	public void moveRight(String righMovingtImageLocation){
+		setIcon(new ImageIcon(righMovingtImageLocation));
+		setLocation(this.getX() + 5, this.getY());
+		//keyPressed = 39;
 	}
-	public void moveleft(String leftImageLocation){
-		player.setIcon(new ImageIcon(
-				"leftImageLocation"));
+	public void moveleft(String leftMovingtImageLocation){
+		setIcon(new ImageIcon(leftMovingtImageLocation));
 		for (int i = 0; i < 5; i++) {
-			player.setLocation(player.getX() - 1, player.getY());
+			setLocation(getX() - 1, getY());
+			try {
+				Thread.sleep(5);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		keyPressed = 37;
+		//keyPressed = 37;
 	}
-	public void moveUp(String upImageLocation){
-		player.setIcon(new ImageIcon("upImageLocation"));
-		player.setLocation(player.getX(), player.getY() - 5);
-		keyPressed = 38;
+	public void moveUp(String upMovingImageLocation){
+		setIcon(new ImageIcon(upMovingImageLocation));
+		setLocation(getX(), getY() - 5);
+		//keyPressed = 38;
 	}
-	public void moveDown(String downImageLocation){
-		player.setIcon(new ImageIcon(
-				"downImageLocation"));
-		player.setLocation(player.getX(), player.getY() + 5);
-		keyPressed = 40;
+	public void moveDown(String downMovingImageLocation){
+		setIcon(new ImageIcon(downMovingImageLocation));
+		setLocation(getX(), getY() + 5);
+		//keyPressed = 40;
 	}
 	public void loseLifeIcon(){
 		
 	}
+	
+	
+	private int getCurrentPositionX() {
+		return currentPositionX;
+	}
+	private void setCurrentPositionX(int currentPositionX) {
+		this.currentPositionX = currentPositionX;
+	}
+	private int getCurrentPositionY() {
+		return currentPositionY;
+	}
+	private void setCurrentPositionY(int currentPositionY) {
+		this.currentPositionY = currentPositionY;
+	}
+	
+//	public  String getUpImageLocation() {
+//		return upImageLocation;
+//	}
+//	public void setUpImageLocation(String upImageLocation) {
+//		this.upImageLocation = upImageLocation;
+//	}
+//	public String getUpMovingImageLocation() {
+//		return upMovingImageLocation;
+//	}
+//	public void setUpMovingImageLocation(String upMovingImageLocation) {
+//		this.upMovingImageLocation = upMovingImageLocation;
+//	}
 }
