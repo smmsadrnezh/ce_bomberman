@@ -7,7 +7,6 @@ import com.cebomberman.game.graphics.GameStarter;
 import com.cebomberman.game.graphics.MainBoardGraphics;
 import com.cebomberman.game.graphics.WinnerReward;
 import com.cebomberman.game.sounds.Music;
-import com.cebomberman.game.sounds.Music.Sound;
 
 /**
  * 
