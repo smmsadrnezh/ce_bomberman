@@ -8,8 +8,8 @@ import com.cebomberman.game.graphics.PlayerGraphics;
  * 
  */
 public class Player {
-	PlayerLogic playerLogic;
-	PlayerGraphics playerGraphics;
+	public PlayerLogic playerLogic;
+	public PlayerGraphics playerGraphics;
 
 	/**
 	 * 

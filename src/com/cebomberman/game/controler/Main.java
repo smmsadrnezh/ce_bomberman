@@ -19,8 +19,8 @@ public class Main {
 		
 		//Player test = new Player();
 		//new WinnerReward();
-		MainBoardGraphics test = new MainBoardGraphics();
-
+		//MainBoardGraphics test = new MainBoardGraphics(); 
+		new ActionListeners() ;
 		try {
 			// Set System L&F
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -34,8 +34,8 @@ public class Main {
 			// handle exception
 		}
 		
-		Music testsong = new Music("song.mid");
-		testsong.playSound();
+//		Music testsong = new Music("sounds/Explosion.mid");
+//		testsong.playSound();
 		
 		//new GameStarter().setVisible(true); // Create and show the GUI.
 //		test.setCellContent(1,6,"box");
