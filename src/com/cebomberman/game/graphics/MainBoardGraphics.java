@@ -11,11 +11,18 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/**
+ * 
+ * @author
+ *
+ */
 public class MainBoardGraphics extends JFrame {
 	//final public Cell[][] cells = new Cell[15][15];
 	int keyPressed = 0;
 	final JLabel player = new JLabel();
+	/**
+	 * 
+	 */
 	public MainBoardGraphics() {
 		super("Bomberman");
 		

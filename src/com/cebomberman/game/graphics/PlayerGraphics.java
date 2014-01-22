@@ -18,7 +18,9 @@ public class PlayerGraphics extends JLabel {
 
 	private int currentPositionX;
 	private int currentPositionY;
-
+	/**
+	 * 
+	 */
 	public PlayerGraphics() {
 
 		this.rightImageLocation = "images/players/" + color + "/right.gif";
@@ -36,13 +38,19 @@ public class PlayerGraphics extends JLabel {
 				+ "/movingdown.gif";
 
 	}
-
+	/**
+	 * 
+	 * @param righMovingtImageLocation
+	 */
 	public void moveRight(String righMovingtImageLocation) {
 		setIcon(new ImageIcon(righMovingtImageLocation));
 		setLocation(this.getX() + 5, this.getY());
 		// keyPressed = 39;
 	}
-
+	/**
+	 * 
+	 * @param leftMovingtImageLocation
+	 */
 	public void moveleft(String leftMovingtImageLocation) {
 		setIcon(new ImageIcon(leftMovingtImageLocation));
 		for (int i = 0; i < 5; i++) {
@@ -56,13 +64,19 @@ public class PlayerGraphics extends JLabel {
 		}
 		// keyPressed = 37;
 	}
-
+	/**
+	 * 
+	 * @param upMovingImageLocation
+	 */
 	public void moveUp(String upMovingImageLocation) {
 		setIcon(new ImageIcon(upMovingImageLocation));
 		setLocation(getX(), getY() - 5);
 		// keyPressed = 38;
 	}
-
+	/**
+	 * 
+	 * @param downMovingImageLocation
+	 */
 	public void moveDown(String downMovingImageLocation) {
 		setIcon(new ImageIcon(downMovingImageLocation));
 		setLocation(getX(), getY() + 5);
@@ -96,8 +110,6 @@ public class PlayerGraphics extends JLabel {
 			currentPositionY++;
 		return currentPositionY;
 	}
-
-
 
 	// public String getUpImageLocation() {
 	// return upImageLocation;

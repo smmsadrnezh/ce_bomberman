@@ -7,9 +7,15 @@ import com.cebomberman.game.graphics.GameStarter;
 import com.cebomberman.game.graphics.MainBoardGraphics;
 import com.cebomberman.game.graphics.WinnerReward;
 
+/**
+ * 
+ * @author 
+ *
+ */
 
 public class Main {
 	public static void main(String[] args) {
+		
 		//Player test = new Player();
 		//new WinnerReward();
 		MainBoardGraphics test = new MainBoardGraphics();
@@ -26,7 +32,6 @@ public class Main {
 		} catch (IllegalAccessException e) {
 			// handle exception
 		}
-
 		//new GameStarter().setVisible(true); // Create and show the GUI.
 //		test.setCellContent(1,6,"box");
 //		test.setCellContent(2,4,"box");

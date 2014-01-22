@@ -10,7 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/**
+ * 
+ * @author
+ *
+ */
 public class WinnerReward extends Thread {
 	//public JLabel cells[][] = new JLabel[15][15];
 	JButton cells[][] = new JButton[15][15];
@@ -68,7 +72,9 @@ public class WinnerReward extends Thread {
 	
 
 	}
-
+	/**
+	 * 
+	 */
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

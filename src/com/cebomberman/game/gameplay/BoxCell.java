@@ -1,5 +1,9 @@
 package com.cebomberman.game.gameplay;
-
+/**
+ * 
+ * @author
+ *
+ */
 public class BoxCell {
 	BoxCell(){
 		

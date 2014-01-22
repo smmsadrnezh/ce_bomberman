@@ -9,8 +9,14 @@ import com.cebomberman.game.graphics.PlayerGraphics;
 
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+
+/**
+ * 
+ * @author 
+ *
+ */
+
 public class ActionListeners {
-	
 	MainBoardGraphics mainBoard = new MainBoardGraphics();
 	private int playerNumbers;
 	ActionListeners(){
@@ -64,6 +70,10 @@ public class ActionListeners {
 		});
 		
 	}
+	/**
+	 * 
+	 * @param playerNumbers
+	 */
 	void PlayerBuilder (int playerNumbers){
 		
 		Player[] players = new Player[playerNumbers] ;

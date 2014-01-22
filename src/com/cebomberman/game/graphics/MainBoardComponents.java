@@ -10,11 +10,17 @@ import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/**
+ * 
+ * @author
+ *
+ */
 public class MainBoardComponents extends JPanel implements Runnable {
 	final CellGraphics[][] cells = new CellGraphics[15][15];
 	final JLabel player = new JLabel();
-
+/**
+ * 
+ */
 	public MainBoardComponents() {
 
 		// information panel
@@ -71,17 +77,28 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			}
 
 	}
-
+/**
+ * 
+ * @param i
+ * @param j
+ * @param content
+ */
 	public void setCellContent(int i, int j, String content) {
 		cells[i][j].setContent(content);
 		setDefaultImages();
 	}
-
+/**
+ * 
+ * @param cell
+ * @param imagePath
+ */
 	private void setCellImage(CellGraphics cell, String imagePath) {
 		// cell.setDisabledIcon(new ImageIcon(imagePath));
 		cell.setIcon(new ImageIcon(imagePath));
 	}
-
+/**
+ * 
+ */
 	private void setDefaultImages() {
 		for (int i = 0; i < 15; i++)
 			for (int j = 0; j < 15; j++) {
@@ -92,7 +109,12 @@ public class MainBoardComponents extends JPanel implements Runnable {
 				}
 			}
 	}
-
+/**
+ * 
+ * @param row
+ * @param column
+ * @param strength
+ */
 	private void fireUp(int row, int column, int strength) {
 		boolean flag = true;
 		for (int i = row - 1; i > row - strength; i--) {
@@ -112,7 +134,12 @@ public class MainBoardComponents extends JPanel implements Runnable {
 					"images/flame/topfire.gif");
 		}
 	}
-
+/**
+ * 
+ * @param row
+ * @param column
+ * @param strength
+ */
 	private void fireDown(int row, int column, int strength) {
 		boolean flag = true;
 		for (int i = row + 1; i < row + strength; i++) {
@@ -134,7 +161,12 @@ public class MainBoardComponents extends JPanel implements Runnable {
 					"images/flame/bottomfire.gif");
 		}
 	}
-
+/**
+ * 
+ * @param row
+ * @param column
+ * @param strength
+ */
 	private void fireRight(int row, int column, int strength) {
 		boolean flag = true;
 		for (int i = column + 1; i < column + strength; i++) {
@@ -156,7 +188,12 @@ public class MainBoardComponents extends JPanel implements Runnable {
 					"images/flame/rightfire.gif");
 		}
 	}
-
+/**
+ * 
+ * @param row
+ * @param column
+ * @param strength
+ */
 	private void fireLeft(int row, int column, int strength) {
 		boolean flag = true;
 		for (int i = column - 1; i > column - strength; i--) {
@@ -179,7 +216,12 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		}
 
 	}
-
+/**
+ * 
+ * @param row
+ * @param column
+ * @param strength
+ */
 	public void fireEffect(int row, int column, int strength) {
 		// if (row != 1 && row != 13 && column != 1 && column != 13) {
 		setCellImage(cells[row][column], "images/flame/fire.gif");
@@ -197,7 +239,9 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			fireDown(row, column, strength);
 
 	}
-
+/**
+ * 
+ */
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

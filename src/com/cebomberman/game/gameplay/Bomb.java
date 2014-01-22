@@ -1,16 +1,29 @@
 package com.cebomberman.game.gameplay;
 
+/**
+ * 
+ * @author
+ *
+ */
+
 public class Bomb {
 	private int positionX;
 	private int positionY;
 	private int strength;
-
+/**
+ * 
+ * @param positionX
+ * @param positionY
+ * @param strength
+ */
 	Bomb(int positionX, int positionY, int strength) {
 		this.positionX = positionX;
 		this.positionY = positionY;
 		this.strength = strength;
 	}
-
+/**
+ * 
+ */
 	private void explode() {
 		for (int j = 0; j < com.cebomberman.game.controler.ActionListeners.playerNumbers; j++) {
 			for (int i = 0; i < strength; i++) {
@@ -19,15 +32,24 @@ public class Bomb {
 			}
 		}
 	}
-
+/**
+ * 
+ * @return
+ */
 	private int getPositionX() {
 		return positionX;
 	}
-
+/**
+ * 
+ * @return
+ */
 	private int getPositionY() {
 		return positionY;
 	}
-
+/**
+ * 
+ * @return
+ */
 	private int getStrength() {
 		return strength;
 	}
