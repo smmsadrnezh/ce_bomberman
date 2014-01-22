@@ -1,15 +1,73 @@
 package com.cebomberman.game.gameplay;
 
-public class Map {
+import java.io.FileReader;
+import java.lang.reflect.Array;
 
-	Map() {
-		
-	}
-	private void removePoint(){
-		
-	}
-	private void invertKeys(){
-		
+public class Map {
+	
+	Array[][] map;
+	int mapWidth;
+	int mapHeight;
+	FileReader inputStream = null;
+	
+	public Map() {
+		this.mapHeight = mapHeightReader();
+		this.mapWidth = mapWidthReader();
+		this.map = new Array[mapWidth][mapHeight];
+		this.map = mapCellReader("");
 	}
 	
+    /**
+     * This method read height size from map files.
+     * @return height size
+     */
+    int mapHeightReader() {
+    	int height = 5;
+		return height ;
+    }
+    
+    /**
+     * This method read width size from map files.
+     * @return width size
+     */
+    int mapWidthReader() {
+    	int width = 5;
+		return width ;
+    }
+
+    /**
+     * This method read cells contents from map file and save them in an array.
+     * @return map array
+     */
+    Array[][] mapCellReader(String fileLocation) {
+    	
+    	for (Array[] column: map) {
+    	    for (Array element: column) {
+    	    	
+//    	    	read file element in a loop:
+//    	    	mapStream = new FileReader(fileLocation);
+//    	    	while (mapStream.read()!=null) {
+	//    	    	switch (mapStream.read()) {
+	//				case b:
+	//					element = new Box;
+	//				break;
+	
+	//    	    	case o:
+	//    	    		element = empty;
+	//					break;
+	//    	    	case B:
+	//    	    		element = block;
+	//					break;
+	//    	    	case h:
+	//    	    		element = hole;
+	//					break;
+	//    	    	case S:
+	//    	    		element = startPoint;
+	//					break;
+	//				}
+//    	    	}
+    	    }
+    	}
+		return map;
+    }
 }

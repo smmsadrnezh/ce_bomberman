@@ -28,4 +28,10 @@ public class Player {
 		playerLogic.bombX = playerGraphics.getCurrentPositionX();
 		playerLogic.bombY = playerGraphics.getCurrentPositionY();
 	}
+	private void removePoint(){
+		
+	}
+	private void invertKeys(){
+		
+	}
 }
