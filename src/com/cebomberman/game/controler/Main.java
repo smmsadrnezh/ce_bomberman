@@ -6,6 +6,8 @@ import javax.swing.UnsupportedLookAndFeelException;
 import com.cebomberman.game.graphics.GameStarter;
 import com.cebomberman.game.graphics.MainBoardGraphics;
 import com.cebomberman.game.graphics.WinnerReward;
+import com.cebomberman.game.sounds.Music;
+import com.cebomberman.game.sounds.Music.Sound;
 
 /**
  * 
@@ -32,6 +34,10 @@ public class Main {
 		} catch (IllegalAccessException e) {
 			// handle exception
 		}
+		
+		Music testsong = new Music("song.mid");
+		testsong.playSound();
+		
 		//new GameStarter().setVisible(true); // Create and show the GUI.
 //		test.setCellContent(1,6,"box");
 //		test.setCellContent(2,4,"box");
