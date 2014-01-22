@@ -1,13 +1,18 @@
 package com.cebomberman.game.controler;
 import java.awt.event.KeyEvent;
+
 import javax.swing.ImageIcon;
+
+import com.cebomberman.game.gameplay.Player;
 import com.cebomberman.game.graphics.MainBoardGraphics;
 import com.cebomberman.game.graphics.PlayerGraphics;
+
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 public class ActionListeners {
 	
 	MainBoardGraphics mainBoard = new MainBoardGraphics();
-	
+	private int playerNumbers;
 	ActionListeners(){
 		mainBoard.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent e) {
@@ -54,5 +59,13 @@ public class ActionListeners {
 			}
 	
 		});
+		
+	}
+	void PlayerBuilder (int playerNumbers){
+		
+		Player[] players = new Player[playerNumbers] ;
+		for (int i = 0; i < playerNumbers; i++) {
+			players[i] = new Player() ;
+		}
 	}
 }

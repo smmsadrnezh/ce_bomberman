@@ -204,7 +204,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		for (int i = 0; i < 5; i++) {
 			player.setIcon(new ImageIcon("images/players/yellow/right.gif"));
 			try {
-				Thread.sleep(150);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -212,7 +212,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 			player.setIcon(new ImageIcon(""));
 			try {
-				Thread.sleep(150);
+				Thread.sleep(200);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
