@@ -90,7 +90,7 @@ public class PlayerGraphics extends JLabel {
  * this method calculates integer y coordinate of player.
  * @return y coordinate of player.
  */
-	private int getCurrentPositionY() {
+	public int getCurrentPositionY() {
 		currentPositionY = this.getY() / 32;
 		if (this.getY() % 32 > 16)
 			currentPositionY++;

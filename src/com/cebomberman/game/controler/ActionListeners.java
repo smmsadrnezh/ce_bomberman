@@ -39,17 +39,20 @@ public class ActionListeners {
 				// TODO Auto-generated method stub
 				switch (keyPressed) {
 				case 37:
-					player.setIcon(new ImageIcon("images/players/pl2/left.gif"));
+					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/left.gif"));
 					break;
 				case 38:
-					player.setIcon(new ImageIcon("images/players/pl2/up.gif"));
+					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/up.gif"));
 					break;
 				case 39:
-					player.setIcon(new ImageIcon("images/players/pl2/right.gif"));
+					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/right.gif"));
 					break;
 				case 40:
-					player.setIcon(new ImageIcon("images/players/pl2/down.gif"));
+					player[].playerGraphics.setIcon(new ImageIcon("images/players/pl2/down.gif"));
 					break;
+				case 13:
+					player.setBombCoordinate();
+					player.playerLogic.bombing();
 				}
 			}
 	

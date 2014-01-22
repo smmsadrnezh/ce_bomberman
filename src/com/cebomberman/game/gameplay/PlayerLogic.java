@@ -14,6 +14,7 @@ public class PlayerLogic {
 	public int bombY;
 	
 	public PlayerLogic() {
+		this.lifeNumber = 1 ;
 	} 
 	public void bombing(){
 		Bomb bomb = new Bomb(bombX,bombY,bombStrength) ;

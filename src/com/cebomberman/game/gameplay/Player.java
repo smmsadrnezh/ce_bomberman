@@ -12,8 +12,8 @@ public class Player {
 		playerLogic = new PlayerLogic();
 		playerGraphics = new PlayerGraphics();
 	}
-	public void method(){
-		playerLogic.x = playerGraphics.getCurrentPositionX();
+	public void setBombCoordinate(){
+		playerLogic.bombX = playerGraphics.getCurrentPositionX();
+		playerLogic.bombY = playerGraphics.getCurrentPositionY();
 	}
-
 }
