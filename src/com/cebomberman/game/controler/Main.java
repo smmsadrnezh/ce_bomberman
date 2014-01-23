@@ -20,7 +20,7 @@ public class Main {
 		//Player test = new Player();
 		//new WinnerReward();
 		//MainBoardGraphics test = new MainBoardGraphics(); 
-		new ActionListeners() ;
+		new Controller() ;
 		try {
 			// Set System L&F
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

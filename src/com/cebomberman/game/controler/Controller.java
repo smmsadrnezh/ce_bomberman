@@ -16,12 +16,12 @@ import java.util.ArrayList;
  *
  */
 
-public class ActionListeners {
+public class Controller {
 	
 	public int playerNumbers = 4;
 	public Player[] players = new Player[playerNumbers] ;
 	MainBoardGraphics mainBoard ;
-	ActionListeners(){
+	Controller(){
 		for (int i = 0; i < playerNumbers; i++) {
 			players[i] = new Player() ;
 		}
@@ -32,18 +32,43 @@ public class ActionListeners {
 				// TODO Auto-generated method stub
 				switch (e.getKeyCode()) {
 				case 37:
-					mainBoard.players[0].playerGraphics.moveRight("images/players/yellow/movingright.gif");
+					mainBoard.players[0].playerGraphics.moveRight();
 					break;
 				case 38:
-					players[0].playerGraphics.moveUp();
+					mainBoard.players[0].playerGraphics.moveUp();
 					break;
 				case 39:
-					//players[0].playerGraphics.moveRight();
+					mainBoard.players[0].playerGraphics.moveRight();
 					break;
 				case 40:
-					players[0].playerGraphics.moveDown();
+					mainBoard.players[0].playerGraphics.moveDown();
+					break;
+				case 65:
+					mainBoard.players[1].playerGraphics.moveLeft();
+					break;
+				case 87:
+					mainBoard.players[1].playerGraphics.moveUp();
+					break;
+				case 68:
+					mainBoard.players[1].playerGraphics.moveRight();
+					break;
+				case 83:
+					mainBoard.players[1].playerGraphics.moveDown();
+					break ;
+				case 71:
+					mainBoard.players[2].playerGraphics.moveLeft();
+					break;
+				case 89:
+					mainBoard.players[2].playerGraphics.moveUp();
+					break;
+				case 74: //j
+					mainBoard.players[2].playerGraphics.moveRight();
+					break;
+				case 72: //h
+					mainBoard.players[2].playerGraphics.moveDown();
 					break;
 				}
+				
 			}
 	
 			@Override

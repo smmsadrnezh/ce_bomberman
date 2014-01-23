@@ -24,19 +24,7 @@ public class PlayerGraphics extends JLabel {
 	 */
 	public PlayerGraphics() {
 
-		this.rightImageLocation = "images/players/" + color + "/right.gif";
-		this.leftImageLocation = "images/players/" + color + "/left.gif";
-		this.upImageLocation = "images/players/" + color + "/up.gif";
-		this.downImageLocation = "images/players/" + color + "/down.gif";
-
-		this.righMovingtImageLocation = "images/players/" + color
-				+ "/movingright.gif";
-		this.leftMovingImageLocation = "images/players/" + color
-				+ "/movingleft.gif";
-		this.upMovingImageLocation = "images/players/" + color
-				+ "/movingup.gif";
-		this.downMovingImageLocation = "images/players/" + color
-				+ "/movingdown.gif";
+		
 
 	}
 
@@ -44,8 +32,8 @@ public class PlayerGraphics extends JLabel {
 	 * 
 	 * @param righMovingtImageLocation
 	 */
-	public void moveRight(String test) {
-		setIcon(new ImageIcon(test));
+	public void moveRight() {
+		setIcon(new ImageIcon(righMovingtImageLocation));
 		setLocation(this.getX() + 5, this.getY());
 		// keyPressed = 39;
 	}
@@ -54,17 +42,18 @@ public class PlayerGraphics extends JLabel {
 	 * 
 	 * @param leftMovingtImageLocation
 	 */
-	public void moveLeft(String test) {
+	public void moveLeft() {
 		setIcon(new ImageIcon(leftMovingImageLocation));
-		for (int i = 0; i < 5; i++) {
-			setLocation(getX() - 1, getY());
-			try {
-				Thread.sleep(5);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		setLocation(getX()-5,getY());
+//		for (int i = 0; i < 5; i++) {
+//			setLocation(getX() - 1, getY());
+//			try {
+//				Thread.sleep(5);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
 		// keyPressed = 37;
 	}
 
@@ -117,6 +106,28 @@ public class PlayerGraphics extends JLabel {
 		if (this.getY() % 32 > 16)
 			currentPositionY++;
 		return currentPositionY;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+		
+		this.rightImageLocation = "images/players/" + color + "/right.gif";
+		this.leftImageLocation = "images/players/" + color + "/left.gif";
+		this.upImageLocation = "images/players/" + color + "/up.gif";
+		this.downImageLocation = "images/players/" + color + "/down.gif";
+
+		this.righMovingtImageLocation = "images/players/" + color
+				+ "/movingright.gif";
+		this.leftMovingImageLocation = "images/players/" + color
+				+ "/movingleft.gif";
+		this.upMovingImageLocation = "images/players/" + color
+				+ "/movingup.gif";
+		this.downMovingImageLocation = "images/players/" + color
+				+ "/movingdown.gif";
 	}
 
 	// public String getUpImageLocation() {

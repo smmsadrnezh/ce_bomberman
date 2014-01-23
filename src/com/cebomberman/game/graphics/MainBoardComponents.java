@@ -11,7 +11,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.cebomberman.game.controler.ActionListeners;
+import com.cebomberman.game.controler.Controller;
 import com.cebomberman.game.gameplay.Player;
 /**
  * 
@@ -50,17 +50,25 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			
 		}
 	
-		players[0].playerGraphics.moveRight("images/players/yellow/movingright.gif");
+		
+		
+		players[0].playerGraphics.setColor("yellow");
+		players[0].playerGraphics.moveRight();
+		//players[0].playerGraphics.moveRight("images/players/yellow/movingright.gif");
 		players[0].playerGraphics.setBounds(32, 32, 32, 32);
 		
-		players[1].playerGraphics.setIcon(new ImageIcon("images/players/blue/left.gif"));
+		players[1].playerGraphics.setColor("green");
 		players[1].playerGraphics.setBounds(416, 32, 32, 32);
+		players[1].playerGraphics.moveLeft(); 
 		
-		players[2].playerGraphics.setIcon(new ImageIcon("images/players/green/right.gif"));
+		
+		players[2].playerGraphics.setColor("blue");
 		players[2].playerGraphics.setBounds(32, 416, 32, 32);
+		players[2].playerGraphics.moveRight();
 		
-		players[3].playerGraphics.setIcon(new ImageIcon("images/players/red/right.gif"));
+		players[3].playerGraphics.setColor("red");
 		players[3].playerGraphics.setBounds(416, 416, 32, 32);		
+		players[3].playerGraphics.moveLeft();		
 		
 	//	new Thread(this).start();
 		
