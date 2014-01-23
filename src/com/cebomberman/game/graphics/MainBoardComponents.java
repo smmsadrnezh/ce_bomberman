@@ -57,6 +57,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		//players[0].playerGraphics.moveRight("images/players/yellow/movingright.gif");
 		players[0].playerGraphics.setBounds(32, 32, 32, 32);
 		
+		
+		
 		players[1].playerGraphics.setColor("green");
 		players[1].playerGraphics.setBounds(416, 32, 32, 32);
 		players[1].playerGraphics.moveLeft(); 
@@ -94,6 +96,10 @@ public class MainBoardComponents extends JPanel implements Runnable {
  * @param j
  * @param content
  */
+	
+	public CellGraphics getCell(int row,int column){
+		return cells[row][column];
+	}
 	public void setCellContent(int i, int j, String content) {
 		cells[i][j].setContent(content);
 		setDefaultImages();
@@ -113,10 +119,13 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	private void setDefaultImages() {
 		for (int i = 0; i < 15; i++)
 			for (int j = 0; j < 15; j++) {
+				
 				if (cells[i][j].getContent() == "block") {
 					setCellImage(cells[i][j], "images/block.gif");
 				} else if (cells[i][j].getContent() == "box") {
 					setCellImage(cells[i][j], "images/box.gif");
+				} else if(cells[i][j].getContent()=="bomb"){
+					setCellImage(cells[i][j], "images/bomb.gif");
 				}
 			}
 	}

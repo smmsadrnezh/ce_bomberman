@@ -22,6 +22,7 @@ public class MainBoardGraphics extends JFrame {
 	//final public Cell[][] cells = new Cell[15][15];
 	int keyPressed = 0;
 	final JLabel player = new JLabel();
+	public MainBoardComponents jp ;
 	/**
 	 * 
 	 */
@@ -30,7 +31,7 @@ public class MainBoardGraphics extends JFrame {
 		super("Bomberman");
 		this.players = players ;
 		// main panel
-		MainBoardComponents jp = new MainBoardComponents(players);
+		jp = new MainBoardComponents(players);
 		setContentPane(jp);
 		jp.setLayout(null);
 		
