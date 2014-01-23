@@ -1,7 +1,5 @@
 package com.cebomberman.game.gameplay;
 
-import java.util.ArrayList;
-
 import com.cebomberman.game.graphics.PlayerGraphics;
 
 /**
