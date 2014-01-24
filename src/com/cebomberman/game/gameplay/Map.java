@@ -76,4 +76,9 @@ public class Map {
 		}
 		return map;
 	}
+
+	public static void holeMaker() {
+		// TODO Auto-generated method stub
+		
+	}
 }
