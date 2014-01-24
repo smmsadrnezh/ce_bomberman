@@ -25,12 +25,14 @@ public class Bomb {
  * 
  */
 	private void explode() {
-		for (int j = 0; j < com.cebomberman.game.controler.Controller.playerNumbers; j++) {
-			for (int i = 0; i < strength; i++) {
-				if (positionX + i == players[j].playerGraphics.getCurrentPositionX() || positionX - i == players[j].playerGraphics.getCurrentPositionX() || positionY + i == players[j].playerGraphics.getCurrentPositionY() || positionY - i == players[j].playerGraphics.getCurrentPositionY())
-					players[j].playerLogic.looselife();
-			}
-		}
+//		for (int j = 0; j < com.cebomberman.game.controler.Controller.playerNumbers; j++) {
+//			for (int i = 0; i < strength; i++) {
+//				if (positionX + i == players[j].playerGraphics.getCurrentPositionX() || positionX - i == players[j].playerGraphics.getCurrentPositionX() || positionY + i == players[j].playerGraphics.getCurrentPositionY() || positionY - i == players[j].playerGraphics.getCurrentPositionY())
+//					players[j].playerLogic.looselife();
+//			}
+//		}
+		
+		
 	}
 /**
  * 

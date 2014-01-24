@@ -101,8 +101,8 @@ public class Controller implements Runnable {
 				case 79: // o
 					pressedKeys.add(79);
 					break;
-				case 186:
-					pressedKeys.add(186);
+				case 59:
+					pressedKeys.add(59);
 					break;
 				case 76:
 					pressedKeys.add(76);
@@ -178,8 +178,8 @@ public class Controller implements Runnable {
 				case 79: // o
 					pressedKeys.remove(79);
 					break;
-				case 186:
-					pressedKeys.remove(186);
+				case 59:
+					pressedKeys.remove(59);
 					break;
 				case 76:
 					pressedKeys.remove(76);
@@ -210,78 +210,85 @@ public class Controller implements Runnable {
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		
-		
+
 		while (true) {
-			
-			
-			if (pressedKeys.size() != 0) {	
-			try{
-				for (int key : pressedKeys) {
-					switch (key) {
-					case 37:
-						mainBoard.players[0].playerGraphics.moveRight();
-						break;
-					case 38:
-						mainBoard.players[0].playerGraphics.moveUp();
-						break;
-					case 39:
-						mainBoard.players[0].playerGraphics.moveRight();
-						break;
-					case 40:
-						mainBoard.players[0].playerGraphics.moveDown();
-						break;
-					case 65:
-						mainBoard.players[1].playerGraphics.moveLeft();
-						break;
-					case 87:
-						mainBoard.players[1].playerGraphics.moveUp();
-						break;
-					case 68:
-						mainBoard.players[1].playerGraphics.moveRight();
-						break;
-					case 83:
-						mainBoard.players[1].playerGraphics.moveDown();
-						break;
-					case 81: // bomb
-						pressedKeys.remove(81);
-						break;
-					case 71:
-						mainBoard.players[2].playerGraphics.moveLeft();
-						break;
-					case 89:
-						mainBoard.players[2].playerGraphics.moveUp();
-						break;
-					case 74: // j
-						mainBoard.players[2].playerGraphics.moveRight();
-						break;
-					case 72: // h
-						mainBoard.players[2].playerGraphics.moveDown();
-						break;
-					case 84:// bomb
-						pressedKeys.remove(84);
-						break;
-					case 75:
-						mainBoard.players[3].playerGraphics.moveLeft();
-						break;
-					case 79: // o
-						mainBoard.players[3].playerGraphics.moveUp();
-						break;
-					case 186:
-						mainBoard.players[3].playerGraphics.moveRight();
-						break;
-					case 76:
-						mainBoard.players[3].playerGraphics.moveDown();
-						break;
-					case 73:
-						pressedKeys.remove(73);
-						break;
+
+			if (pressedKeys.size() != 0) {
+				try {
+					for (int key : pressedKeys) {
+						switch (key) {
+						case 37:
+							mainBoard.players[0].playerGraphics.moveLeft();
+							break;
+						case 38:
+							mainBoard.players[0].playerGraphics.moveUp();
+							break;
+						case 39:
+							mainBoard.players[0].playerGraphics.moveRight();
+							break;
+						case 40:
+							mainBoard.players[0].playerGraphics.moveDown();
+							break;
+						case 32:
+							mainBoard.players[0].playerLogic.bombing(
+									mainBoard.players[0].playerGraphics
+											.getCurrentPositionX(),
+									mainBoard.players[0].playerGraphics
+											.getCurrentPositionY());
+							mainBoard.jp.setCellContent(mainBoard.players[0].playerGraphics.getCurrentPositionY(), mainBoard.players[0].playerGraphics.getCurrentPositionX(), "bomb");
+							mainBoard.jp.activateBomb(mainBoard.players[0].playerGraphics.getCurrentPositionY(), mainBoard.players[0].playerGraphics.getCurrentPositionX());
+							break;
+						case 65:
+							mainBoard.players[1].playerGraphics.moveLeft();
+							break;
+						case 87:
+							mainBoard.players[1].playerGraphics.moveUp();
+							break;
+						case 68:
+							mainBoard.players[1].playerGraphics.moveRight();
+							break;
+						case 83:
+							mainBoard.players[1].playerGraphics.moveDown();
+							break;
+						case 81: // bomb
+							pressedKeys.remove(81);
+							break;
+						case 71:
+							mainBoard.players[2].playerGraphics.moveLeft();
+							break;
+						case 89:
+							mainBoard.players[2].playerGraphics.moveUp();
+							break;
+						case 74: // j
+							mainBoard.players[2].playerGraphics.moveRight();
+							break;
+						case 72: // h
+							mainBoard.players[2].playerGraphics.moveDown();
+							break;
+						case 84:// bomb
+							pressedKeys.remove(84);
+							break;
+						case 75:
+							mainBoard.players[3].playerGraphics.moveLeft();
+							break;
+						case 79: // o
+							mainBoard.players[3].playerGraphics.moveUp();
+							break;
+						case 59:
+							mainBoard.players[3].playerGraphics.moveRight();
+							break;
+						case 76:
+							mainBoard.players[3].playerGraphics.moveDown();
+							break;
+						case 73:
+							pressedKeys.remove(73);
+							break;
+						}
+
 					}
+				} catch (ConcurrentModificationException e) {
 
 				}
-			}catch(ConcurrentModificationException e){
-				
-			}
 			}
 
 			try {
@@ -290,10 +297,9 @@ public class Controller implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
+
 		}
-	
+
 	}
 
 }

@@ -130,16 +130,5 @@ public class PlayerGraphics extends JLabel {
 				+ "/movingdown.gif";
 	}
 
-	// public String getUpImageLocation() {
-	// return upImageLocation;
-	// }
-	// public void setUpImageLocation(String upImageLocation) {
-	// this.upImageLocation = upImageLocation;
-	// }
-	// public String getUpMovingImageLocation() {
-	// return upMovingImageLocation;
-	// }
-	// public void setUpMovingImageLocation(String upMovingImageLocation) {
-	// this.upMovingImageLocation = upMovingImageLocation;
-	// }
+
 }

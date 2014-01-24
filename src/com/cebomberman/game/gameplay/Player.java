@@ -23,8 +23,8 @@ public class Player {
 	 * 
 	 */
 	public void setBombCoordinate() {
-		playerLogic.bombX = playerGraphics.getCurrentPositionX();
-		playerLogic.bombY = playerGraphics.getCurrentPositionY();
+		//playerLogic.bombX = playerGraphics.getCurrentPositionX();
+		//playerLogic.bombY = playerGraphics.getCurrentPositionY();
 	}
 	private void removePoint(){
 		

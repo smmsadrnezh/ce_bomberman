@@ -6,6 +6,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -126,8 +128,24 @@ public class MainBoardComponents extends JPanel implements Runnable {
 					setCellImage(cells[i][j], "images/box.gif");
 				} else if(cells[i][j].getContent()=="bomb"){
 					setCellImage(cells[i][j], "images/bomb.gif");
+				} else if(cells[i][j].getContent()=="empty"){
+					setCellImage(cells[i][j], "");
 				}
 			}
+	}
+	
+	public void activateBomb(final int row,final int column){
+		final Timer timer = new Timer();			
+	    timer.scheduleAtFixedRate(new TimerTask() {
+	            public void run() {
+	            	fireEffect(row,column,1);
+	               	timer.cancel();
+	            	
+	            }
+	        
+	        }, 3000,1);
+	    
+	    setDefaultImages();
 	}
 /**
  * 

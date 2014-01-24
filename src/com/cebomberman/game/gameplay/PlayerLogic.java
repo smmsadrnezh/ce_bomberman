@@ -16,8 +16,8 @@ public class PlayerLogic {
 	private int speed;
 	private int bombStrength;
 	private int bombNumber;
-	public int bombX;
-	public int bombY;
+	//public int bombX;
+	//public int bombY;
 
 	/**
 	 * 
@@ -29,8 +29,11 @@ public class PlayerLogic {
 	/**
 	 * 
 	 */
-	public void bombing() {
-		Bomb bomb = new Bomb(bombX, bombY, bombStrength);
+	public void bombing(int bombX,int bombY) {
+		if(getBombNumber()>0){
+			Bomb bomb = new Bomb(bombX, bombY, bombStrength);
+		}
+		setBombNumber(getBombNumber()-1) ;
 	}
 
 	/**

@@ -19,15 +19,13 @@ public class Time {
 		this.passingAbilityTimer = 5;
 		this.bombingDisabilityTimer = 5;
 	}
-	private void holeMaker(){
-	    String secs = "5";
+	private void holeMaker(String seconds){
 	    int delay = 1000;
 	    int period = 1000;
 	    timer = new Timer();
-	    System.out.println(secs);
 	    timer.scheduleAtFixedRate(new TimerTask() {
 
-	        private int interval = 5;
+	        private int interval = 5; //parseInt(seconds)
 
 			public void run() {
 	        	Map.holeMaker();
