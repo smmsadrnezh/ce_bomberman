@@ -15,7 +15,10 @@ public class PlayerGraphics extends JLabel {
 	private String downMovingImageLocation;
 	private String righMovingtImageLocation;
 	private String leftMovingImageLocation;
-
+	private String boomImage;
+	
+	
+	
 	private int currentPositionX;
 	private int currentPositionY;
 
@@ -107,7 +110,9 @@ public class PlayerGraphics extends JLabel {
 			currentPositionY++;
 		return currentPositionY;
 	}
-
+	public void boom(){
+		setIcon(new ImageIcon(this.boomImage)) ;
+	}
 	public String getColor() {
 		return color;
 	}
@@ -128,6 +133,8 @@ public class PlayerGraphics extends JLabel {
 				+ "/movingup.gif";
 		this.downMovingImageLocation = "images/players/" + color
 				+ "/movingdown.gif";
+		this.boomImage = "images/players/" + color + "boom.gif" ;
+		
 	}
 
 

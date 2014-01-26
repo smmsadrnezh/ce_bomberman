@@ -38,7 +38,7 @@ public class Controller implements Runnable {
 			players[i] = new Player();
 		}
 		mainBoard = new MainBoardGraphics(players);
-
+		mainBoard.jp.setCellContent(5, 5, "box");
 		mainBoard.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
@@ -218,13 +218,51 @@ public class Controller implements Runnable {
 					for (int key : pressedKeys) {
 						switch (key) {
 						case 37:
-							mainBoard.players[0].playerGraphics.moveLeft();
+							//mainBoard.players[0].playerGraphics.moveLeft();
+							
+							if (!(mainBoard.jp
+									.getCell(
+											mainBoard.players[0].playerGraphics
+													.getCurrentPositionY(),
+											mainBoard.players[0].playerGraphics
+													.getCurrentPositionX() - 1)
+									.isBlocked() == true 
+									
+							  && mainBoard.players[0].playerGraphics.getX() <= 
+							  mainBoard.players[0].playerGraphics
+							  .getCurrentPositionX() * 32 
+							 ))
+								mainBoard.players[0].playerGraphics.moveLeft();
+							
 							break;
 						case 38:
-							mainBoard.players[0].playerGraphics.moveUp();
+							if (!(mainBoard.jp
+									.getCell(
+											mainBoard.players[0].playerGraphics
+													.getCurrentPositionY()-1,
+											mainBoard.players[0].playerGraphics
+													.getCurrentPositionX())
+									.isBlocked() == true 
+							  && mainBoard.players[0].playerGraphics.getY() >= 
+							  mainBoard.players[0].playerGraphics
+							  .getCurrentPositionY() * 32 
+							 ))
+								mainBoard.players[0].playerGraphics.moveUp();
 							break;
 						case 39:
-							mainBoard.players[0].playerGraphics.moveRight();
+							if (!(mainBoard.jp
+									.getCell(
+											mainBoard.players[0].playerGraphics
+													.getCurrentPositionY(),
+											mainBoard.players[0].playerGraphics
+													.getCurrentPositionX() + 1)
+									.isBlocked() == true 
+									
+							  && mainBoard.players[0].playerGraphics.getX() >= 
+							  mainBoard.players[0].playerGraphics
+							  .getCurrentPositionX() * 32 
+							 ))
+								mainBoard.players[0].playerGraphics.moveRight();
 							break;
 						case 40:
 							mainBoard.players[0].playerGraphics.moveDown();
@@ -235,8 +273,19 @@ public class Controller implements Runnable {
 											.getCurrentPositionX(),
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionY());
-							mainBoard.jp.setCellContent(mainBoard.players[0].playerGraphics.getCurrentPositionY(), mainBoard.players[0].playerGraphics.getCurrentPositionX(), "bomb");
-							mainBoard.jp.activateBomb(mainBoard.players[0].playerGraphics.getCurrentPositionY(), mainBoard.players[0].playerGraphics.getCurrentPositionX());
+							mainBoard.jp.setCellContent(
+									mainBoard.players[0].playerGraphics
+											.getCurrentPositionY(),
+									mainBoard.players[0].playerGraphics
+											.getCurrentPositionX(), "bomb");
+							mainBoard.players[0].playerLogic.setBombStrength(3);
+							mainBoard.jp.activateBomb(
+									mainBoard.players[0].playerGraphics
+											.getCurrentPositionY(),
+									mainBoard.players[0].playerGraphics
+											.getCurrentPositionX(),
+									mainBoard.players[0].playerLogic
+											.getBombStrength());
 							break;
 						case 65:
 							mainBoard.players[1].playerGraphics.moveLeft();

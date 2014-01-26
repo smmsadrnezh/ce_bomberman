@@ -36,7 +36,7 @@ public class MainBoardGraphics extends JFrame {
 		jp.setLayout(null);
 		
 		// mainboard and its features
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setBounds(10, 10, 608, 508);
 		setLayout(null);

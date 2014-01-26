@@ -24,6 +24,7 @@ public class PlayerLogic {
 	 */
 	public PlayerLogic() {
 		this.lifeNumber = 1;
+		this.bombStrength=1;
 	}
 
 	/**
@@ -40,7 +41,7 @@ public class PlayerLogic {
 	 * 
 	 * @return
 	 */
-	private int getSpeed() {
+	public int getSpeed() {
 		return speed;
 	}
 
@@ -48,7 +49,7 @@ public class PlayerLogic {
 	 * 
 	 * @param speed
 	 */
-	private void setSpeed(int speed) {
+	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
 
@@ -56,7 +57,7 @@ public class PlayerLogic {
 	 * 
 	 * @return
 	 */
-	private int getLifeNumber() {
+	public int getLifeNumber() {
 		return lifeNumber;
 	}
 
@@ -64,7 +65,7 @@ public class PlayerLogic {
 	 * 
 	 * @param lifeNumber
 	 */
-	private void setLifeNumber(int lifeNumber) {
+	public void setLifeNumber(int lifeNumber) {
 		this.lifeNumber = lifeNumber;
 	}
 
@@ -72,7 +73,7 @@ public class PlayerLogic {
 	 * 
 	 * @return
 	 */
-	private int getBombStrength() {
+	public int getBombStrength() {
 		return bombStrength;
 	}
 
@@ -80,7 +81,7 @@ public class PlayerLogic {
 	 * 
 	 * @param bombStrength
 	 */
-	private void setBombStrength(int bombStrength) {
+	public void setBombStrength(int bombStrength) {
 		this.bombStrength = bombStrength;
 	}
 
@@ -88,7 +89,7 @@ public class PlayerLogic {
 	 * 
 	 * @return
 	 */
-	private int getBombNumber() {
+	public int getBombNumber() {
 		return bombNumber;
 	}
 
@@ -96,7 +97,7 @@ public class PlayerLogic {
 	 * 
 	 * @param bombNumber
 	 */
-	private void setBombNumber(int bombNumber) {
+	public void setBombNumber(int bombNumber) {
 		this.bombNumber = bombNumber;
 	}
 
@@ -104,7 +105,7 @@ public class PlayerLogic {
 	 * 
 	 * @return
 	 */
-	private boolean isWinner() {
+	public boolean isWinner() {
 		return isWinner;
 	}
 
@@ -112,7 +113,7 @@ public class PlayerLogic {
 	 * 
 	 * @param isWinner
 	 */
-	private void setWinner(boolean isWinner) {
+	public void setWinner(boolean isWinner) {
 		this.isWinner = isWinner;
 	}
 
@@ -120,7 +121,7 @@ public class PlayerLogic {
 	 * 
 	 * @return
 	 */
-	private String getPlayerName() {
+	public String getPlayerName() {
 		return playerName;
 	}
 
@@ -128,7 +129,7 @@ public class PlayerLogic {
 	 * 
 	 * @param playerName
 	 */
-	private void setPlayerName(String playerName) {
+	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
 	}
 
