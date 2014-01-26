@@ -48,36 +48,47 @@ public class Map {
 	 */
 	void mapCellReader(String fileLocation) {
 		// read file element in a loop
-		mapStream = new BufferedReader(new FileReader(fileLocation));
+		try {
+			mapStream = new BufferedReader(new FileReader(fileLocation));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String lineTemp = " ";
 		String[] mapCharacterTemp;
 
-		this.mapHeight = Integer.parseInt(mapStream.readLine());
-		this.mapWidth = Integer.parseInt(mapStream.readLine());
-		this.mapName = mapStream.readLine();
-
-		while ((lineTemp = mapStream.readLine()) != null) {
-			mapCharacterTemp = lineTemp.split("");
-			for (int i = 0; i < this.mapHeight; i++) {
-				for (int j = 0; j < this.mapWidth; j++) {
-					switch (mapCharacterTemp[i]) {
-					case "b":
-						this.map[i][j] = new BoxCell();
-						break;
-					case "o":
-						this.map[i][j] = "empty";
-						break;
-					case "B":
-						this.map[i][j] = "block";
-						break;
-					case "h":
-						this.map[i][j] = "hole";
-						break;
-					case "S":
-						this.map[i][j] = "startPoint";
+		try {
+			this.mapHeight = Integer.parseInt(mapStream.readLine());
+			this.mapWidth = Integer.parseInt(mapStream.readLine());
+			this.mapName = mapStream.readLine();
+			
+			while ((lineTemp = mapStream.readLine()) != null) {
+				mapCharacterTemp = lineTemp.split("");
+				for (int i = 0; i < this.mapHeight; i++) {
+					for (int j = 0; j < this.mapWidth; j++) {
+						switch (mapCharacterTemp[i]) {
+						case "b":
+							this.map[i][j] = "box";
+							break;
+						case "o":
+							this.map[i][j] = "empty";
+							break;
+						case "B":
+							this.map[i][j] = "block";
+							break;
+						case "h":
+							this.map[i][j] = "hole";
+							break;
+						case "S":
+							this.map[i][j] = "startPoint";
+						}
 					}
 				}
 			}
+
+		} catch (NumberFormatException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
