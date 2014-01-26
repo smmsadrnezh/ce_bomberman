@@ -69,6 +69,5 @@ public class Map {
 
 	public static void holeMaker() {
 		// TODO Auto-generated method stub
-
 	}
 }

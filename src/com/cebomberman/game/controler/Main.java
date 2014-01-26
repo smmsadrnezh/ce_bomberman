@@ -20,24 +20,13 @@ public class Main {
 		//Player test = new Player();
 		//new WinnerReward();
 		//MainBoardGraphics test = new MainBoardGraphics(); 
-		new Controller() ;
-		try {
-			// Set System L&F
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (UnsupportedLookAndFeelException e) {
-			// handle exception
-		} catch (ClassNotFoundException e) {
-			// handle exception
-		} catch (InstantiationException e) {
-			// handle exception
-		} catch (IllegalAccessException e) {
-			// handle exception
-		}
+		new Controller();
+
 		
 //		Music testsong = new Music("sounds/Explosion.mid");
 //		testsong.playSound();
 		
-		//new GameStarter().setVisible(true); // Create and show the GUI.
+		GameStarter testing = new GameStarter(); // Create and show the GUI.
 //		test.setCellContent(1,6,"box");
 //		test.setCellContent(2,4,"box");
 //		test.setCellContent(2,8,"box");
