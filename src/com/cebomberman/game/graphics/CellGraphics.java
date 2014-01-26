@@ -1,6 +1,8 @@
 package com.cebomberman.game.graphics;
 
 import javax.swing.JLabel;
+
+import com.cebomberman.game.gameplay.BoxCell;
 /**
  * 
  * @author
@@ -9,6 +11,8 @@ import javax.swing.JLabel;
 public class CellGraphics extends JLabel {
 	private String content ;
 	private boolean isFired ;
+	
+	BoxCell box = new BoxCell();
 	
 	public CellGraphics(){
 		

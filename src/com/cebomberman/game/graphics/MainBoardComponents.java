@@ -46,10 +46,10 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		gameBoard.setLayout(null);
 
 		this.players = players;
-		// Player player1 = new Player() ;
-		// gameBoard.add(player1.playerGraphics) ;
-		// player1.playerGraphics.setBounds(50, 50, 32, 32);
-		// player1.playerGraphics.setBackground(Color.BLUE);
+//		 Player player1 = new Player() ;
+//		 gameBoard.add(player1.playerGraphics) ;
+//		 player1.playerGraphics.setBounds(100, 100, 32, 32);
+//		 player1.playerGraphics.setIcon(new ImageIcon("images/speed.gif"));
 		for (int i = 0; i < 4; i++) {
 			gameBoard.add(players[i].playerGraphics);
 			players[i].playerGraphics.setBounds(32 * i, 32 * i, 32, 32);
@@ -87,10 +87,19 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		for (int i = 0; i < 15; i++)
 			for (int j = 0; j < 15; j++) {
 				if (i == 0 || i == 14 || j == 0 || j == 14) {
-					cells[i][j].setIcon(new ImageIcon("images/brick1.gif"));
+					cells[i][j].setIcon(new ImageIcon("images/brick.gif"));
+					setCellContent(i, j, "block");
 				}
 			}
+		
+		cells[5][5].box.setContent("speed");
+		setCellContent(5,5,"box");
+		setCellContent(3,5,"block");
+	
+		
+		
 		new Thread(this).start();
+		
 	}
 
 	/**
@@ -127,7 +136,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			for (int j = 0; j < 15; j++) {
 
 				if (cells[i][j].getContent() == "block") {
-					setCellImage(cells[i][j], "images/block.gif");
+					setCellImage(cells[i][j], "images/brick.gif");
 				} else if (cells[i][j].getContent() == "box") {
 					setCellImage(cells[i][j], "images/box.gif");
 				} else if (cells[i][j].getContent() == "bomb") {
@@ -147,7 +156,43 @@ public class MainBoardComponents extends JPanel implements Runnable {
 					for (int j = column - strength; j <= column + strength; j++) {
 						if (i == row || j == column)
 							if (i > 0 && i < 14 && j > 0 && j < 14) {
-								setCellContent(i, j, "empty");
+								if(cells[i][j].getContent()=="box" ){
+									switch(cells[i][j].box.getContent()){
+									case "life":
+										setCellImage(cells[i][j],cells[i][j].box.getLifeImageePath()) ;
+										break;
+									case "speed":
+										setCellContent(i,j,"empty") ;
+										System.out.println(i+" "+j);
+										cells[i][j].setIcon(new ImageIcon("images/speed.gif"));
+										break;
+									case "bombstrength":
+										
+										break;
+									case "passingability":
+									
+										break;
+									case "bombnumber":
+										
+										break;
+									case "invertkeys":
+										
+										break;
+									case "loselastability":
+										
+										break;
+									case "losebombingability":
+										
+										break;
+									}
+								}else if(cells[i][j].getContent()!="block" /*&& (cells[i][j].getContent()!="bomb" && i!=row && j!=column)*/ ){
+									setCellContent(i, j, "empty");
+									System.out.println("no if");
+								}
+								else{
+									//setCellContent(i, j, "empty");
+									System.out.println("no");
+								}
 								cells[i][j].setIsFired(false);
 							}
 					}
@@ -157,7 +202,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 		}, 4000, 1);
 		// System.out.println("test");
-		setDefaultImages();
+		//setDefaultImages();
 	}
 
 	/**
@@ -202,7 +247,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			setCellImage(cells[i][column], "images/flame/vfire.gif");
 			cells[i][column].setIsFired(true);
 			if (cells[i][column].getContent() == "box") {
-				setCellImage(cells[i][column], "images/flame/downfire.gif");
+				setCellImage(cells[i][column], "images/flame/bottomfire.gif");
 				cells[i][column].setIsFired(true);
 				flag = false;
 				break;
@@ -291,8 +336,9 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	 * @param strength
 	 */
 	public void fireEffect(final int row, final int column, final int strength) {
-		final Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
+		final Timer timer1 = new Timer();
+		final Timer timer2 = new Timer();
+		timer1.scheduleAtFixedRate(new TimerTask() {
 			public void run() {
 				setCellImage(cells[row][column], "images/flame/fire.gif");
 				cells[row][column].setIsFired(true);
@@ -310,10 +356,11 @@ public class MainBoardComponents extends JPanel implements Runnable {
 				// down fire
 				if (cells[row + 1][column].getContent() != "block" && row != 13)
 					fireDown(row, column, strength);
-				timer.cancel();
+				timer1.cancel();
 			}
 
-		}, 3000, 3);
+		}, 3000, 1);
+		
 		// System.out.println("test");
 		// setDefaultImages();
 
