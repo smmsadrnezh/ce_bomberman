@@ -10,21 +10,21 @@ import java.util.ArrayList;
 public class BoxCell {
 	private String content;
 	ArrayList<String> playerAbility = new ArrayList<>();
-	private boolean isOpened ;
+	private boolean isOpened = false ;
 	
 	private String speedImagePath ;
 	private String lifeImagePath ;
 	
 	public BoxCell(){
 		speedImagePath = "images/speed.gif";
-		lifeImagePath = "images/life.gif" ;
+		setLifeImagePath("images/life.gif") ;
 	}
 	
 	public String getSpeedImagePath() {
 		return speedImagePath;
 	}
 	public String getLifeImageePath() {
-		return lifeImagePath;
+		return getLifeImagePath();
 	}
 	public boolean isOpened(){
 		return isOpened ;
@@ -37,6 +37,14 @@ public class BoxCell {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getLifeImagePath() {
+		return lifeImagePath;
+	}
+
+	public void setLifeImagePath(String lifeImagePath) {
+		this.lifeImagePath = lifeImagePath;
 	}
 	
 //	private void speedup(){

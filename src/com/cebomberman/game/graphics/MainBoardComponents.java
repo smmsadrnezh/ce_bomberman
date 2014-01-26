@@ -92,7 +92,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 				}
 			}
 		
-		cells[5][5].box.setContent("speed");
+		cells[5][5].box.setContent("life");
 		setCellContent(5,5,"box");
 		setCellContent(3,5,"block");
 	
@@ -139,68 +139,73 @@ public class MainBoardComponents extends JPanel implements Runnable {
 					setCellImage(cells[i][j], "images/brick.gif");
 				} else if (cells[i][j].getContent() == "box") {
 					setCellImage(cells[i][j], "images/box.gif");
-				} else if (cells[i][j].getContent() == "bomb") {
-					setCellImage(cells[i][j], "images/bomb.gif");
+				//} else if (cells[i][j].getContent() == "bomb") {
+					//setCellImage(cells[i][j], "images/bomb.gif");
 				} else if (cells[i][j].getContent() == "empty") {
 					setCellImage(cells[i][j], "");
+				} else if(cells[i][j].getContent()=="openedbox"){
+					setCellImage(cells[i][j],"images/speed.gif") ;
 				}
 			}
 	}
 
 	public void activateBomb(final int row, final int column, final int strength) {
-		fireEffect(row, column, strength);
-		final Timer timer = new Timer();
-		timer.scheduleAtFixedRate(new TimerTask() {
-			public void run() {
+		//fireEffect(row, column, strength);
+		//setDefaultImages();
+		//cells[row][column].setIcon(new ImageIcon("images/brick.gif"));
 				for (int i = row - strength; i <= row + strength; i++)
 					for (int j = column - strength; j <= column + strength; j++) {
 						if (i == row || j == column)
-							if (i > 0 && i < 14 && j > 0 && j < 14) {
-								if(cells[i][j].getContent()=="box" ){
-									switch(cells[i][j].box.getContent()){
-									case "life":
-										setCellImage(cells[i][j],cells[i][j].box.getLifeImageePath()) ;
-										break;
-									case "speed":
-										setCellContent(i,j,"empty") ;
-										System.out.println(i+" "+j);
-										cells[i][j].setIcon(new ImageIcon("images/speed.gif"));
-										break;
-									case "bombstrength":
-										
-										break;
-									case "passingability":
-									
-										break;
-									case "bombnumber":
-										
-										break;
-									case "invertkeys":
-										
-										break;
-									case "loselastability":
-										
-										break;
-									case "losebombingability":
-										
-										break;
-									}
-								}else if(cells[i][j].getContent()!="block" /*&& (cells[i][j].getContent()!="bomb" && i!=row && j!=column)*/ ){
-									setCellContent(i, j, "empty");
-									System.out.println("no if");
+							if (i > 0 && i < 14 && j > 0 && j < 14) 
+								if(cells[i][j].getContent()=="box"){
+									//switch(cells[i][j].getContent().toString()){
+									cells[i][j].box.setIsOpened(true);
+									if(cells[i][j].box.getContent()=="life")
+										setCellImage(cells[i][j],cells[i][j].box.getLifeImagePath()) ;
+									else if(cells[i][j].box.getContent()=="speed")
+										setCellImage(cells[i][j],cells[i][j].box.getSpeedImagePath()) ;									
 								}
-								else{
-									//setCellContent(i, j, "empty");
-									System.out.println("no");
-								}
-								cells[i][j].setIsFired(false);
-							}
+								
+								
+								
+							
 					}
-				timer.cancel();
+//								if(cells[i][j].getContent()=="box" ){
+//									setCellContent(i,j,"openedbox") ;
+//									switch(cells[i][j].box.getContent()){
+//									case "life":
+//										setCellImage(cells[i][j],cells[i][j].box.getLifeImageePath()) ;
+//										break;
+//									case "speed":
+//										//setCellContent(i,j,"empty") ;
+//										//System.out.println(i+" "+j);
+//										cells[i][j].setIcon(new ImageIcon("images/life.gif"));
+//										break;
+//									case "bombstrength":
+//										
+//										break;
+//									case "passingability":
+//									
+//										break;
+//									case "bombnumber":
+//										
+//										break;
+//									case "invertkeys":
+//										
+//										break;
+//									case "loselastability":
+//										
+//										break;
+//									case "losebombingability":
+//										
+//										break;
+//									}
+//									
+//								}
+//								cells[i][j].setIsFired(false);
+//							}
+//					}
 
-			}
-
-		}, 4000, 1);
 		// System.out.println("test");
 		//setDefaultImages();
 	}
@@ -360,6 +365,26 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			}
 
 		}, 3000, 1);
+		timer2.scheduleAtFixedRate(new TimerTask(){
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				for (int i = row - strength; i <= row + strength; i++)
+					for (int j = column - strength; j <= column + strength; j++) {
+						if (i == row || j == column)
+							if (i > 0 && i < 14 && j > 0 && j < 14) {
+								cells[i][j].setIcon(new ImageIcon(""));
+								cells[i][j].setIsFired(false);
+							}
+					}
+				activateBomb(row,column,strength) ;
+				timer2.cancel();
+				
+			}
+			
+		}, 4000, 1);
+	
 		
 		// System.out.println("test");
 		// setDefaultImages();

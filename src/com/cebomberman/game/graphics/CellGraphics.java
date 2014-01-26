@@ -12,7 +12,7 @@ public class CellGraphics extends JLabel {
 	private String content ;
 	private boolean isFired ;
 	
-	BoxCell box = new BoxCell();
+	public BoxCell box = new BoxCell();
 	
 	public CellGraphics(){
 		
