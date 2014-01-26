@@ -1,20 +1,23 @@
 package com.cebomberman.game.gameplay;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Array;
 
 public class Map {
 
-	Array[][] map;
+	private static String[][] map;
 	int mapWidth;
 	int mapHeight;
-	FileReader inputStream = null;
+	String mapName;
+	BufferedReader mapStream = null;
 
-	public Map(String mapFileLocation) {
+	public Map() {
 		this.mapHeight = mapHeightReader();
 		this.mapWidth = mapWidthReader();
-		this.map = new Array[mapWidth][mapHeight];
-		this.map = mapCellReader(mapFileLocation);
+		this.map = new String[mapWidth][mapHeight];
 	}
 
 	/**
@@ -41,44 +44,45 @@ public class Map {
 	 * This method read cells contents from map file and save them in an array.
 	 * 
 	 * @return map array
+	 * @throws FileNotFoundException
 	 */
-	Array[][] mapCellReader(String fileLocation) {
+	void mapCellReader(String fileLocation) {
+		// read file element in a loop
+		mapStream = new BufferedReader(new FileReader(fileLocation));
+		String lineTemp = " ";
+		String[] mapCharacterTemp;
 
-		for (Array[] column : map) {
-			for (Array element : column) {
+		this.mapHeight = Integer.parseInt(mapStream.readLine());
+		this.mapWidth = Integer.parseInt(mapStream.readLine());
+		this.mapName = mapStream.readLine();
 
-				// read file element in a loop
-				 mapStream = new FileReader(fileLocation);
-				 
-				// skip width and height and map name lines
-				// ????
-				 
-				// while (mapStream.read()!=null) {
-				// switch (mapStream.read()) {
-				// case b:
-				// element = new Box;
-				// break;
-				// case o:
-				// element = empty;
-				// break;
-				// case B:
-				// element = block;
-				// break;
-				// case h:
-				// element = hole;
-				// break;
-				// case S:
-				// element = startPoint;
-				// break;
-				// }
-				// }
+		while ((lineTemp = mapStream.readLine()) != null) {
+			mapCharacterTemp = lineTemp.split("");
+			for (int i = 0; i < this.mapHeight; i++) {
+				for (int j = 0; j < this.mapWidth; j++) {
+					switch (mapCharacterTemp[i]) {
+					case "b":
+						this.map[i][j] = new BoxCell();
+						break;
+					case "o":
+						this.map[i][j] = "empty";
+						break;
+					case "B":
+						this.map[i][j] = "block";
+						break;
+					case "h":
+						this.map[i][j] = "hole";
+						break;
+					case "S":
+						this.map[i][j] = "startPoint";
+					}
+				}
 			}
 		}
-		return map;
 	}
 
 	public static void holeMaker() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
