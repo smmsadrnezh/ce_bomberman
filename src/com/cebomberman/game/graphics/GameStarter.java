@@ -61,6 +61,11 @@ public class GameStarter extends javax.swing.JFrame {
         file.add(launchGame);
 
         openMap.setText("Open Map");
+        openMap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                openMapMousePressed(evt);
+            }
+        });
         file.add(openMap);
         file.add(exitPartSeperator);
 
@@ -123,6 +128,12 @@ public class GameStarter extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
+
+    private void openMapMousePressed(java.awt.event.MouseEvent evt) {                                     
+                BrowseMap browseMap2 = new BrowseMap();
+        browseMap2.setBounds(0, 0, 650, 350);
+        browseMap2.setVisible(true);
+    }                                    
 
 
     // Variables declaration - do not modify                     
