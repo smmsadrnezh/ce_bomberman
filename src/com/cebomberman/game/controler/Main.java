@@ -1,13 +1,6 @@
 package com.cebomberman.game.controler;
 
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
-import com.cebomberman.game.gameplay.Map;
 import com.cebomberman.game.graphics.GameStarter;
-import com.cebomberman.game.graphics.MainBoardGraphics;
-import com.cebomberman.game.graphics.WinnerReward;
-import com.cebomberman.game.sounds.Music;
 
 /**
  * 
