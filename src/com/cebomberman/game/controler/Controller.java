@@ -226,9 +226,7 @@ public class Controller implements Runnable {
 											.getCurrentPositionY(),
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionX() - 1);
-							if (!(test.isBlocked()  /*(test.isBlocked() && test.box.isOpened()*/ 
-									&& mainBoard.players[0].playerGraphics
-											.getX() <= test.getX()+32))
+							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[0].playerGraphics.getX() <= test.getX() + 32))
 								mainBoard.players[0].playerGraphics.moveLeft();
 
 							break;
@@ -239,8 +237,7 @@ public class Controller implements Runnable {
 											.getCurrentPositionY() - 1,
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionX()) ;
-							if (!(test.isBlocked() && mainBoard.players[0].playerGraphics
-									.getY() <= test.getY()+32))
+							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[0].playerGraphics.getY() <= test.getY() + 32))
 								mainBoard.players[0].playerGraphics.moveUp();
 							break;
 						case 39:
@@ -249,9 +246,7 @@ public class Controller implements Runnable {
 											.getCurrentPositionY(),
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionX() + 1);
-							if (!(test.isBlocked() 
-									&& mainBoard.players[0].playerGraphics
-											.getX()+32>= test.getX()))
+							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[0].playerGraphics.getX()+32 >=  test.getX()))
 								mainBoard.players[0].playerGraphics.moveRight();
 							break;
 						case 40:
@@ -279,7 +274,7 @@ public class Controller implements Runnable {
 											.getCurrentPositionY(),
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionX()).setIcon(new ImageIcon("images/bomb.gif"));		
-							mainBoard.players[0].playerLogic.setBombStrength(1);
+							mainBoard.players[0].playerLogic.setBombStrength(3);
 							mainBoard.jp.fireEffect(
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionY(),

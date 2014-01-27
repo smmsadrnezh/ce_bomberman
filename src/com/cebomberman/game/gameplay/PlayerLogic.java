@@ -16,25 +16,37 @@ public class PlayerLogic {
 	private int speed;
 	private int bombStrength;
 	private int bombNumber;
-	//public int bombX;
-	//public int bombY;
+
+	// public int bombX;
+	// public int bombY;
 
 	/**
 	 * 
 	 */
 	public PlayerLogic() {
 		this.lifeNumber = 1;
-		this.bombStrength=1;
+		this.bombStrength = 1;
 	}
 
 	/**
 	 * 
 	 */
-	public void bombing(int bombX,int bombY) {
-		if(getBombNumber()>0){
+	public void bombing(int bombX, int bombY) {
+		if (getBombNumber() > 0) {
 			Bomb bomb = new Bomb(bombX, bombY, bombStrength);
 		}
-		setBombNumber(getBombNumber()-1) ;
+		setBombNumber(getBombNumber() - 1);
+	}
+
+	public void getBonus(String bonus) {
+		switch (bonus) {
+		case "speed":
+			this.speed += 5;
+			break;
+		case "life":
+			this.lifeNumber++;
+			break;
+		}
 	}
 
 	/**
@@ -59,6 +71,14 @@ public class PlayerLogic {
 	 */
 	public int getLifeNumber() {
 		return lifeNumber;
+	}
+
+	public void lifeNumberIncrement() {
+		lifeNumber++;
+	}
+
+	public void lifeNumberDecrement() {
+		lifeNumber--;
 	}
 
 	/**

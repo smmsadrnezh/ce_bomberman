@@ -46,10 +46,10 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		gameBoard.setLayout(null);
 
 		this.players = players;
-//		 Player player1 = new Player() ;
-//		 gameBoard.add(player1.playerGraphics) ;
-//		 player1.playerGraphics.setBounds(100, 100, 32, 32);
-//		 player1.playerGraphics.setIcon(new ImageIcon("images/speed.gif"));
+		// Player player1 = new Player() ;
+		// gameBoard.add(player1.playerGraphics) ;
+		// player1.playerGraphics.setBounds(100, 100, 32, 32);
+		// player1.playerGraphics.setIcon(new ImageIcon("images/speed.gif"));
 		for (int i = 0; i < 4; i++) {
 			gameBoard.add(players[i].playerGraphics);
 			players[i].playerGraphics.setBounds(32 * i, 32 * i, 32, 32);
@@ -91,15 +91,14 @@ public class MainBoardComponents extends JPanel implements Runnable {
 					setCellContent(i, j, "block");
 				}
 			}
-		
+		cells[4][5].box.setContent("speed");
 		cells[5][5].box.setContent("life");
-		setCellContent(5,5,"box");
-		setCellContent(3,5,"block");
-	
-		
-		
+		setCellContent(5, 5, "box");
+		setCellContent(4, 5, "box");
+		setCellContent(3, 5, "block");
+
 		new Thread(this).start();
-		
+
 	}
 
 	/**
@@ -115,7 +114,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 	public void setCellContent(int i, int j, String content) {
 		cells[i][j].setContent(content);
-		setDefaultImages();
+		setDefaultImage(i,j);
 	}
 
 	/**
@@ -130,84 +129,50 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 	/**
  * 
+ * 
+ * 					
  */
-	private void setDefaultImages() {
-		for (int i = 0; i < 15; i++)
-			for (int j = 0; j < 15; j++) {
+	private void setDefaultImage(int i,int j) {
+//		for (int i = 0; i < 15; i++)
+//			for (int j = 0; j < 15; j++) {
 
 				if (cells[i][j].getContent() == "block") {
 					setCellImage(cells[i][j], "images/brick.gif");
 				} else if (cells[i][j].getContent() == "box") {
 					setCellImage(cells[i][j], "images/box.gif");
-				//} else if (cells[i][j].getContent() == "bomb") {
-					//setCellImage(cells[i][j], "images/bomb.gif");
+					// } else if (cells[i][j].getContent() == "bomb") {
+					// setCellImage(cells[i][j], "images/bomb.gif");
 				} else if (cells[i][j].getContent() == "empty") {
 					setCellImage(cells[i][j], "");
-				} else if(cells[i][j].getContent()=="openedbox"){
-					setCellImage(cells[i][j],"images/speed.gif") ;
+				} else if (cells[i][j].getContent() == "openedbox") {
+					setCellImage(cells[i][j], "");
 				}
-			}
 	}
 
 	public void activateBomb(final int row, final int column, final int strength) {
-		//fireEffect(row, column, strength);
+		// fireEffect(row, column, strength);
 		//setDefaultImages();
-		//cells[row][column].setIcon(new ImageIcon("images/brick.gif"));
-				for (int i = row - strength; i <= row + strength; i++)
-					for (int j = column - strength; j <= column + strength; j++) {
-						if (i == row || j == column)
-							if (i > 0 && i < 14 && j > 0 && j < 14) 
-								if(cells[i][j].getContent()=="box"){
-									//switch(cells[i][j].getContent().toString()){
-									cells[i][j].box.setIsOpened(true);
-									if(cells[i][j].box.getContent()=="life")
-										setCellImage(cells[i][j],cells[i][j].box.getLifeImagePath()) ;
-									else if(cells[i][j].box.getContent()=="speed")
-										setCellImage(cells[i][j],cells[i][j].box.getSpeedImagePath()) ;									
-								}
-								
-								
-								
-							
-					}
-//								if(cells[i][j].getContent()=="box" ){
-//									setCellContent(i,j,"openedbox") ;
-//									switch(cells[i][j].box.getContent()){
-//									case "life":
-//										setCellImage(cells[i][j],cells[i][j].box.getLifeImageePath()) ;
-//										break;
-//									case "speed":
-//										//setCellContent(i,j,"empty") ;
-//										//System.out.println(i+" "+j);
-//										cells[i][j].setIcon(new ImageIcon("images/life.gif"));
-//										break;
-//									case "bombstrength":
-//										
-//										break;
-//									case "passingability":
-//									
-//										break;
-//									case "bombnumber":
-//										
-//										break;
-//									case "invertkeys":
-//										
-//										break;
-//									case "loselastability":
-//										
-//										break;
-//									case "losebombingability":
-//										
-//										break;
-//									}
-//									
-//								}
-//								cells[i][j].setIsFired(false);
-//							}
-//					}
+		setCellContent(row, column, "empty");
+		// cells[row][column].setIcon(new ImageIcon("images/brick.gif"));
+		for (int i = row - strength; i <= row + strength; i++)
+			for (int j = column - strength; j <= column + strength; j++) {
+				if (i == row || j == column)
+					if (i > 0 && i < 14 && j > 0 && j < 14)
+						if (cells[i][j].getContent() == "box") {
+							if (cells[i][j].box.isOpened())
+								if (cells[i][j].box.getContent() == "life")
+									setCellImage(cells[i][j],
+											cells[i][j].box.getLifeImagePath());
+								else if (cells[i][j].box.getContent() == "speed")
+									setCellImage(cells[i][j],
+											cells[i][j].box.getSpeedImagePath());
+						}else if(cells[i][j].getContent()=="block"){
+							setDefaultImage(i,j) ;
+						}
+						
 
-		// System.out.println("test");
-		//setDefaultImages();
+			}
+
 	}
 
 	/**
@@ -224,6 +189,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			if (cells[i][column].getContent() == "box") {
 				setCellImage(cells[i][column], "images/flame/topfire.gif");
 				cells[i][column].setIsFired(true);
+				cells[i][column].box.setIsOpened(true);
+				//setCellContent(i,column,"openedbox") ;
 				flag = false;
 				break;
 			} else if (cells[i - 1][column].getContent() == "block" || i == 1) {
@@ -254,6 +221,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			if (cells[i][column].getContent() == "box") {
 				setCellImage(cells[i][column], "images/flame/bottomfire.gif");
 				cells[i][column].setIsFired(true);
+				cells[i][column].box.setIsOpened(true);
 				flag = false;
 				break;
 			} else if (cells[i + 1][column].getContent() == "block" || i == 13) {
@@ -285,6 +253,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			if (cells[row][i].getContent() == "box") {
 				setCellImage(cells[row][i], "images/flame/rightfire.gif");
 				cells[row][i].setIsFired(true);
+				cells[row][i].box.setIsOpened(true);
 				flag = false;
 				break;
 			} else if (cells[row][i + 1].getContent() == "block" || i == 13) {
@@ -316,6 +285,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			if (cells[row][i].getContent() == "box") {
 				setCellImage(cells[row][i], "images/flame/leftfire.gif");
 				cells[row][i].setIsFired(true);
+				cells[row][i].box.setIsOpened(true);
 				flag = false;
 				break;
 			} else if (cells[row][i - 1].getContent() == "block" || i == 1) {
@@ -365,7 +335,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			}
 
 		}, 3000, 1);
-		timer2.scheduleAtFixedRate(new TimerTask(){
+		timer2.scheduleAtFixedRate(new TimerTask() {
 
 			@Override
 			public void run() {
@@ -374,18 +344,17 @@ public class MainBoardComponents extends JPanel implements Runnable {
 					for (int j = column - strength; j <= column + strength; j++) {
 						if (i == row || j == column)
 							if (i > 0 && i < 14 && j > 0 && j < 14) {
-								cells[i][j].setIcon(new ImageIcon(""));
+								setDefaultImage(i,j) ;
 								cells[i][j].setIsFired(false);
 							}
 					}
-				activateBomb(row,column,strength) ;
+				activateBomb(row, column, strength);
 				timer2.cancel();
-				
+
 			}
-			
+
 		}, 4000, 1);
-	
-		
+
 		// System.out.println("test");
 		// setDefaultImages();
 
@@ -410,18 +379,53 @@ public class MainBoardComponents extends JPanel implements Runnable {
 																		// player
 																		// numbers
 							if (players[k].playerLogic.getLifeNumber() == 1) {
-								players[k].playerGraphics
-										.boom();
+								
+								players[k].playerGraphics.boom();
+								try {
+									Thread.sleep(1000) ;
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
 								players[k].playerGraphics.setVisible(false);
+								//System.out.println("test");
 							}
-							players[k].playerLogic
-									.setLifeNumber(players[0].playerLogic
-											.getLifeNumber() - 1);
-
+							players[k].playerLogic.lifeNumberDecrement();
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							cells[i][j].setIsFired(false) ;
+							
+							
+								
+							
 						}
 					}
 				}
+			System.out.println(players[0].playerLogic
+					.getLifeNumber());
+			for (int i = 1; i < 14; i++)
+				for (int j = 1; j < 14; j++)
+					for (int k = 0; k < 4; k++) {
+						if (cells[i][j].box.isOpened()) {
+							if (players[k].playerGraphics.getCurrentPositionX() == j
+									&& players[k].playerGraphics
+											.getCurrentPositionY() == i) {
+								players[k].playerLogic.getBonus(cells[i][j].box
+										.getContent());
+//								System.out.println(players[k].playerLogic
+//										.getLifeNumber());
+								cells[i][j].box.setIsOpened(false);
+								setCellContent(i, j, "empty");
+							}
+						}
+					}
+
 		}
+
 		// fireEffect(1,1,1);
 		// // TODO Auto-generated method stub
 		// for (int p = 0; p < 5; p++) {

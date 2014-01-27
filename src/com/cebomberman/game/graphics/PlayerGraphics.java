@@ -16,7 +16,7 @@ public class PlayerGraphics extends JLabel {
 	private String righMovingtImageLocation;
 	private String leftMovingImageLocation;
 	private String boomImage;
-	
+	private int speed = 5 ;
 	
 	
 	private int currentPositionX;
@@ -37,7 +37,7 @@ public class PlayerGraphics extends JLabel {
 	 */
 	public void moveRight() {
 		setIcon(new ImageIcon(righMovingtImageLocation));
-		setLocation(this.getX() + 5, this.getY());
+		setLocation(this.getX() + getSpeed(), this.getY());
 		// keyPressed = 39;
 	}
 
@@ -47,17 +47,7 @@ public class PlayerGraphics extends JLabel {
 	 */
 	public void moveLeft() {
 		setIcon(new ImageIcon(leftMovingImageLocation));
-		setLocation(getX()-5,getY());
-//		for (int i = 0; i < 5; i++) {
-//			setLocation(getX() - 1, getY());
-//			try {
-//				Thread.sleep(5);
-//			} catch (InterruptedException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-		// keyPressed = 37;
+		setLocation(getX()- getSpeed() ,getY());
 	}
 
 	/**
@@ -66,7 +56,7 @@ public class PlayerGraphics extends JLabel {
 	 */
 	public void moveUp() {
 		setIcon(new ImageIcon(upMovingImageLocation));
-		setLocation(getX(), getY() - 5);
+		setLocation(getX(), getY() - getSpeed());
 		// keyPressed = 38;
 	}
 
@@ -76,7 +66,7 @@ public class PlayerGraphics extends JLabel {
 	 */
 	public void moveDown() {
 		setIcon(new ImageIcon(downMovingImageLocation));
-		setLocation(getX(), getY() + 5);
+		setLocation(getX(), getY() + getSpeed());
 		// keyPressed = 40;
 	}
 
@@ -111,7 +101,7 @@ public class PlayerGraphics extends JLabel {
 		return currentPositionY;
 	}
 	public void boom(){
-		setIcon(new ImageIcon(this.boomImage)) ;
+		this.setIcon(new ImageIcon(this.boomImage)) ;
 	}
 	public String getColor() {
 		return color;
@@ -133,8 +123,16 @@ public class PlayerGraphics extends JLabel {
 				+ "/movingup.gif";
 		this.downMovingImageLocation = "images/players/" + color
 				+ "/movingdown.gif";
-		this.boomImage = "images/players/" + color + "boom.gif" ;
+		this.boomImage = "images/players/" + color +"/="+ color+ "boom.gif" ;
 		
+	}
+
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 
 
