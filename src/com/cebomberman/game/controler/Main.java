@@ -21,18 +21,10 @@ public class Main {
 		//Player test = new Player();
 		//new WinnerReward();
 		//MainBoardGraphics test = new MainBoardGraphics(); 
-		//new Controller();
-		Map map = new Map();
-		map.mapCellReader("map.txt");
-		for (int i = 0; i < map.getMapWidth(); i++) {
-			for (int j = 0; j < map.getMapHeight(); j++) {
-				System.out.print(map.getMapWidth());
-				System.out.print(map.getMap(i, j)+" ");
-			}
-			
-		}
+		new Controller();
 		
-		System.out.println("");
+//		
+//		System.out.println("");
 //		Music testsong = new Music("sounds/Explosion.mid");
 //		testsong.playSound();
 		

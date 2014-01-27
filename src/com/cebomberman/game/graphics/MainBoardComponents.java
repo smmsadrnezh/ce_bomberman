@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.cebomberman.game.controler.Controller;
+import com.cebomberman.game.gameplay.Map;
 import com.cebomberman.game.gameplay.Player;
 
 /**
@@ -74,7 +75,9 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		players[3].playerGraphics.moveLeft();
 
 		// new Thread(this).start();
-
+		
+		
+		
 		for (int i = 0; i < 15; i++)
 			for (int j = 0; j < 15; j++) {
 				cells[i][j] = new CellGraphics();
@@ -84,19 +87,28 @@ public class MainBoardComponents extends JPanel implements Runnable {
 				if (i != 0 && i != 14 && j != 0 && j != 14)
 					cells[i][j].setContent("empty");
 			}
-		for (int i = 0; i < 15; i++)
-			for (int j = 0; j < 15; j++) {
-				if (i == 0 || i == 14 || j == 0 || j == 14) {
-					cells[i][j].setIcon(new ImageIcon("images/brick.gif"));
-					setCellContent(i, j, "block");
-				}
-			}
+//		for (int i = 0; i < 15; i++)
+//			for (int j = 0; j < 15; j++) {
+//				if (i == 0 || i == 14 || j == 0 || j == 14) {
+//					cells[i][j].setIcon(new ImageIcon("images/brick.gif"));
+//					setCellContent(i, j, "block");
+//				}
+//			}
 		cells[4][5].box.setContent("speed");
 		cells[5][5].box.setContent("life");
 		setCellContent(5, 5, "box");
 		setCellContent(4, 5, "box");
 		setCellContent(3, 5, "block");
-
+		
+		Map map = new Map();
+		map.mapCellReader("map.txt");
+		for (int i = 0; i < map.getMapWidth(); i++) {
+			for (int j = 0; j < map.getMapHeight(); j++) {
+				setCellContent(i,j,map.getMap(i, j)) ;
+				
+			}
+			
+		}
 		new Thread(this).start();
 
 	}
@@ -146,6 +158,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 					setCellImage(cells[i][j], "");
 				} else if (cells[i][j].getContent() == "openedbox") {
 					setCellImage(cells[i][j], "");
+				} else if (cells[i][j].getContent() == "hole"){
+					setCellImage(cells[i][j], "images/hole.gif");
 				}
 	}
 

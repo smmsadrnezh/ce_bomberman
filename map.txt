@@ -1,5 +1,17 @@
 my_map
-3 3
-BBB
-bbb
-hhh
+15 15
+BBBBBBBBBBBBBBB
+BSoooooooooooSB
+BooboobSooboooB
+BoooboooobooooB
+BoobooboobobooB
+BoooboooboobooB
+BoooooSbSoooooB
+BoooohhhobobooB
+BoooooobooooooB
+BoooooobooooooB
+BoooooobooooooB
+BoooooobooooooB
+BoooooobooooooB
+BoooooobooooooB
+BBBBBBBBBBBBBBB

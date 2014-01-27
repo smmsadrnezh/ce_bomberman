@@ -35,36 +35,40 @@ public class Map {
 
 		try {
 			this.mapName = mapStream.readLine();
-			dimTemp = mapStream.readLine() ;
+			dimTemp = mapStream.readLine();
 			mapDimension = dimTemp.split(" ");
 			this.setMapWidth(Integer.parseInt(mapDimension[0]));
 			this.setMapHeight(Integer.parseInt(mapDimension[1]));
-			//this.mapWidth = Integer.parseInt(mapStream.readLine());
-			this.map = new String[getMapWidth()][getMapHeight()];
-			while ((lineTemp = mapStream.readLine()) != null) {
-				for(char mapChar: lineTemp.toCharArray()){
+			// this.mapWidth = Integer.parseInt(mapStream.readLine());
+			// this.map = new String[getMapWidth()][getMapHeight()];
+			this.map = new String[this.mapWidth][this.mapHeight];
+			// int i=0;
+			// int j=0 ;
+			// lineTemp = mapStream.readLine();
+			for (int i = 0; i < this.mapWidth; i++) {
+				lineTemp = mapStream.readLine();
+				for (int j = 0; j < this.mapHeight; j++) {
 					
-				for (int i = 0; i < this.getMapHeight(); i++) {
-					for (int j = 0; j < this.getMapWidth(); j++) {
-						switch (mapChar) {
-						case 'b':
-							this.map[i][j] = "box";
-							break;
-						case 'o':
-							this.map[i][j] = "empty";
-							break;
-						case 'B':
-							this.map[i][j] = "block";
-							break;
-						case 'h':
-							this.map[i][j] = "hole";
-							break;
-						case 'S':
-							this.map[i][j] = "startPoint";
-						}
+					switch (lineTemp.charAt(j)) {
+					case 'b':
+						this.map[i][j] = "box";
+						break;
+					case 'o':
+						this.map[i][j] = "empty";
+						break;
+					case 'B':
+						this.map[i][j] = "block";
+						break;
+					case 'h':
+						this.map[i][j] = "hole";
+						break;
+					case 'S':
+						this.map[i][j] = "startPoint";
+						break;
+
 					}
 				}
-				}
+				// lineTemp = mapStream.readLine();
 			}
 
 		} catch (NumberFormatException | IOException e) {
@@ -96,6 +100,5 @@ public class Map {
 	public static String getMap(int x, int y) {
 		return map[x][y];
 	}
-
 
 }
