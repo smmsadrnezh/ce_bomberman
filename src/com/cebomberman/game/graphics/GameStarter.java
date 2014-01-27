@@ -8,7 +8,7 @@ package com.cebomberman.game.graphics;
 
 /**
  *
- * @author sadrnezhaad
+ * @author
  */
 public class GameStarter extends javax.swing.JFrame {
 
