@@ -121,53 +121,57 @@ public class Controller implements Runnable {
 				// TODO Auto-generated method stub
 				switch (e.getKeyCode()) {
 				case 37:
-					// mainBoard.players[0].playerGraphics.moveRight();
+					mainBoard.players[0].playerGraphics.setLeftImage();
 					pressedKeys.remove(37);
 					break;
 				case 38:
+					mainBoard.players[0].playerGraphics.setUpImage();
 					pressedKeys.remove(38);
 					break;
 				case 39:
+					mainBoard.players[0].playerGraphics.setRightImage();
 					pressedKeys.remove(39);
 					break;
 				case 40:
+					mainBoard.players[0].playerGraphics.setDownImage();
 					pressedKeys.remove(40);
 					break;
 				case 32:
 					pressedKeys.remove(32);
 					break;
 				case 65: // a
-					// mainBoard.players[1].playerGraphics.moveLeft();
+					mainBoard.players[1].playerGraphics.setLeftImage();
 					pressedKeys.remove(65);
 					break;
 				case 87:
-					// mainBoard.players[1].playerGraphics.moveUp();
+					 mainBoard.players[1].playerGraphics.setUpImage();
 					pressedKeys.remove(87);
 					break;
 				case 68:
-					// mainBoard.players[1].playerGraphics.moveRight();
+					mainBoard.players[1].playerGraphics.setRightImage();
 					pressedKeys.remove(68);
 					break;
 				case 83:
-					// mainBoard.players[1].playerGraphics.moveDown();
+					mainBoard.players[1].playerGraphics.setDownImage();
 					pressedKeys.remove(83);
 					break;
 				case 81: // bomb
 					pressedKeys.remove(81);
 					break;
 				case 71:
-					// mainBoard.players[2].playerGraphics.moveLeft();
+					mainBoard.players[2].playerGraphics.setLeftImage();
 					pressedKeys.remove(71);
 					break;
 				case 89:
-					// mainBoard.players[2].playerGraphics.moveUp();
+					mainBoard.players[2].playerGraphics.setUpImage();
 					pressedKeys.remove(89);
 					break;
 				case 74: // j
-					// mainBoard.players[2].playerGraphics.moveRight();
+					mainBoard.players[2].playerGraphics.setRightImage();
 					pressedKeys.remove(74);
 					break;
 				case 72: // h
+					mainBoard.players[2].playerGraphics.setDownImage();
 					pressedKeys.remove(72);
 					break;
 				case 84:// bomb

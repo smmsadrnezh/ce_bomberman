@@ -17,7 +17,7 @@ public class Player {
 	public Player() {
 		playerLogic = new PlayerLogic();
 		playerGraphics = new PlayerGraphics();
-		playerGraphics.setSpeed(playerLogic.getSpeed()) ; 
+		//playerGraphics.setSpeed(playerLogic.getSpeed()) ; 
 	}
 
 	/**

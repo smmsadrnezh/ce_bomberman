@@ -110,7 +110,7 @@ public class PlayerGraphics extends JLabel {
 	public void setColor(String color) {
 		this.color = color;
 		
-		this.rightImageLocation = "images/players/" + color + "/right.gif";
+		this.rightImageLocation = "images/players/"+ color + "/right.gif";
 		this.leftImageLocation = "images/players/" + color + "/left.gif";
 		this.upImageLocation = "images/players/" + color + "/up.gif";
 		this.downImageLocation = "images/players/" + color + "/down.gif";
@@ -134,6 +134,22 @@ public class PlayerGraphics extends JLabel {
 	public void setSpeed(int speed) {
 		this.speed = speed;
 	}
+
+	public void setUpImage() {
+		 this.setIcon(new ImageIcon(upImageLocation));
+	}
+	public void setDownImage() {
+		this.setIcon(new ImageIcon(downImageLocation));
+	}
+	public void setRightImage() {
+		this.setIcon(new ImageIcon(rightImageLocation));
+	}
+	public void setLeftImage() {
+		this.setIcon(new ImageIcon(leftImageLocation));
+	}
+
+
+	
 
 
 }
