@@ -28,7 +28,7 @@ public class Main {
 //		Music testsong = new Music("sounds/Explosion.mid");
 //		testsong.playSound();
 		
-	//	GameStarter testing = new GameStarter(); // Create and show the GUI.
+		GameStarter testing = new GameStarter(); // Create and show the GUI.
 //		test.setCellContent(1,6,"box");
 //		test.setCellContent(2,4,"box");
 //		test.setCellContent(2,8,"box");
