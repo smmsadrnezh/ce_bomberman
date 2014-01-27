@@ -1,0 +1,5 @@
+my_map
+3 3
+BBB
+bbb
+hhh

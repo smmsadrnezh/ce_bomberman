@@ -8,8 +8,8 @@ import java.io.IOException;
 public class Map {
 
 	private static String[][] map;
-	int mapWidth;
-	int mapHeight;
+	private int mapWidth;
+	private int mapHeight;
 	String mapName;
 	BufferedReader mapStream = null;
 
@@ -20,7 +20,9 @@ public class Map {
 	 *            location of map file
 	 */
 
-	void mapCellReader(String fileLocation) {
+	public void mapCellReader(String fileLocation) {
+		String[] mapDimension;
+		String dimTemp;
 		// read file element in a loop
 		try {
 			mapStream = new BufferedReader(new FileReader(fileLocation));
@@ -32,32 +34,36 @@ public class Map {
 		String[] mapCharacterTemp;
 
 		try {
-			this.mapHeight = Integer.parseInt(mapStream.readLine());
-			this.mapWidth = Integer.parseInt(mapStream.readLine());
 			this.mapName = mapStream.readLine();
-			this.map = new String[mapWidth][mapHeight];
-
+			dimTemp = mapStream.readLine() ;
+			mapDimension = dimTemp.split(" ");
+			this.setMapWidth(Integer.parseInt(mapDimension[0]));
+			this.setMapHeight(Integer.parseInt(mapDimension[1]));
+			//this.mapWidth = Integer.parseInt(mapStream.readLine());
+			this.map = new String[getMapWidth()][getMapHeight()];
 			while ((lineTemp = mapStream.readLine()) != null) {
-				mapCharacterTemp = lineTemp.split("");
-				for (int i = 0; i < this.mapHeight; i++) {
-					for (int j = 0; j < this.mapWidth; j++) {
-						switch (mapCharacterTemp[i]) {
-						case "b":
+				for(char mapChar: lineTemp.toCharArray()){
+					
+				for (int i = 0; i < this.getMapHeight(); i++) {
+					for (int j = 0; j < this.getMapWidth(); j++) {
+						switch (mapChar) {
+						case 'b':
 							this.map[i][j] = "box";
 							break;
-						case "o":
+						case 'o':
 							this.map[i][j] = "empty";
 							break;
-						case "B":
+						case 'B':
 							this.map[i][j] = "block";
 							break;
-						case "h":
+						case 'h':
 							this.map[i][j] = "hole";
 							break;
-						case "S":
+						case 'S':
 							this.map[i][j] = "startPoint";
 						}
 					}
+				}
 				}
 			}
 
@@ -70,4 +76,26 @@ public class Map {
 	public static void holeMaker() {
 		// TODO Auto-generated method stub
 	}
+
+	public int getMapWidth() {
+		return mapWidth;
+	}
+
+	public void setMapWidth(int mapWidth) {
+		this.mapWidth = mapWidth;
+	}
+
+	public int getMapHeight() {
+		return mapHeight;
+	}
+
+	public void setMapHeight(int mapHeight) {
+		this.mapHeight = mapHeight;
+	}
+
+	public static String getMap(int x, int y) {
+		return map[x][y];
+	}
+
+
 }
