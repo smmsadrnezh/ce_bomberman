@@ -11,7 +11,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * 
- * @author sadrnezhaad
+ * @author 
  */
 public class GameStarter extends javax.swing.JFrame {
 
@@ -32,7 +32,7 @@ public class GameStarter extends javax.swing.JFrame {
 			// handle exception
 		}
 		GameStarterComponents panel = new GameStarterComponents();
-		setBounds(0, 0, 810, 350);
+		setBounds(0, 0, 680, 330);
 		add(panel);
 		setVisible(true);
 		initComponents();
@@ -68,7 +68,7 @@ public class GameStarter extends javax.swing.JFrame {
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-		setPreferredSize(new java.awt.Dimension(820, 380));
+		setPreferredSize(new java.awt.Dimension(680, 340));
 
 		file.setText("File");
 
