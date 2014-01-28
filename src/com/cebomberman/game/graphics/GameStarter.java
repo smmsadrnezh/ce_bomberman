@@ -8,7 +8,7 @@ package com.cebomberman.game.graphics;
 
 /**
  *
- * @author
+ * @author sadrnezhaad
  */
 public class GameStarter extends javax.swing.JFrame {
 
@@ -37,8 +37,8 @@ public class GameStarter extends javax.swing.JFrame {
         launchGame = new javax.swing.JMenuItem();
         openMap = new javax.swing.JMenuItem();
         exitPartSeperator = new javax.swing.JPopupMenu.Separator();
+        closeGameStarter = new javax.swing.JMenuItem();
         exit = new javax.swing.JMenuItem();
-        quit = new javax.swing.JMenuItem();
         edit = new javax.swing.JMenu();
         cut = new javax.swing.JMenuItem();
         copy = new javax.swing.JMenuItem();
@@ -69,11 +69,21 @@ public class GameStarter extends javax.swing.JFrame {
         file.add(openMap);
         file.add(exitPartSeperator);
 
-        exit.setText("Exit");
-        file.add(exit);
+        closeGameStarter.setText("Close Game Starter");
+        closeGameStarter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeGameStarterActionPerformed(evt);
+            }
+        });
+        file.add(closeGameStarter);
 
-        quit.setText("Quit");
-        file.add(quit);
+        exit.setText("Exit");
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                exitMousePressed(evt);
+            }
+        });
+        file.add(exit);
 
         menuBar.add(file);
 
@@ -96,6 +106,11 @@ public class GameStarter extends javax.swing.JFrame {
         Window.add(mapEditor);
 
         highScore.setText("High Scores");
+        highScore.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                highScoreMousePressed(evt);
+            }
+        });
         Window.add(highScore);
 
         menuBar.add(Window);
@@ -103,9 +118,19 @@ public class GameStarter extends javax.swing.JFrame {
         help.setText("Help");
 
         helpContents.setText("Help Contents");
+        helpContents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                helpContentsMousePressed(evt);
+            }
+        });
         help.add(helpContents);
 
         about.setText("About");
+        about.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                aboutMousePressed(evt);
+            }
+        });
         help.add(about);
 
         license.setText("License");
@@ -130,15 +155,42 @@ public class GameStarter extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void openMapMousePressed(java.awt.event.MouseEvent evt) {                                     
-                BrowseMap browseMap2 = new BrowseMap();
-        browseMap2.setBounds(0, 0, 650, 350);
-        browseMap2.setVisible(true);
+        BrowseMap browseMap = new BrowseMap();
+        browseMap.setBounds(0, 0, 650, 350);
+        browseMap.setVisible(true);
     }                                    
+
+    private void highScoreMousePressed(java.awt.event.MouseEvent evt) {                                       
+        HighScores highScore = new HighScores();
+        highScore.setBounds(0, 0, 650, 350);
+        highScore.setVisible(true);
+    }                                      
+
+    private void helpContentsMousePressed(java.awt.event.MouseEvent evt) {                                          
+        HelpContents helpContents = new HelpContents();
+        helpContents.setBounds(0, 0, 650, 350);
+        helpContents.setVisible(true);
+    }                                         
+
+    private void aboutMousePressed(java.awt.event.MouseEvent evt) {                                   
+        AboutPage aboutPage = new AboutPage();
+        aboutPage.setBounds(0, 0, 650, 350);
+        aboutPage.setVisible(true);
+    }                                  
+
+    private void closeGameStarterActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        dispose();
+    }                                                
+
+    private void exitMousePressed(java.awt.event.MouseEvent evt) {                                  
+        System.exit(0);
+    }                                 
 
 
     // Variables declaration - do not modify                     
     private javax.swing.JMenu Window;
     private javax.swing.JMenuItem about;
+    private javax.swing.JMenuItem closeGameStarter;
     private javax.swing.JMenuItem copy;
     private javax.swing.JMenuItem cut;
     private javax.swing.JMenu edit;
@@ -154,6 +206,5 @@ public class GameStarter extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMap;
     private javax.swing.JMenuItem paste;
-    private javax.swing.JMenuItem quit;
     // End of variables declaration                   
 }

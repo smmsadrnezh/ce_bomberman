@@ -1,5 +1,7 @@
 package com.cebomberman.game.graphics;
 
+import com.cebomberman.game.controler.Controller;
+
 
 
 
@@ -47,7 +49,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
         playerProfileTab = new javax.swing.JPanel();
         player1 = new javax.swing.JPanel();
         firstName = new javax.swing.JTextField();
-        lastName = new javax.swing.JTextField();
+        nickName = new javax.swing.JTextField();
         red = new javax.swing.JRadioButton();
         green = new javax.swing.JRadioButton();
         blue = new javax.swing.JRadioButton();
@@ -56,7 +58,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
         avatarLable = new javax.swing.JLabel();
         player2 = new javax.swing.JPanel();
         firstName1 = new javax.swing.JTextField();
-        lastName1 = new javax.swing.JTextField();
+        nickName1 = new javax.swing.JTextField();
         red1 = new javax.swing.JRadioButton();
         green1 = new javax.swing.JRadioButton();
         blue1 = new javax.swing.JRadioButton();
@@ -65,7 +67,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
         avatarLable1 = new javax.swing.JLabel();
         player3 = new javax.swing.JPanel();
         firstName2 = new javax.swing.JTextField();
-        lastName2 = new javax.swing.JTextField();
+        nickName2 = new javax.swing.JTextField();
         red2 = new javax.swing.JRadioButton();
         green2 = new javax.swing.JRadioButton();
         blue2 = new javax.swing.JRadioButton();
@@ -74,7 +76,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
         avatarLable2 = new javax.swing.JLabel();
         player4 = new javax.swing.JPanel();
         firstName3 = new javax.swing.JTextField();
-        lastName3 = new javax.swing.JTextField();
+        nickName3 = new javax.swing.JTextField();
         red3 = new javax.swing.JRadioButton();
         green3 = new javax.swing.JRadioButton();
         blue3 = new javax.swing.JRadioButton();
@@ -118,6 +120,11 @@ public class GameStarterComponents extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(600, 328));
 
         launchGame.setText("Launch");
+        launchGame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                launchGameMouseClicked(evt);
+            }
+        });
         launchGame.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 launchGameActionPerformed(evt);
@@ -160,6 +167,11 @@ public class GameStarterComponents extends javax.swing.JPanel {
         });
 
         help.setText("Help");
+        help.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                helpMouseClicked(evt);
+            }
+        });
         help.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 helpActionPerformed(evt);
@@ -182,30 +194,30 @@ public class GameStarterComponents extends javax.swing.JPanel {
                 .addComponent(gameDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19)
                 .addGroup(welcomeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(about, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(highScores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loadMap, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(launchMapEditor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loadMap, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(help, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(about, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(highScores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(help, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(1154, 1154, 1154))
         );
         welcomeTabLayout.setVerticalGroup(
             welcomeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomeTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(welcomeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(gameDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(welcomeTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(gameDescription)
                     .addGroup(welcomeTabLayout.createSequentialGroup()
                         .addComponent(highScores)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(launchMapEditor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(loadMap)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(help)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(about)))
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addGap(24, 34, Short.MAX_VALUE))
         );
 
         starterBody.addTab("Welcome", welcomeTab);
@@ -228,14 +240,14 @@ public class GameStarterComponents extends javax.swing.JPanel {
             }
         });
 
-        lastName.setForeground(new java.awt.Color(146, 146, 146));
-        lastName.setText("Nickname...");
-        lastName.addFocusListener(new java.awt.event.FocusAdapter() {
+        nickName.setForeground(new java.awt.Color(146, 146, 146));
+        nickName.setText("Nickname...");
+        nickName.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                lastNameFocusGained(evt);
+                nickNameFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                lastNameFocusLost(evt);
+                nickNameFocusLost(evt);
             }
         });
 
@@ -282,7 +294,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
                     .addGroup(player1Layout.createSequentialGroup()
                         .addComponent(firstName, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nickName, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         player1Layout.setVerticalGroup(
@@ -290,7 +302,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
             .addGroup(player1Layout.createSequentialGroup()
                 .addGroup(player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nickName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameLable))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(player1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -319,14 +331,14 @@ public class GameStarterComponents extends javax.swing.JPanel {
             }
         });
 
-        lastName1.setForeground(new java.awt.Color(146, 146, 146));
-        lastName1.setText("Nickname...");
-        lastName1.addFocusListener(new java.awt.event.FocusAdapter() {
+        nickName1.setForeground(new java.awt.Color(146, 146, 146));
+        nickName1.setText("Nickname...");
+        nickName1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                lastName1FocusGained(evt);
+                nickName1FocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                lastName1FocusLost(evt);
+                nickName1FocusLost(evt);
             }
         });
 
@@ -373,7 +385,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
                     .addGroup(player2Layout.createSequentialGroup()
                         .addComponent(firstName1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lastName1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nickName1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         player2Layout.setVerticalGroup(
@@ -381,7 +393,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
             .addGroup(player2Layout.createSequentialGroup()
                 .addGroup(player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nickName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameLable1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(player2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -410,14 +422,14 @@ public class GameStarterComponents extends javax.swing.JPanel {
             }
         });
 
-        lastName2.setForeground(new java.awt.Color(146, 146, 146));
-        lastName2.setText("Nickname...");
-        lastName2.addFocusListener(new java.awt.event.FocusAdapter() {
+        nickName2.setForeground(new java.awt.Color(146, 146, 146));
+        nickName2.setText("Nickname...");
+        nickName2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                lastName2FocusGained(evt);
+                nickName2FocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                lastName2FocusLost(evt);
+                nickName2FocusLost(evt);
             }
         });
 
@@ -464,7 +476,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
                     .addGroup(player3Layout.createSequentialGroup()
                         .addComponent(firstName2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lastName2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nickName2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         player3Layout.setVerticalGroup(
@@ -472,7 +484,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
             .addGroup(player3Layout.createSequentialGroup()
                 .addGroup(player3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nickName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameLable2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(player3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -501,19 +513,19 @@ public class GameStarterComponents extends javax.swing.JPanel {
             }
         });
 
-        lastName3.setForeground(new java.awt.Color(146, 146, 146));
-        lastName3.setText("Nickname...");
-        lastName3.addActionListener(new java.awt.event.ActionListener() {
+        nickName3.setForeground(new java.awt.Color(146, 146, 146));
+        nickName3.setText("Nickname...");
+        nickName3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lastName3ActionPerformed(evt);
+                nickName3ActionPerformed(evt);
             }
         });
-        lastName3.addFocusListener(new java.awt.event.FocusAdapter() {
+        nickName3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                lastName3FocusGained(evt);
+                nickName3FocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                lastName3FocusLost(evt);
+                nickName3FocusLost(evt);
             }
         });
 
@@ -560,7 +572,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
                     .addGroup(player4Layout.createSequentialGroup()
                         .addComponent(firstName3, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lastName3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nickName3, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         player4Layout.setVerticalGroup(
@@ -568,7 +580,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
             .addGroup(player4Layout.createSequentialGroup()
                 .addGroup(player4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firstName3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastName3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nickName3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameLable3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(player4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -681,6 +693,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
         playersNumberSlider.setToolTipText("");
 
         playersNumber.setForeground(new java.awt.Color(146, 146, 146));
+        playersNumber.setText("Number...");
         playersNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playersNumberActionPerformed(evt);
@@ -1115,16 +1128,16 @@ public class GameStarterComponents extends javax.swing.JPanel {
         // TODO add your handling code here:
     }                                   
 
-    private void lastNameFocusLost(java.awt.event.FocusEvent evt) {                                   
-        if (lastName.getText().equals("")) {
-                    lastName.setForeground(new java.awt.Color(146, 146, 146));
-                    lastName.setText("Nickname...");
+    private void nickNameFocusLost(java.awt.event.FocusEvent evt) {                                   
+        if (nickName.getText().equals("")) {
+                    nickName.setForeground(new java.awt.Color(146, 146, 146));
+                    nickName.setText("Nickname...");
         }
     }                                  
 
-    private void lastNameFocusGained(java.awt.event.FocusEvent evt) {                                     
-        lastName.setForeground(new java.awt.Color(77, 77, 77));
-        lastName.setText("");
+    private void nickNameFocusGained(java.awt.event.FocusEvent evt) {                                     
+        nickName.setForeground(new java.awt.Color(77, 77, 77));
+        nickName.setText("");
     }                                    
 
     private void firstNameFocusLost(java.awt.event.FocusEvent evt) {                                    
@@ -1160,15 +1173,15 @@ public class GameStarterComponents extends javax.swing.JPanel {
         }
     }                                    
 
-    private void lastName1FocusGained(java.awt.event.FocusEvent evt) {                                      
-        lastName1.setText("");
-        lastName1.setForeground(new java.awt.Color(77, 77, 77));
+    private void nickName1FocusGained(java.awt.event.FocusEvent evt) {                                      
+        nickName1.setText("");
+        nickName1.setForeground(new java.awt.Color(77, 77, 77));
     }                                     
 
-    private void lastName1FocusLost(java.awt.event.FocusEvent evt) {                                    
-        if (lastName1.getText().equals("")) {
-                    lastName1.setForeground(new java.awt.Color(146, 146, 146));
-                    lastName1.setText("Nickname...");
+    private void nickName1FocusLost(java.awt.event.FocusEvent evt) {                                    
+        if (nickName1.getText().equals("")) {
+                    nickName1.setForeground(new java.awt.Color(146, 146, 146));
+                    nickName1.setText("Nickname...");
         }
     }                                   
 
@@ -1193,16 +1206,16 @@ public class GameStarterComponents extends javax.swing.JPanel {
         }
     }                                    
 
-    private void lastName2FocusGained(java.awt.event.FocusEvent evt) {                                      
-        lastName2.setText("");
-        lastName2.setForeground(new java.awt.Color(77, 77, 77));
+    private void nickName2FocusGained(java.awt.event.FocusEvent evt) {                                      
+        nickName2.setText("");
+        nickName2.setForeground(new java.awt.Color(77, 77, 77));
 
     }                                     
 
-    private void lastName2FocusLost(java.awt.event.FocusEvent evt) {                                    
-        if (lastName2.getText().equals("")) {
-                    lastName2.setForeground(new java.awt.Color(146, 146, 146));
-                    lastName2.setText("Nickname...");
+    private void nickName2FocusLost(java.awt.event.FocusEvent evt) {                                    
+        if (nickName2.getText().equals("")) {
+                    nickName2.setForeground(new java.awt.Color(146, 146, 146));
+                    nickName2.setText("Nickname...");
         }
     }                                   
 
@@ -1227,15 +1240,15 @@ public class GameStarterComponents extends javax.swing.JPanel {
         }
     }                                    
 
-    private void lastName3FocusGained(java.awt.event.FocusEvent evt) {                                      
-        lastName3.setText("");
-        lastName3.setForeground(new java.awt.Color(77, 77, 77));
+    private void nickName3FocusGained(java.awt.event.FocusEvent evt) {                                      
+        nickName3.setText("");
+        nickName3.setForeground(new java.awt.Color(77, 77, 77));
     }                                     
 
-    private void lastName3FocusLost(java.awt.event.FocusEvent evt) {                                    
-        if (lastName3.getText().equals("")) {
-                    lastName3.setForeground(new java.awt.Color(146, 146, 146));
-                    lastName3.setText("Nickname...");
+    private void nickName3FocusLost(java.awt.event.FocusEvent evt) {                                    
+        if (nickName3.getText().equals("")) {
+                    nickName3.setForeground(new java.awt.Color(146, 146, 146));
+                    nickName3.setText("Nickname...");
         }
     }                                   
 
@@ -1303,7 +1316,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
         }
     }                                               
 
-    private void lastName3ActionPerformed(java.awt.event.ActionEvent evt) {                                          
+    private void nickName3ActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
     }                                         
 
@@ -1395,6 +1408,49 @@ public class GameStarterComponents extends javax.swing.JPanel {
         highScores.setVisible(true);
     }                                       
 
+    private void helpMouseClicked(java.awt.event.MouseEvent evt) {                                  
+        HelpContents help = new HelpContents();
+        help.setBounds(0, 0, 200, 200);
+        help.setVisible(true);
+    }                                 
+
+    private void launchGameMouseClicked(java.awt.event.MouseEvent evt) {                                        
+        Controller gameLaunch = new Controller();
+        playersNumberSlider.getValue();
+        playersNumber.getText();
+        passwordField1.getPassword();
+        portNumberField1.getText();
+        ipAddressField1.getText();
+        internetPasswordField.getPassword();
+        fileLocation.getText();
+        minutes.getText();
+        seconds.getText();
+        firstName.getText();
+        firstName1.getText();
+        firstName2.getText();
+        firstName3.getText();
+        nickName.getText();
+        nickName1.getText();
+        nickName2.getText();
+        nickName3.getText();
+        red.isSelected();
+        red1.isSelected();
+        red2.isSelected();
+        red3.isSelected();
+        green.isSelected();
+        green1.isSelected();
+        green2.isSelected();
+        green3.isSelected();
+        yellow.isSelected();
+        yellow1.isSelected();
+        yellow2.isSelected();
+        yellow3.isSelected();
+        blue.isSelected();
+        blue1.isSelected();
+        blue2.isSelected();
+        blue3.isSelected();
+    }                                       
+
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton about;
@@ -1434,10 +1490,6 @@ public class GameStarterComponents extends javax.swing.JPanel {
     private javax.swing.JLabel internetPasswordLable;
     private javax.swing.JLabel ipAddress1;
     private javax.swing.JTextField ipAddressField1;
-    private javax.swing.JTextField lastName;
-    private javax.swing.JTextField lastName1;
-    private javax.swing.JTextField lastName2;
-    private javax.swing.JTextField lastName3;
     private javax.swing.JTextField lastNameField;
     private javax.swing.JButton launchGame;
     private javax.swing.JButton launchMapEditor;
@@ -1453,6 +1505,10 @@ public class GameStarterComponents extends javax.swing.JPanel {
     private javax.swing.JLabel nameLable1;
     private javax.swing.JLabel nameLable2;
     private javax.swing.JLabel nameLable3;
+    private javax.swing.JTextField nickName;
+    private javax.swing.JTextField nickName1;
+    private javax.swing.JTextField nickName2;
+    private javax.swing.JTextField nickName3;
     private javax.swing.JPasswordField passwordField1;
     private javax.swing.JLabel passwordLable1;
     private javax.swing.JPanel player1;
