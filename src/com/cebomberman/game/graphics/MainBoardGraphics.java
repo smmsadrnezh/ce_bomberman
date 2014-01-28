@@ -18,7 +18,7 @@ public class MainBoardGraphics extends JFrame {
 	 * 
 	 */
 	public Player[] players;
-
+	
 	public MainBoardGraphics(Player[] players) {
 		super("Bomberman");
 		this.players = players;
@@ -27,9 +27,14 @@ public class MainBoardGraphics extends JFrame {
 		setContentPane(jp);
 		jp.setLayout(null);
 		
-		GameBoardPanel jp2 = new GameBoardPanel();
-		setContentPane(jp2);
-
+//<<<<<<< HEAD
+//		
+//		
+//=======
+//		GameBoardPanel jp2 = new GameBoardPanel();
+//		setContentPane(jp2);
+//
+//>>>>>>> branch 'master' of https://github.com/smmsadrnezh/CE-Bomberman.git
 		// mainboard and its features
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);

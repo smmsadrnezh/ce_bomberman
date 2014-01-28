@@ -19,8 +19,8 @@ import com.cebomberman.game.gameplay.Map;
 import com.cebomberman.game.gameplay.Player;
 
 /**
- * 
- * @author
+ * sets all properties and features of mainboard of game
+ * @author arman and masud
  * 
  */
 public class MainBoardComponents extends JPanel implements Runnable {
@@ -30,16 +30,19 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	Map map;
 
 	/**
- * 
+ * creates the components of the main board 
  */
 	public MainBoardComponents(Player[] players) {
 
 		// information panel
-		Panel information = new Panel();
-		this.add(information);
-		information.setBounds(0, 0, 120, 480);
-		information.setLayout(null);
-		information.setBackground(Color.BLACK);
+		GameBoardPanel jp2 = new GameBoardPanel();
+		this.add(jp2);
+		jp2.setBounds(0, 0, 120, 480);
+		
+//		GameBoardPanel panel1 = new GameBoardPanel() ;
+//		this.add(panel1) ;
+//		panel1.setBounds(0, 0, 120, 480);
+//		panel1.setLayout(null);
 
 		// gameBoard panel
 		Panel gameBoard = new Panel();
@@ -49,10 +52,6 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		gameBoard.setLayout(null);
 
 		this.players = players;
-		// Player player1 = new Player() ;
-		// gameBoard.add(player1.playerGraphics) ;
-		// player1.playerGraphics.setBounds(100, 100, 32, 32);
-		// player1.playerGraphics.setIcon(new ImageIcon("images/speed.gif"));
 		for (int i = 0; i < 4; i++) {
 			gameBoard.add(players[i].playerGraphics);
 			players[i].playerGraphics.setBounds(32 * i, 32 * i, 32, 32);
@@ -61,7 +60,6 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 		players[0].playerGraphics.setColor("yellow");
 		players[0].playerGraphics.setRightImage();
-		// players[0].playerGraphics.moveRight("images/players/yellow/movingright.gif");
 		players[0].playerGraphics.setBounds(32, 32, 32, 32);
 
 		players[1].playerGraphics.setColor("green");
@@ -113,7 +111,9 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		new Thread(this).start();
 
 	}
-
+/**
+ * this method sets the content of all boxes by the probability  
+ */
 	void setBoxContent() {
 
 		int boxNumber = 0;
@@ -228,11 +228,10 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 	/**
 	 * 
-	 * @param i
-	 * @param j
-	 * @param content
+	 * @param row
+	 * @param column
+	 * @return cell in rownumber row and columnnumber column
 	 */
-
 	public CellGraphics getCell(int row, int column) {
 		return cells[row][column];
 	}
@@ -245,7 +244,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	/**
 	 * 
 	 * @param cell
-	 * @param imagePath
+	 * @param imagePath path of the image that will be set on the cell
 	 */
 	private void setCellImage(CellGraphics cell, String imagePath) {
 		// cell.setDisabledIcon(new ImageIcon(imagePath));
@@ -253,10 +252,10 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	}
 
 	/**
- * 
- * 
- * 					
- */
+	 * 
+	 * @param i row of the cell 
+	 * @param j	column of the cell
+	 */
 	private void setDefaultImage(int i, int j) {
 		// for (int i = 0; i < 15; i++)
 		// for (int j = 0; j < 15; j++) {
@@ -276,6 +275,12 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		}
 	}
 
+	/**
+	 * 
+	 * @param row = row of the bomb cell
+	 * @param column = column of the bomb cell
+	 * @param strength = strength of the bomb
+	 */
 	public void activateBomb(final int row, final int column, final int strength) {
 		// fireEffect(row, column, strength);
 		// setDefaultImages();
@@ -331,9 +336,9 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 	/**
 	 * 
-	 * @param row
+	 * @param row 
 	 * @param column
-	 * @param strength
+	 * @param strength = strength of the bomb
 	 */
 	private void fireUp(int row, int column, int strength) {
 		boolean flag = true;
@@ -365,7 +370,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	 * 
 	 * @param row
 	 * @param column
-	 * @param strength
+	 * @param strength = strength of the bomb
 	 */
 	private void fireDown(int row, int column, int strength) {
 		boolean flag = true;
@@ -397,7 +402,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	 * 
 	 * @param row
 	 * @param column
-	 * @param strength
+	 * @param strength = strength of the bomb
 	 */
 	private void fireRight(int row, int column, int strength) {
 		boolean flag = true;
@@ -429,8 +434,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	 * 
 	 * @param row
 	 * @param column
-	 * @param strength
-	 */
+	 * @param strength = strength of the bomb
+	 */ 
 	private void fireLeft(int row, int column, int strength) {
 		boolean flag = true;
 		for (int i = column - 1; i > column - strength; i--) {
@@ -460,11 +465,11 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 	/**
 	 * 
-	 * @param row
-	 * @param column
-	 * @param strength
+	 * @param row = row of the bomb
+	 * @param column = column of the bomb
+	 * @param strength = strength of the bomb
 	 */
-	public void fireEffect(final int row, final int column, final int strength) {
+	public void fireEffect(final int row, final int column, final int strength,final Player bomber) {
 		final Timer timer1 = new Timer();
 		final Timer timer2 = new Timer();
 		timer1.scheduleAtFixedRate(new TimerTask() {
@@ -502,6 +507,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 								cells[i][j].setIsFired(false);
 							}
 					}
+				bomber.playerLogic.setBombNumber(bomber.playerLogic.getBombNumber()+1);
 				activateBomb(row, column, strength);
 				timer2.cancel();
 
@@ -509,15 +515,11 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 		}, 4000, 1);
 
-		// System.out.println("test");
-		// setDefaultImages();
-
-		// if (row != 1 && row != 13 && column != 1 && column != 13) {
-
+	
 	}
 
 	/**
- * 
+ * ckecks the number of player lives and set appropriate properties when player get bonus 
  */
 	@Override
 	public void run() {
@@ -576,29 +578,5 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 		}
 
-		// fireEffect(1,1,1);
-		// // TODO Auto-generated method stub
-		// for (int p = 0; p < 5; p++) {
-		// players[0].playerGraphics.setIcon(new
-		// ImageIcon("images/players/yellow/right.gif"));
-		// try {
-		// Thread.sleep(100);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		//
-		// players[0].playerGraphics.setIcon(new ImageIcon(""));
-		// try {
-		// Thread.sleep(100);
-		// } catch (InterruptedException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
-		//
-		// }
-		// players[0].playerGraphics.setIcon(new
-		// ImageIcon("images/players/yellow/right.gif"));
-		// // player.setIcon(new ImageIcon("images/players/yellow/right.gif"));
 	}
 }
