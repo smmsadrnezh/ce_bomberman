@@ -7,11 +7,15 @@ import javax.swing.UnsupportedLookAndFeelException;
  * 
  * @author
  */
+
 public class GameStarter extends javax.swing.JFrame {
 
+	GameStarterComponents gameStarterComponents;
+	
 	/**
 	 * Creates new form GameStarterGui
 	 */
+
 	public GameStarter() {
 		try {
 			// Set System L&F
@@ -25,9 +29,10 @@ public class GameStarter extends javax.swing.JFrame {
 		} catch (IllegalAccessException e) {
 			// handle exception
 		}
-		GameStarterComponents panel = new GameStarterComponents();
+		
+		gameStarterComponents = new GameStarterComponents();
 		setBounds(0, 0, 680, 330);
-		add(panel);
+		add(gameStarterComponents);
 		setVisible(true);
 		initComponents();
 	}

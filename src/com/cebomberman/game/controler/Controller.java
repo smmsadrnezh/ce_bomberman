@@ -22,6 +22,7 @@ import java.util.Set;
 public class Controller implements Runnable {
 	Thread a;
 	public int playerNumbers = 4;
+	String fileLocation;
 	public Player[] players = new Player[playerNumbers];
 	MainBoardGraphics mainBoard;
 	ArrayList<Integer> pressedKeys1 = new ArrayList<>();

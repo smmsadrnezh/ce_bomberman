@@ -13,7 +13,7 @@ public class Time {
 	static Timer timer;
 	static int interval;
 
-	Time() {
+	public Time() {
 		this.twoSecondsHoleTimer = 2;
 		this.bombTimer = 3;
 		this.passingAbilityTimer = 5;
@@ -41,8 +41,9 @@ public class Time {
 		return gameTimeCountdown;
 	}
 
-	void setGameTimeCountdown(String gameTimeCountdown) {
-		this.gameTimeCountdown = Integer.parseInt(gameTimeCountdown);
+	public void setGameTimeCountdown(String minutes, String seconds) {
+		this.gameTimeCountdown = Integer.parseInt(minutes) * 60
+				+ Integer.parseInt(seconds);
 	}
 
 }

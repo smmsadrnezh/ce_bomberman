@@ -1,6 +1,8 @@
 package com.cebomberman.game.graphics;
 
 import com.cebomberman.game.controler.Controller;
+import com.cebomberman.game.controler.GameLauncher;
+import com.cebomberman.game.controler.Networking;
 
 /**
  * 
@@ -10,7 +12,9 @@ public class GameStarterComponents extends javax.swing.JPanel {
 
 	/**
 	 * Creates new form MainPage
-	 */
+	 */	
+	
+	
 	public GameStarterComponents() {
 		initComponents();
 	}
@@ -2096,42 +2100,35 @@ public class GameStarterComponents extends javax.swing.JPanel {
 	}
 
 	private void launchGameMouseClicked(java.awt.event.MouseEvent evt) {
-		Controller gameLaunch = new Controller();
-		playersNumberSlider.getValue();
-		playersNumber.getText();
-		passwordField1.getPassword();
-		portNumberField1.getText();
-		ipAddressField1.getText();
-		internetPasswordField.getPassword();
-		fileLocation.getText();
-		minutes.getText();
-		seconds.getText();
-		firstName.getText();
-		firstName1.getText();
-		firstName2.getText();
-		firstName3.getText();
-		nickName.getText();
-		nickName1.getText();
-		nickName2.getText();
-		nickName3.getText();
-		red.isSelected();
-		red1.isSelected();
-		red2.isSelected();
-		red3.isSelected();
-		green.isSelected();
-		green1.isSelected();
-		green2.isSelected();
-		green3.isSelected();
-		yellow.isSelected();
-		yellow1.isSelected();
-		yellow2.isSelected();
-		yellow3.isSelected();
-		blue.isSelected();
-		blue1.isSelected();
-		blue2.isSelected();
-		blue3.isSelected();
+		gameVariablesSetter();
+		new GameLauncher();
 	}
 
+	public void gameVariablesSetter(){
+		GameLauncher launchGame = new GameLauncher();
+		launchGame.gameLauncher(fileLocation.getText(),minutes.getText(),seconds.getText();
+);
+		Networking network = new Networking(passwordField1.getPassword(),portNumberField1.getText(),ipAddressField1.getText(),internetPasswordField.getPassword());
+		switch (Integer.parseInt(playersNumber.getText())) {
+		case 2 :
+			launchGame.playerBuilder(firstName.getText(),nickName.getText(),red.isSelected(),green.isSelected(),yellow.isSelected(),blue.isSelected());
+			launchGame.playerBuilder(firstName1.getText(),nickName1.getText(),red1.isSelected(),green1.isSelected(),yellow1.isSelected(),blue1.isSelected());
+			break;
+		case 3 :
+			launchGame.playerBuilder(firstName.getText(),nickName.getText(),red.isSelected(),green.isSelected(),yellow.isSelected(),blue.isSelected());
+			launchGame.playerBuilder(firstName1.getText(),nickName1.getText(),red1.isSelected(),green1.isSelected(),yellow1.isSelected(),blue1.isSelected());
+			launchGame.playerBuilder(firstName2.getText(),nickName2.getText(),red2.isSelected(),green2.isSelected(),yellow2.isSelected(),blue2.isSelected());
+			break;
+		case 4 :
+			launchGame.playerBuilder(firstName.getText(),nickName.getText(),red.isSelected(),green.isSelected(),yellow.isSelected(),blue.isSelected());
+			launchGame.playerBuilder(firstName1.getText(),nickName1.getText(),red1.isSelected(),green1.isSelected(),yellow1.isSelected(),blue1.isSelected());
+			launchGame.playerBuilder(firstName2.getText(),nickName2.getText(),red2.isSelected(),green2.isSelected(),yellow2.isSelected(),blue2.isSelected());
+			launchGame.playerBuilder(firstName3.getText(),nickName3.getText(),red3.isSelected(),green3.isSelected(),yellow3.isSelected(),blue3.isSelected());
+			break;
+		}
+	}
+	
+	
 	// Variables declaration - do not modify
 	private javax.swing.JButton about;
 	private javax.swing.JLabel avatarLable;
