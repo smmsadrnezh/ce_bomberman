@@ -329,6 +329,7 @@ public class Controller implements Runnable {
 							}
 							break;
 						case 32:
+							if(!players[0].playerLogic.isDead())
 							if(!players[0].playerLogic.isLoseBombAbility()){
 							if (players[0].playerLogic.getBombNumber() > 0) {
 								mainBoard.players[0].playerLogic.bombing(
@@ -428,7 +429,44 @@ public class Controller implements Runnable {
 							// mainBoard.players[1].playerGraphics.moveDown();
 							break;
 						case 81: // bomb
-							pressedKeys.remove(81);
+							if(!players[1].playerLogic.isDead())
+								if(!players[1].playerLogic.isLoseBombAbility()){
+								if (players[1].playerLogic.getBombNumber() > 0) {
+									mainBoard.players[1].playerLogic.bombing(
+											mainBoard.players[1].playerGraphics
+													.getCurrentPositionX(),
+											mainBoard.players[1].playerGraphics
+													.getCurrentPositionY());
+											try {
+												Thread.sleep(100);
+											} catch (InterruptedException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
+											
+									mainBoard.jp.setCellContent(
+											mainBoard.players[1].playerGraphics
+													.getCurrentPositionY(),
+											mainBoard.players[1].playerGraphics
+													.getCurrentPositionX(), "bomb");
+									mainBoard.jp
+											.getCell(
+													mainBoard.players[1].playerGraphics
+															.getCurrentPositionY(),
+													mainBoard.players[1].playerGraphics
+															.getCurrentPositionX())
+											.setIcon(
+													new ImageIcon("images/bomb.gif"));
+									mainBoard.jp.fireEffect(
+											mainBoard.players[1].playerGraphics
+													.getCurrentPositionY(),
+											mainBoard.players[1].playerGraphics
+													.getCurrentPositionX(),
+											mainBoard.players[1].playerLogic
+													.getBombStrength(),players[1]);
+								}
+								}
+								
 							break;
 						case 71:
 							test = mainBoard.jp.getCell(
@@ -471,7 +509,43 @@ public class Controller implements Runnable {
 									.moveDown(players[2].playerLogic.getSpeed());
 							break;
 						case 84:// bomb
-							pressedKeys.remove(84);
+							if(!players[2].playerLogic.isDead())
+								if(!players[2].playerLogic.isLoseBombAbility()){
+								if (players[2].playerLogic.getBombNumber() > 0) {
+									mainBoard.players[2].playerLogic.bombing(
+											mainBoard.players[2].playerGraphics
+													.getCurrentPositionX(),
+											mainBoard.players[2].playerGraphics
+													.getCurrentPositionY());
+											try {
+												Thread.sleep(100);
+											} catch (InterruptedException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
+											
+									mainBoard.jp.setCellContent(
+											mainBoard.players[2].playerGraphics
+													.getCurrentPositionY(),
+											mainBoard.players[2].playerGraphics
+													.getCurrentPositionX(), "bomb");
+									mainBoard.jp
+											.getCell(
+													mainBoard.players[2].playerGraphics
+															.getCurrentPositionY(),
+													mainBoard.players[2].playerGraphics
+															.getCurrentPositionX())
+											.setIcon(
+													new ImageIcon("images/bomb.gif"));
+									mainBoard.jp.fireEffect(
+											mainBoard.players[2].playerGraphics
+													.getCurrentPositionY(),
+											mainBoard.players[2].playerGraphics
+													.getCurrentPositionX(),
+											mainBoard.players[2].playerLogic
+													.getBombStrength(),players[2]);
+								}
+								}
 							break;
 						case 75:
 							mainBoard.players[3].playerGraphics

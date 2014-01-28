@@ -25,6 +25,7 @@ public class PlayerLogic {
 	private boolean passingAbility;
 	private boolean loseBombAbility ;
 	Timer timer = new Timer();
+	private boolean isDead = false;
 	ArrayList<String> positiveAbilities = new ArrayList<>();
 
 	// public int bombX;
@@ -260,6 +261,14 @@ public class PlayerLogic {
 
 	public void setLoseBombAbility(boolean loseBombAbility) {
 		this.loseBombAbility = loseBombAbility;
+	}
+
+	public boolean isDead() {
+		return isDead;
+	}
+
+	public void setDead(boolean isDead) {
+		this.isDead = isDead;
 	}
 
 }

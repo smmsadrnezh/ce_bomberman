@@ -1,7 +1,11 @@
 package com.cebomberman.game.graphics;
 
-import com.cebomberman.game.controler.GameLauncher;
+import java.util.Timer;
+
+import com.cebomberman.game.controler.Controller;
 import com.cebomberman.game.controler.Networking;
+import com.cebomberman.game.gameplay.Player;
+import com.cebomberman.game.gameplay.Time;
 
 /**
  * 
@@ -11,9 +15,8 @@ public class GameStarterComponents extends javax.swing.JPanel {
 
 	/**
 	 * Creates new form MainPage
-	 */	
-	
-	
+	 */
+
 	public GameStarterComponents() {
 		initComponents();
 	}
@@ -2095,44 +2098,107 @@ public class GameStarterComponents extends javax.swing.JPanel {
 	private void launchGameMouseClicked(java.awt.event.MouseEvent evt) {
 		userOptinalsSetter();
 	}
-	
-    private void launchMapEditorMouseClicked(java.awt.event.MouseEvent evt) { 
+
+	private void launchMapEditorMouseClicked(java.awt.event.MouseEvent evt) {
 		MapEditor mapEditor = new MapEditor();
 		mapEditor.setVisible(true);
-    	
-    	
-//    	MapEditor test = new MapEditor(); 
-//    	test.setBounds(0, 0, 159, 310);
-//    	test.setVisible(true);
-    }    
 
-	public void userOptinalsSetter(){
-		GameLauncher launchGame = new GameLauncher();
-		try {
-		launchGame.gameLauncher(fileLocation.getText(),minutes.getText(),seconds.getText());
-		Networking network = new Networking(passwordField1.getPassword(),portNumberField1.getText(),ipAddressField1.getText(),internetPasswordField.getPassword());
-		switch (Integer.parseInt(playersNumber.getText())) {
-		case 2 :
-			launchGame.playerBuilder(firstName.getText(),nickName.getText(),red.isSelected(),green.isSelected(),yellow.isSelected(),blue.isSelected());
-			launchGame.playerBuilder(firstName1.getText(),nickName1.getText(),red1.isSelected(),green1.isSelected(),yellow1.isSelected(),blue1.isSelected());
-			break;
-		case 3 :
-			launchGame.playerBuilder(firstName.getText(),nickName.getText(),red.isSelected(),green.isSelected(),yellow.isSelected(),blue.isSelected());
-			launchGame.playerBuilder(firstName1.getText(),nickName1.getText(),red1.isSelected(),green1.isSelected(),yellow1.isSelected(),blue1.isSelected());
-			launchGame.playerBuilder(firstName2.getText(),nickName2.getText(),red2.isSelected(),green2.isSelected(),yellow2.isSelected(),blue2.isSelected());
-			break;
-		case 4 :
-			launchGame.playerBuilder(firstName.getText(),nickName.getText(),red.isSelected(),green.isSelected(),yellow.isSelected(),blue.isSelected());
-			launchGame.playerBuilder(firstName1.getText(),nickName1.getText(),red1.isSelected(),green1.isSelected(),yellow1.isSelected(),blue1.isSelected());
-			launchGame.playerBuilder(firstName2.getText(),nickName2.getText(),red2.isSelected(),green2.isSelected(),yellow2.isSelected(),blue2.isSelected());
-			launchGame.playerBuilder(firstName3.getText(),nickName3.getText(),red3.isSelected(),green3.isSelected(),yellow3.isSelected(),blue3.isSelected());
-			break;
-		}}catch(Exception e){
-			
-		}
+		// MapEditor test = new MapEditor();
+		// test.setBounds(0, 0, 159, 310);
+		// test.setVisible(true);
 	}
-	
-	
+
+	public void userOptinalsSetter() {
+	//	Controller controller = new Controller();
+		Player[] players = new Player[4];
+		Time timer = new Time();
+		
+//		controller.fileLocation = fileLocation.getText();
+		int playerNumbers = Integer.parseInt(playersNumber.getText());
+		timer.setGameTimeCountdown(minutes.getText() , seconds.getText());
+		
+		//		try {
+					
+			Networking network = new Networking(passwordField1.getPassword(),
+					portNumberField1.getText(), ipAddressField1.getText(),
+					internetPasswordField.getPassword());
+			switch (Integer.parseInt(playersNumber.getText())) {
+			case 2:
+				players[0] = playerBuilder(
+						firstName.getText(), nickName.getText(),
+						red.isSelected(), green.isSelected(),
+						yellow.isSelected(), blue.isSelected());
+				players[1] = playerBuilder(
+						firstName1.getText(), nickName1.getText(),
+						red1.isSelected(), green1.isSelected(),
+						yellow1.isSelected(), blue1.isSelected());
+				break;
+			case 3:
+				players[0] = playerBuilder(
+						firstName.getText(), nickName.getText(),
+						red.isSelected(), green.isSelected(),
+						yellow.isSelected(), blue.isSelected());
+				players[1] = playerBuilder(
+						firstName1.getText(), nickName1.getText(),
+						red1.isSelected(), green1.isSelected(),
+						yellow1.isSelected(), blue1.isSelected());
+				players[2] = playerBuilder(
+						firstName2.getText(), nickName2.getText(),
+						red2.isSelected(), green2.isSelected(),
+						yellow2.isSelected(), blue2.isSelected());
+				break;
+			case 4:
+				players[0] = playerBuilder(
+						firstName.getText(), nickName.getText(),
+						red.isSelected(), green.isSelected(),
+						yellow.isSelected(), blue.isSelected());
+				players[1] = playerBuilder(
+						firstName1.getText(), nickName1.getText(),
+						red1.isSelected(), green1.isSelected(),
+						yellow1.isSelected(), blue1.isSelected());
+				players[2] = playerBuilder(
+						firstName2.getText(), nickName2.getText(),
+						red2.isSelected(), green2.isSelected(),
+						yellow2.isSelected(), blue2.isSelected());
+				players[3] = playerBuilder(
+						firstName3.getText(), nickName3.getText(),
+						red3.isSelected(), green3.isSelected(),
+						yellow3.isSelected(), blue3.isSelected());
+				break;
+			}
+//		} catch (Exception e) {
+
+//		}
+	//	new Controller(players,playerNumbers) ;
+	}
+	public Player playerBuilder(String firstName, String nickName,
+			boolean redColor, boolean greenColor, boolean yellowColor,
+			boolean blueColor) {
+
+		// build new player
+		Player player = new Player();
+
+		// Set player name and nickname
+		player.playerLogic.setPlayerName(firstName);
+		player.playerLogic.setPlayerNickname(nickName);
+
+		// Set player Color
+		if (redColor) {
+			player.playerGraphics.setColor("red");
+		}
+		if (greenColor) {
+			player.playerGraphics.setColor("green");
+		}
+		if (yellowColor) {
+			player.playerGraphics.setColor("yellow");
+		}
+		if (blueColor) {
+			player.playerGraphics.setColor("blue");
+		}
+		return player;
+		
+	}
+
 	// Variables declaration - do not modify
 	private javax.swing.JButton about;
 	private javax.swing.JLabel avatarLable;

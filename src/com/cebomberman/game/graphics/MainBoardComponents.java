@@ -36,14 +36,14 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	public MainBoardComponents(Player[] players) {
 
 		// information panel
-		// GameBoardPanel jp2 = new GameBoardPanel();
-		// this.add(jp2);
-		// jp2.setBounds(0, 0, 120, 480);
+//		 GameBoardPanel jp2 = new GameBoardPanel();
+//		 this.add(jp2);
+//		 jp2.setBounds(0, 0, 120, 480);
 
-		 GameBoardPanel panel1 = new GameBoardPanel() ;
-		 this.add(panel1) ;
-		 panel1.setBounds(0, 0, 120, 480);
-		 panel1.setVisible(true);
+//		 GameBoardPanel panel1 = new GameBoardPanel() ;
+//		 this.add(panel1) ;
+//		 panel1.setBounds(0, 0, 120, 480);
+//		 panel1.setVisible(true);
 		
 		 
 		// gameBoard panel
@@ -52,9 +52,9 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		gameBoard.setBounds(120, 0, 480, 480);
 		gameBoard.setBackground(Color.GRAY);
 		gameBoard.setLayout(null);
-		gameBoard.setFocusable(true);
-		gameBoard.requestFocusInWindow() ;
-		gameBoard.grabFocus();	
+	//	gameBoard.setFocusable(true);
+	//	gameBoard.requestFocusInWindow() ;
+	//	gameBoard.grabFocus();	
 
 		this.players = players;
 		for (int i = 0; i < 4; i++) {
@@ -563,6 +563,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 									e.printStackTrace();
 								}
 								players[k].playerGraphics.setVisible(false);
+								players[k].playerLogic.setDead(true);
+								
 								// System.out.println("test");
 							}
 							players[k].playerLogic.lifeNumberDecrement();
@@ -614,6 +616,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 								e.printStackTrace();
 							}
 							players[k].playerGraphics.setVisible(false);
+							players[k].playerLogic.setDead(true);
 							// System.out.println("test");
 						}
 						players[k].playerLogic.lifeNumberDecrement();
