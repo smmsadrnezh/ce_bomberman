@@ -1,6 +1,5 @@
 package com.cebomberman.game.graphics;
 
-import com.cebomberman.game.controler.Controller;
 import com.cebomberman.game.controler.GameLauncher;
 import com.cebomberman.game.controler.Networking;
 
@@ -2101,7 +2100,6 @@ public class GameStarterComponents extends javax.swing.JPanel {
 
 	private void launchGameMouseClicked(java.awt.event.MouseEvent evt) {
 		gameVariablesSetter();
-		new GameLauncher();
 	}
 
 	public void gameVariablesSetter(){

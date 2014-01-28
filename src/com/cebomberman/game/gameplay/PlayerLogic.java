@@ -10,6 +10,7 @@ public class PlayerLogic {
 
 	private boolean isWinner = false;
 	private String playerName;
+	private String playerNickname;
 	private int lifeNumber;
 	private int speed = 5;
 	private int bombStrength;
@@ -168,6 +169,14 @@ public class PlayerLogic {
 	 */
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
+	}
+
+	private String getPlayerNickname() {
+		return playerNickname;
+	}
+
+	public void setPlayerNickname(String playerNickname) {
+		this.playerNickname = playerNickname;
 	}
 
 }

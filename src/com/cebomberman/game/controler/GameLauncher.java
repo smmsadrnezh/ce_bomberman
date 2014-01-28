@@ -22,7 +22,20 @@ public class GameLauncher {
 	
 	public Player playerBuilder(String firstName, String nickName, boolean redColor, boolean greenColor, boolean yellowColor, boolean blueColor){
 		Player player = new Player();
-		player.name = firstName;
+		player.playerLogic.setPlayerName(firstName);
+		player.playerLogic.setPlayerNickname(nickName);
+		if (redColor) {
+			player.playerGraphics.setColor("red");
+		}
+		if (greenColor) {
+			player.playerGraphics.setColor("green");
+		}
+		if (yellowColor) {
+			player.playerGraphics.setColor("yellow");
+		}
+		if (blueColor) {
+			player.playerGraphics.setColor("blue");
+		}
 		return player;
 	}
 	
