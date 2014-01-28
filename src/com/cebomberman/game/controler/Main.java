@@ -11,7 +11,7 @@ import com.cebomberman.game.graphics.GameStarter;
 public class Main {
 	public static void main(String[] args) {
 
-		GameStarter testing = new GameStarter(); // Create and show the GUI.
-	}
+		GameStarter gameSwitch = new GameStarter();
 
+	}
 }
