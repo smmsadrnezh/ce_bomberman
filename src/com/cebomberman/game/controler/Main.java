@@ -14,7 +14,7 @@ public class Main {
 		// Player test = new Player();
 		// new WinnerReward();
 		// MainBoardGraphics test = new MainBoardGraphics();
-		new Controller();
+//		new Controller();
 
 		//
 		// System.out.println("");
