@@ -170,13 +170,13 @@ public class GameStarter extends javax.swing.JFrame {
 
 	private void highScoreMousePressed(java.awt.event.MouseEvent evt) {
 		HighScores highScore = new HighScores();
-		highScore.setBounds(0, 0, 650, 350);
+		highScore.setBounds(0, 0, 159, 310);
 		highScore.setVisible(true);
 	}
 
 	private void helpContentsMousePressed(java.awt.event.MouseEvent evt) {
 		HelpContents helpContents = new HelpContents();
-		helpContents.setBounds(0, 0, 650, 350);
+		help.setBounds(0, 0, 400, 300);
 		helpContents.setVisible(true);
 	}
 

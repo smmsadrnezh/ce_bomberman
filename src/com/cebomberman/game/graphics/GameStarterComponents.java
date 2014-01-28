@@ -2091,7 +2091,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
 
 	private void helpMouseClicked(java.awt.event.MouseEvent evt) {
 		HelpContents help = new HelpContents();
-		help.setBounds(0, 0, 200, 200);
+		help.setBounds(0, 0, 400, 300);
 		help.setVisible(true);
 	}
 
