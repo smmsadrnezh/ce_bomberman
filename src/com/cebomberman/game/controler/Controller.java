@@ -565,8 +565,45 @@ public class Controller implements Runnable {
 									.moveDown(players[2].playerLogic.getSpeed());
 							break;
 						case 73:
-							pressedKeys.remove(73);
+							if(!players[3].playerLogic.isDead())
+								if(!players[3].playerLogic.isLoseBombAbility()){
+								if (players[3].playerLogic.getBombNumber() > 0) {
+									mainBoard.players[3].playerLogic.bombing(
+											mainBoard.players[3].playerGraphics
+													.getCurrentPositionX(),
+											mainBoard.players[3].playerGraphics
+													.getCurrentPositionY());
+											try {
+												Thread.sleep(100);
+											} catch (InterruptedException e) {
+												// TODO Auto-generated catch block
+												e.printStackTrace();
+											}
+											
+									mainBoard.jp.setCellContent(
+											mainBoard.players[3].playerGraphics
+													.getCurrentPositionY(),
+											mainBoard.players[3].playerGraphics
+													.getCurrentPositionX(), "bomb");
+									mainBoard.jp
+											.getCell(
+													mainBoard.players[3].playerGraphics
+															.getCurrentPositionY(),
+													mainBoard.players[3].playerGraphics
+															.getCurrentPositionX())
+											.setIcon(
+													new ImageIcon("images/bomb.gif"));
+									mainBoard.jp.fireEffect(
+											mainBoard.players[3].playerGraphics
+													.getCurrentPositionY(),
+											mainBoard.players[3].playerGraphics
+													.getCurrentPositionX(),
+											mainBoard.players[3].playerLogic
+													.getBombStrength(),players[3]);
+								}
+								}
 							break;
+							
 						}
 
 					}
