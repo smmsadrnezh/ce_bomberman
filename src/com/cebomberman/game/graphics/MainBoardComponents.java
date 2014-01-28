@@ -35,22 +35,22 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	public MainBoardComponents(Player[] players) {
 
 		// information panel
-		GameBoardPanel jp2 = new GameBoardPanel();
-		this.add(jp2);
-		jp2.setBounds(0, 0, 120, 480);
+//		GameBoardPanel jp2 = new GameBoardPanel();
+//		this.add(jp2);
+//		jp2.setBounds(0, 0, 120, 480);
 		
 //		GameBoardPanel panel1 = new GameBoardPanel() ;
 //		this.add(panel1) ;
 //		panel1.setBounds(0, 0, 120, 480);
 //		panel1.setLayout(null);
-
+		
 		// gameBoard panel
 		Panel gameBoard = new Panel();
 		this.add(gameBoard);
 		gameBoard.setBounds(120, 0, 480, 480);
 		gameBoard.setBackground(Color.GRAY);
 		gameBoard.setLayout(null);
-
+		
 		this.players = players;
 		for (int i = 0; i < 4; i++) {
 			gameBoard.add(players[i].playerGraphics);
@@ -205,7 +205,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 							+ addLifeProbability + passingAbilityProbability
 							+ invertArrowKeysProbability + loseLastAbilityProbability)
 							/ totalProbability)
-				boxCellPointer[i].box.setContent("loseLastAbilityProbability");
+				boxCellPointer[i].box.setContent("loseLastAbility");
 			if ((float) (speedupProbability + bombNumberIncrementProbability
 					+ bombStrenghtIncrementProbability + addLifeProbability
 					+ passingAbilityProbability + invertArrowKeysProbability + loseLastAbilityProbability)
@@ -218,7 +218,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 							+ loseLastAbilityProbability + loseBombingAbilityProbability)
 							/ totalProbability)
 				boxCellPointer[i].box
-						.setContent("loseBombingAbilityProbability");
+						.setContent("loseBombingAbility");
 
 		}
 
