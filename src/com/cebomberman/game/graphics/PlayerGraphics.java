@@ -35,9 +35,9 @@ public class PlayerGraphics extends JLabel {
 	 * 
 	 * @param righMovingtImageLocation
 	 */
-	public void moveRight() {
+	public void moveRight(int speed) {
 		setIcon(new ImageIcon(righMovingtImageLocation));
-		setLocation(this.getX() + getSpeed(), this.getY());
+		setLocation(this.getX() + speed, this.getY());
 		// keyPressed = 39;
 	}
 
@@ -45,18 +45,18 @@ public class PlayerGraphics extends JLabel {
 	 * 
 	 * @param leftMovingtImageLocation
 	 */
-	public void moveLeft() {
+	public void moveLeft(int speed) {
 		setIcon(new ImageIcon(leftMovingImageLocation));
-		setLocation(getX()- getSpeed() ,getY());
+		setLocation(getX()- speed ,getY());
 	}
 
 	/**
 	 * 
 	 * @param upMovingImageLocation
 	 */
-	public void moveUp() {
+	public void moveUp(int speed) {
 		setIcon(new ImageIcon(upMovingImageLocation));
-		setLocation(getX(), getY() - getSpeed());
+		setLocation(getX(), getY() - speed);
 		// keyPressed = 38;
 	}
 
@@ -64,9 +64,9 @@ public class PlayerGraphics extends JLabel {
 	 * 
 	 * @param downMovingImageLocation
 	 */
-	public void moveDown() {
+	public void moveDown(int speed) {
 		setIcon(new ImageIcon(downMovingImageLocation));
-		setLocation(getX(), getY() + getSpeed());
+		setLocation(getX(), getY() + speed);
 		// keyPressed = 40;
 	}
 

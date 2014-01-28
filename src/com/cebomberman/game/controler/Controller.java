@@ -29,7 +29,7 @@ public class Controller implements Runnable {
 	ArrayList<Integer> pressedKeys1 = new ArrayList<>();
 	Set<Integer> pressedKeys = new HashSet<Integer>();
 
-	Controller() {
+	public Controller() {
 
 		a = new Thread(this);
 		a.setDaemon(true);
@@ -231,7 +231,7 @@ public class Controller implements Runnable {
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionX() - 1);
 							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[0].playerGraphics.getX() <= test.getX() + 32))
-								mainBoard.players[0].playerGraphics.moveLeft();
+								mainBoard.players[0].playerGraphics.moveLeft(players[0].playerLogic.getSpeed());
 
 							break;
 						case 38:
@@ -242,7 +242,7 @@ public class Controller implements Runnable {
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionX()) ;
 							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[0].playerGraphics.getY() <= test.getY() + 32))
-								mainBoard.players[0].playerGraphics.moveUp();
+								mainBoard.players[0].playerGraphics.moveUp(players[0].playerLogic.getSpeed());
 							break;
 						case 39:
 							test = mainBoard.jp.getCell(
@@ -251,7 +251,7 @@ public class Controller implements Runnable {
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionX() + 1);
 							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[0].playerGraphics.getX()+32 >=  test.getX()))
-								mainBoard.players[0].playerGraphics.moveRight();
+								mainBoard.players[0].playerGraphics.moveRight(players[0].playerLogic.getSpeed());
 							break;
 						case 40:
 							test = mainBoard.jp
@@ -261,9 +261,10 @@ public class Controller implements Runnable {
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionX()) ;
 							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[0].playerGraphics.getY() + 32 >= test.getY()))
-									mainBoard.players[0].playerGraphics.moveDown();
+									mainBoard.players[0].playerGraphics.moveDown(players[0].playerLogic.getSpeed());
 							break;
 						case 32:
+							if(players[0].playerLogic.getBombNumber()>0){
 							mainBoard.players[0].playerLogic.bombing(
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionX(),
@@ -278,7 +279,7 @@ public class Controller implements Runnable {
 											.getCurrentPositionY(),
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionX()).setIcon(new ImageIcon("images/bomb.gif"));		
-							mainBoard.players[0].playerLogic.setBombStrength(3);
+							//mainBoard.players[0].playerLogic.setBombStrength(3);
 							mainBoard.jp.fireEffect(
 									mainBoard.players[0].playerGraphics
 											.getCurrentPositionY(),
@@ -286,48 +287,95 @@ public class Controller implements Runnable {
 											.getCurrentPositionX(),
 									mainBoard.players[0].playerLogic
 											.getBombStrength());
+							}
 							break;
 						case 65:
-							mainBoard.players[1].playerGraphics.moveLeft();
+							test = mainBoard.jp.getCell(
+									mainBoard.players[1].playerGraphics
+											.getCurrentPositionY(),
+									mainBoard.players[1].playerGraphics
+											.getCurrentPositionX() - 1);
+							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[1].playerGraphics.getX() <= test.getX() + 32))
+								mainBoard.players[1].playerGraphics.moveLeft(players[1].playerLogic.getSpeed());
+							//mainBoard.players[1].playerGraphics.moveLeft();
 							break;
 						case 87:
-							mainBoard.players[1].playerGraphics.moveUp();
+							test = mainBoard.jp
+							.getCell(
+									mainBoard.players[1].playerGraphics
+											.getCurrentPositionY() - 1,
+									mainBoard.players[1].playerGraphics
+											.getCurrentPositionX()) ;
+							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[1].playerGraphics.getY() <= test.getY() + 32))
+								mainBoard.players[1].playerGraphics.moveUp(players[1].playerLogic.getSpeed());
+							//mainBoard.players[1].playerGraphics.moveUp();
 							break;
 						case 68:
-							mainBoard.players[1].playerGraphics.moveRight();
+							test = mainBoard.jp.getCell(
+									mainBoard.players[1].playerGraphics
+											.getCurrentPositionY(),
+									mainBoard.players[1].playerGraphics
+											.getCurrentPositionX() + 1);
+							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[1].playerGraphics.getX()+32 >=  test.getX()))
+								mainBoard.players[1].playerGraphics.moveRight(players[1].playerLogic.getSpeed());
+							//mainBoard.players[1].playerGraphics.moveRight();
 							break;
 						case 83:
-							mainBoard.players[1].playerGraphics.moveDown();
+							test = mainBoard.jp
+							.getCell(
+									mainBoard.players[1].playerGraphics
+											.getCurrentPositionY() + 1,
+									mainBoard.players[1].playerGraphics
+											.getCurrentPositionX()) ;
+							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[1].playerGraphics.getY() + 32 >= test.getY()))
+									mainBoard.players[1].playerGraphics.moveDown(players[1].playerLogic.getSpeed());
+							//mainBoard.players[1].playerGraphics.moveDown();
 							break;
 						case 81: // bomb
 							pressedKeys.remove(81);
 							break;
 						case 71:
-							mainBoard.players[2].playerGraphics.moveLeft();
+							test = mainBoard.jp.getCell(
+									mainBoard.players[2].playerGraphics
+											.getCurrentPositionY(),
+									mainBoard.players[2].playerGraphics
+											.getCurrentPositionX() - 1);
+							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[2].playerGraphics.getX() <= test.getX() + 32))
+								mainBoard.players[2].playerGraphics.moveLeft(players[2].playerLogic.getSpeed());
+							//mainBoard.players[2].playerGraphics.moveLeft();
 							break;
 						case 89:
-							mainBoard.players[2].playerGraphics.moveUp();
+							test = mainBoard.jp
+							.getCell(
+									mainBoard.players[2].playerGraphics
+											.getCurrentPositionY() - 1,
+									mainBoard.players[2].playerGraphics
+											.getCurrentPositionX()) ;
+							if (!(test.isBlocked() && !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[2].playerGraphics.getY() <= test.getY() + 32))
+								mainBoard.players[2].playerGraphics.moveUp(players[2].playerLogic.getSpeed());
+							//mainBoard.players[2].playerGraphics.moveUp();
 							break;
 						case 74: // j
-							mainBoard.players[2].playerGraphics.moveRight();
+							
+							mainBoard.players[2].playerGraphics.moveRight(players[2].playerLogic.getSpeed());
 							break;
 						case 72: // h
-							mainBoard.players[2].playerGraphics.moveDown();
+							mainBoard.players[2].playerGraphics.moveDown(players[2].playerLogic.getSpeed());
 							break;
 						case 84:// bomb
 							pressedKeys.remove(84);
 							break;
 						case 75:
-							mainBoard.players[3].playerGraphics.moveLeft();
+							mainBoard.players[3].playerGraphics.moveLeft(players[2].playerLogic.getSpeed());
 							break;
 						case 79: // o
-							mainBoard.players[3].playerGraphics.moveUp();
+							mainBoard.players[3].playerGraphics.moveUp(players[2].playerLogic.getSpeed());
 							break;
 						case 59:
-							mainBoard.players[3].playerGraphics.moveRight();
+							mainBoard.players[3].playerGraphics.moveRight(players[3].playerLogic.getSpeed());
 							break;
 						case 76:
-							mainBoard.players[3].playerGraphics.moveDown();
+							mainBoard.players[3].playerGraphics.moveDown(players[2].playerLogic.getSpeed());
 							break;
 						case 73:
 							pressedKeys.remove(73);

@@ -6,6 +6,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -26,6 +27,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	final CellGraphics[][] cells = new CellGraphics[15][15];
 	Player[] players;
 	Thread thread1;
+	Map map;
 
 	/**
  * 
@@ -58,26 +60,24 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		}
 
 		players[0].playerGraphics.setColor("yellow");
-		players[0].playerGraphics.moveRight();
+		players[0].playerGraphics.setRightImage();
 		// players[0].playerGraphics.moveRight("images/players/yellow/movingright.gif");
 		players[0].playerGraphics.setBounds(32, 32, 32, 32);
 
 		players[1].playerGraphics.setColor("green");
 		players[1].playerGraphics.setBounds(416, 32, 32, 32);
-		players[1].playerGraphics.moveLeft();
+		players[1].playerGraphics.setLeftImage();
 
 		players[2].playerGraphics.setColor("blue");
 		players[2].playerGraphics.setBounds(32, 416, 32, 32);
-		players[2].playerGraphics.moveRight();
+		players[2].playerGraphics.setRightImage();
 
 		players[3].playerGraphics.setColor("red");
 		players[3].playerGraphics.setBounds(416, 416, 32, 32);
-		players[3].playerGraphics.moveLeft();
+		players[3].playerGraphics.setLeftImage();
 
 		// new Thread(this).start();
-		
-		
-		
+
 		for (int i = 0; i < 15; i++)
 			for (int j = 0; j < 15; j++) {
 				cells[i][j] = new CellGraphics();
@@ -87,30 +87,142 @@ public class MainBoardComponents extends JPanel implements Runnable {
 				if (i != 0 && i != 14 && j != 0 && j != 14)
 					cells[i][j].setContent("empty");
 			}
-//		for (int i = 0; i < 15; i++)
-//			for (int j = 0; j < 15; j++) {
-//				if (i == 0 || i == 14 || j == 0 || j == 14) {
-//					cells[i][j].setIcon(new ImageIcon("images/brick.gif"));
-//					setCellContent(i, j, "block");
-//				}
-//			}
-		cells[4][5].box.setContent("speed");
-		cells[5][5].box.setContent("life");
-		setCellContent(5, 5, "box");
-		setCellContent(4, 5, "box");
-		setCellContent(3, 5, "block");
-		
-		Map map = new Map();
+		// for (int i = 0; i < 15; i++)
+		// for (int j = 0; j < 15; j++) {
+		// if (i == 0 || i == 14 || j == 0 || j == 14) {
+		// cells[i][j].setIcon(new ImageIcon("images/brick.gif"));
+		// setCellContent(i, j, "block");
+		// }
+		// }
+		// cells[2][3].box.setContent("speed");
+		// cells[4][3].box.setContent("life");
+		// setCellContent(5, 5, "box");
+		// setCellContent(4, 5, "box");
+		// setCellContent(3, 5, "block");
+
+		map = new Map();
 		map.mapCellReader("map.txt");
 		for (int i = 0; i < map.getMapWidth(); i++) {
 			for (int j = 0; j < map.getMapHeight(); j++) {
-				setCellContent(i,j,map.getMap(i, j)) ;
-				
+				setCellContent(i, j, map.getMap(i, j));
+
 			}
-			
+
 		}
+		setBoxContent();
 		new Thread(this).start();
 
+	}
+
+	void setBoxContent() {
+
+		int boxNumber = 0;
+
+		int speedupProbability = 3;
+		int bombNumberIncrementProbability = 3;
+		int bombStrenghtIncrementProbability = 2;
+		int addLifeProbability = 1;
+		int passingAbilityProbability = 1;
+		int invertArrowKeysProbability = 1;
+		int loseLastAbilityProbability = 2;
+		int loseBombingAbilityProbability = 2;
+
+		int totalProbability = speedupProbability
+				+ bombNumberIncrementProbability
+				+ bombStrenghtIncrementProbability + addLifeProbability
+				+ passingAbilityProbability + invertArrowKeysProbability
+				+ loseLastAbilityProbability + loseBombingAbilityProbability;
+
+		for (int i = 0; i < map.getMapWidth(); i++)
+			for (int j = 0; j < map.getMapHeight(); j++) {
+				if (cells[i][j].getContent() == "box") {
+					boxNumber++;
+				}
+			}
+
+		double[] boxRandomProbability = new double[boxNumber];
+		CellGraphics[] boxCellPointer = new CellGraphics[boxNumber];
+			int h=0;
+			for (int j = 0; j < map.getMapWidth(); j++) 
+				for (int k = 0; k < map.getMapHeight(); k++) {
+					if (cells[j][k].getContent() == "box"){
+						boxCellPointer[h] = cells[j][k];
+						h++ ;
+				}
+			}
+		
+		for (int i = 0; i < boxNumber; i++) {
+			Random temp = new Random();
+			boxRandomProbability[i] = temp.nextDouble();
+			System.out.println(boxRandomProbability[i]);
+			if (0 < boxRandomProbability[i]
+					&& boxRandomProbability[i] < (float) speedupProbability
+							/ totalProbability)
+				boxCellPointer[i].box.setContent("speedUp");
+
+			if ((float) speedupProbability / totalProbability < boxRandomProbability[i]
+					&& boxRandomProbability[i] < (float) (speedupProbability + bombNumberIncrementProbability)
+							/ totalProbability)
+				boxCellPointer[i].box.setContent("bombNumberIncrement");
+			if ((float) (speedupProbability + bombNumberIncrementProbability)
+					/ totalProbability < boxRandomProbability[i]
+					&& boxRandomProbability[i] < (float) (speedupProbability
+							+ bombNumberIncrementProbability + bombStrenghtIncrementProbability)
+							/ totalProbability)
+				boxCellPointer[i].box.setContent("bombStrenghtIncrement");
+			if ((float) (speedupProbability + bombNumberIncrementProbability + bombStrenghtIncrementProbability)
+					/ totalProbability < boxRandomProbability[i]
+					&& boxRandomProbability[i] < (float) (speedupProbability
+							+ bombNumberIncrementProbability
+							+ bombStrenghtIncrementProbability + addLifeProbability)
+							/ totalProbability)
+				boxCellPointer[i].box.setContent("addLife");
+			if ((float) (speedupProbability + bombNumberIncrementProbability
+					+ bombStrenghtIncrementProbability + addLifeProbability)
+					/ totalProbability < boxRandomProbability[i]
+					&& boxRandomProbability[i] < (float) (speedupProbability
+							+ bombNumberIncrementProbability
+							+ bombStrenghtIncrementProbability
+							+ addLifeProbability + passingAbilityProbability)
+							/ totalProbability)
+				boxCellPointer[i].box.setContent("passingAbility");
+			if ((float) (speedupProbability + bombNumberIncrementProbability
+					+ bombStrenghtIncrementProbability + addLifeProbability + passingAbilityProbability)
+					/ totalProbability < boxRandomProbability[i]
+					&& boxRandomProbability[i] < (float) (speedupProbability
+							+ bombNumberIncrementProbability
+							+ bombStrenghtIncrementProbability
+							+ addLifeProbability + passingAbilityProbability + invertArrowKeysProbability)
+							/ totalProbability)
+				boxCellPointer[i].box.setContent("invertArrowKeys");
+			if ((float) (speedupProbability + bombNumberIncrementProbability
+					+ bombStrenghtIncrementProbability + addLifeProbability
+					+ passingAbilityProbability + invertArrowKeysProbability)
+					/ totalProbability < boxRandomProbability[i]
+					&& boxRandomProbability[i] < (float) (speedupProbability
+							+ bombNumberIncrementProbability
+							+ bombStrenghtIncrementProbability
+							+ addLifeProbability + passingAbilityProbability
+							+ invertArrowKeysProbability + loseLastAbilityProbability)
+							/ totalProbability)
+				boxCellPointer[i].box.setContent("loseLastAbilityProbability");
+			if ((float) (speedupProbability + bombNumberIncrementProbability
+					+ bombStrenghtIncrementProbability + addLifeProbability
+					+ passingAbilityProbability + invertArrowKeysProbability + loseLastAbilityProbability)
+					/ totalProbability < boxRandomProbability[i]
+					&& boxRandomProbability[i] < (float) (speedupProbability
+							+ bombNumberIncrementProbability
+							+ bombStrenghtIncrementProbability
+							+ addLifeProbability + passingAbilityProbability
+							+ invertArrowKeysProbability
+							+ loseLastAbilityProbability + loseBombingAbilityProbability)
+							/ totalProbability)
+				boxCellPointer[i].box.setContent("loseBombingAbilityProbability");
+
+		}
+
+		for (int i = 0; i < 10; i++)
+			System.out.println(boxCellPointer[i].box.getContent());
 	}
 
 	/**
@@ -126,7 +238,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 	public void setCellContent(int i, int j, String content) {
 		cells[i][j].setContent(content);
-		setDefaultImage(i,j);
+		setDefaultImage(i, j);
 	}
 
 	/**
@@ -144,28 +256,28 @@ public class MainBoardComponents extends JPanel implements Runnable {
  * 
  * 					
  */
-	private void setDefaultImage(int i,int j) {
-//		for (int i = 0; i < 15; i++)
-//			for (int j = 0; j < 15; j++) {
+	private void setDefaultImage(int i, int j) {
+		// for (int i = 0; i < 15; i++)
+		// for (int j = 0; j < 15; j++) {
 
-				if (cells[i][j].getContent() == "block") {
-					setCellImage(cells[i][j], "images/brick.gif");
-				} else if (cells[i][j].getContent() == "box") {
-					setCellImage(cells[i][j], "images/box.gif");
-					// } else if (cells[i][j].getContent() == "bomb") {
-					// setCellImage(cells[i][j], "images/bomb.gif");
-				} else if (cells[i][j].getContent() == "empty") {
-					setCellImage(cells[i][j], "");
-				} else if (cells[i][j].getContent() == "openedbox") {
-					setCellImage(cells[i][j], "");
-				} else if (cells[i][j].getContent() == "hole"){
-					setCellImage(cells[i][j], "images/hole.gif");
-				}
+		if (cells[i][j].getContent() == "block") {
+			setCellImage(cells[i][j], "images/brick.gif");
+		} else if (cells[i][j].getContent() == "box") {
+			setCellImage(cells[i][j], "images/box.gif");
+			// } else if (cells[i][j].getContent() == "bomb") {
+			// setCellImage(cells[i][j], "images/bomb.gif");
+		} else if (cells[i][j].getContent() == "empty") {
+			setCellImage(cells[i][j], "");
+		} else if (cells[i][j].getContent() == "openedbox") {
+			setCellImage(cells[i][j], "");
+		} else if (cells[i][j].getContent() == "hole") {
+			setCellImage(cells[i][j], "images/hole.gif");
+		}
 	}
 
 	public void activateBomb(final int row, final int column, final int strength) {
 		// fireEffect(row, column, strength);
-		//setDefaultImages();
+		// setDefaultImages();
 		setCellContent(row, column, "empty");
 		// cells[row][column].setIcon(new ImageIcon("images/brick.gif"));
 		for (int i = row - strength; i <= row + strength; i++)
@@ -174,16 +286,43 @@ public class MainBoardComponents extends JPanel implements Runnable {
 					if (i > 0 && i < 14 && j > 0 && j < 14)
 						if (cells[i][j].getContent() == "box") {
 							if (cells[i][j].box.isOpened())
-								if (cells[i][j].box.getContent() == "life")
+								if (cells[i][j].box.getContent() == "addLife")
 									setCellImage(cells[i][j],
 											cells[i][j].box.getLifeImagePath());
-								else if (cells[i][j].box.getContent() == "speed")
+								else if (cells[i][j].box.getContent() == "speedUp")
 									setCellImage(cells[i][j],
 											cells[i][j].box.getSpeedImagePath());
-						}else if(cells[i][j].getContent()=="block"){
-							setDefaultImage(i,j) ;
+								else if (cells[i][j].box.getContent() == "bombNumberIncrement")
+									setCellImage(cells[i][j],
+											cells[i][j].box
+													.getBombNumberImagePath());
+								else if (cells[i][j].box.getContent() == "bombStrenghtIncrement")
+									setCellImage(cells[i][j],
+											cells[i][j].box
+													.getBombStrengthImagePath());
+								else if (cells[i][j].box.getContent() == "passingAbility")
+									setCellImage(
+											cells[i][j],
+											cells[i][j].box
+													.getPassingAbilityImagePath());
+								else if (cells[i][j].box.getContent() == "invertArrowKeys")
+									setCellImage(
+											cells[i][j],
+											cells[i][j].box
+													.getInvertArrowKeysImagePath());
+								else if (cells[i][j].box.getContent() == "loseLastAbility")
+									setCellImage(
+											cells[i][j],
+											cells[i][j].box
+													.getLoseLastAbilityImagePath());
+								else if (cells[i][j].box.getContent() == "loseBombingAbility")
+									setCellImage(cells[i][j],
+											cells[i][j].box
+													.getLoseBombingAbility());
+
+						} else if (cells[i][j].getContent() == "block") {
+							setDefaultImage(i, j);
 						}
-						
 
 			}
 
@@ -204,7 +343,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 				setCellImage(cells[i][column], "images/flame/topfire.gif");
 				cells[i][column].setIsFired(true);
 				cells[i][column].box.setIsOpened(true);
-				//setCellContent(i,column,"openedbox") ;
+				// setCellContent(i,column,"openedbox") ;
 				flag = false;
 				break;
 			} else if (cells[i - 1][column].getContent() == "block" || i == 1) {
@@ -358,7 +497,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 					for (int j = column - strength; j <= column + strength; j++) {
 						if (i == row || j == column)
 							if (i > 0 && i < 14 && j > 0 && j < 14) {
-								setDefaultImage(i,j) ;
+								setDefaultImage(i, j);
 								cells[i][j].setIsFired(false);
 							}
 					}
@@ -393,16 +532,16 @@ public class MainBoardComponents extends JPanel implements Runnable {
 																		// player
 																		// numbers
 							if (players[k].playerLogic.getLifeNumber() == 1) {
-								
+
 								players[k].playerGraphics.boom();
 								try {
-									Thread.sleep(1000) ;
+									Thread.sleep(1000);
 								} catch (InterruptedException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
 								players[k].playerGraphics.setVisible(false);
-								//System.out.println("test");
+								// System.out.println("test");
 							}
 							players[k].playerLogic.lifeNumberDecrement();
 							try {
@@ -411,16 +550,12 @@ public class MainBoardComponents extends JPanel implements Runnable {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							cells[i][j].setIsFired(false) ;
-							
-							
-								
-							
+							cells[i][j].setIsFired(false);
+
 						}
 					}
 				}
-			System.out.println(players[0].playerLogic
-					.getLifeNumber());
+			// System.out.println(players[0].playerLogic.getLifeNumber());
 			for (int i = 1; i < 14; i++)
 				for (int j = 1; j < 14; j++)
 					for (int k = 0; k < 4; k++) {
@@ -430,8 +565,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 											.getCurrentPositionY() == i) {
 								players[k].playerLogic.getBonus(cells[i][j].box
 										.getContent());
-//								System.out.println(players[k].playerLogic
-//										.getLifeNumber());
+								// System.out.println(players[k].playerLogic
+								// .getLifeNumber());
 								cells[i][j].box.setIsOpened(false);
 								setCellContent(i, j, "empty");
 							}

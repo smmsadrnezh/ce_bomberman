@@ -13,8 +13,8 @@ public class PlayerLogic {
 	private boolean isWinner = false;
 	private String playerName;
 	private int lifeNumber;
-	private int speed;
-	private int bombStrength;
+	private int speed=5;
+	private int bombStrength ;
 	private int bombNumber;
 
 	// public int bombX;
@@ -25,7 +25,8 @@ public class PlayerLogic {
 	 */
 	public PlayerLogic() {
 		this.lifeNumber = 1;
-		this.bombStrength = 1;
+		this.bombStrength = 2;
+		this.bombNumber = 1 ;
 	}
 
 	/**
@@ -40,11 +41,29 @@ public class PlayerLogic {
 
 	public void getBonus(String bonus) {
 		switch (bonus) {
-		case "speed":
+		case "speedUp":
 			this.speed += 5;
 			break;
-		case "life":
+		case "addLife":
 			this.lifeNumber++;
+			break;
+		case "bombNumberIncrement":
+			this.bombNumber++ ;
+			break;
+		case "bombStrenghtIncrement":
+			this.bombStrength++;
+			break;
+		case "passingAbility":
+			
+			break;
+		case "invertArrowKeys":
+			
+			break;
+		case "loseLastAbilityProbability":
+		
+			break;
+		case "loseBombingAbilityProbability":
+			
 			break;
 		}
 	}
