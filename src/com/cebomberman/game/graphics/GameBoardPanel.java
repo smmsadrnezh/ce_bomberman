@@ -1,10 +1,13 @@
 package com.cebomberman.game.graphics;
 
+import java.awt.Panel;
+
+
 /**
  *
  * @author smmsadrnezh
  */
-public class GameBoardPanel extends javax.swing.JPanel {
+public class GameBoardPanel extends Panel {
 
     /**
      * Creates new form GameBoardPanel
