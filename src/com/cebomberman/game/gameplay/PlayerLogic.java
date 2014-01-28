@@ -91,16 +91,23 @@ public class PlayerLogic {
 
 			break;
 		case "loseLastAbility":
-			switch(positiveAbilities.get(positiveAbilities.size()-1))
-				case "" :
+			switch(positiveAbilities.get(positiveAbilities.size()-1)){
+				case "speedUp" :
 					
 					break;
-				case "" :
+				case "addLife" :
 					
 					break;
-				case "" :
+				case "bombNumberIncrement" :
 					
 					break;
+				case "bombStrengthIncrement" :
+					
+					break;
+				case "passingAbility" :
+					passingAbility = false;
+					break;
+			}
 			positiveAbilities.remove(positiveAbilities.size()-1) ;
 			break;
 		case "loseBombingAbility":
