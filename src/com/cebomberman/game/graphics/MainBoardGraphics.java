@@ -26,6 +26,9 @@ public class MainBoardGraphics extends JFrame {
 		jp = new MainBoardComponents(players);
 		setContentPane(jp);
 		jp.setLayout(null);
+		
+		GameBoardPanel jp2 = new GameBoardPanel();
+		setContentPane(jp2);
 
 		// mainboard and its features
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
