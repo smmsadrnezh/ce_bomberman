@@ -230,7 +230,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	 * 
 	 * @param row
 	 * @param column
-	 * @return cell in rownumber row and columnnumber column
+	 * @return cell in row number row and column number column
 	 */
 	public CellGraphics getCell(int row, int column) {
 		return cells[row][column];

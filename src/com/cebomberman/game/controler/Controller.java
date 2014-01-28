@@ -307,7 +307,7 @@ public class Controller implements Runnable {
 										mainBoard.players[0].playerGraphics
 												.getCurrentPositionX(),
 										mainBoard.players[0].playerLogic
-												.getBombStrength());
+												.getBombStrength(),players[0]);
 							}
 							break;
 						case 65:
