@@ -2108,6 +2108,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
 
 	public void userOptinalsSetter(){
 		GameLauncher launchGame = new GameLauncher();
+		try {
 		launchGame.gameLauncher(fileLocation.getText(),minutes.getText(),seconds.getText());
 		Networking network = new Networking(passwordField1.getPassword(),portNumberField1.getText(),ipAddressField1.getText(),internetPasswordField.getPassword());
 		switch (Integer.parseInt(playersNumber.getText())) {
@@ -2126,6 +2127,8 @@ public class GameStarterComponents extends javax.swing.JPanel {
 			launchGame.playerBuilder(firstName2.getText(),nickName2.getText(),red2.isSelected(),green2.isSelected(),yellow2.isSelected(),blue2.isSelected());
 			launchGame.playerBuilder(firstName3.getText(),nickName3.getText(),red3.isSelected(),green3.isSelected(),yellow3.isSelected(),blue3.isSelected());
 			break;
+		}}catch(Exception e){
+			
 		}
 	}
 	

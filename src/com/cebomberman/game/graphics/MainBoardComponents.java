@@ -40,11 +40,12 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		// this.add(jp2);
 		// jp2.setBounds(0, 0, 120, 480);
 
-		// GameBoardPanel panel1 = new GameBoardPanel() ;
-		// this.add(panel1) ;
-		// panel1.setBounds(0, 0, 120, 480);
-		// panel1.setLayout(null);
-
+		 GameBoardPanel panel1 = new GameBoardPanel() ;
+		 this.add(panel1) ;
+		 panel1.setBounds(0, 0, 120, 480);
+		 panel1.setVisible(true);
+		 this.grabFocus();
+		 
 		// gameBoard panel
 		Panel gameBoard = new Panel();
 		this.add(gameBoard);
