@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.print.attribute.Size2DSyntax;
-
 /**
  * 
  * @author
@@ -23,7 +21,7 @@ public class PlayerLogic {
 	private int bombNumber;
 	private boolean invertArrowKeys = false;
 	private boolean passingAbility;
-	private boolean loseBombAbility ;
+	private boolean loseBombAbility;
 	Timer timer = new Timer();
 	private boolean isDead = false;
 	ArrayList<String> positiveAbilities = new ArrayList<>();
@@ -99,10 +97,10 @@ public class PlayerLogic {
 				this.speed -= 5;
 				break;
 			case "addLife":
-				this.lifeNumber-- ;
+				this.lifeNumber--;
 				break;
 			case "bombNumberIncrement":
-				this.bombNumber-- ;
+				this.bombNumber--;
 				break;
 			case "bombStrengthIncrement":
 				this.bombStrength--;
@@ -114,12 +112,12 @@ public class PlayerLogic {
 			positiveAbilities.remove(positiveAbilities.size() - 1);
 			break;
 		case "loseBombingAbility":
-			setLoseBombAbility(true) ;
+			setLoseBombAbility(true);
 			timer.scheduleAtFixedRate(new TimerTask() {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					setLoseBombAbility(false) ;
+					setLoseBombAbility(false);
 				}
 
 			}, 5000, 1);

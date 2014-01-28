@@ -1,8 +1,5 @@
 package com.cebomberman.game.graphics;
 
-import java.util.Timer;
-
-import com.cebomberman.game.controler.Controller;
 import com.cebomberman.game.controler.Networking;
 import com.cebomberman.game.gameplay.Player;
 import com.cebomberman.game.gameplay.Time;

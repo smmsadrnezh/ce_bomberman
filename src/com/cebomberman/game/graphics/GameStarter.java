@@ -11,7 +11,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class GameStarter extends javax.swing.JFrame {
 
 	GameStarterComponents gameStarterComponents;
-	
+
 	/**
 	 * Creates new form GameStarterGui
 	 */
@@ -29,7 +29,7 @@ public class GameStarter extends javax.swing.JFrame {
 		} catch (IllegalAccessException e) {
 			// handle exception
 		}
-		
+
 		gameStarterComponents = new GameStarterComponents();
 		setBounds(0, 0, 680, 330);
 		add(gameStarterComponents);
@@ -72,16 +72,16 @@ public class GameStarter extends javax.swing.JFrame {
 		file.setText("File");
 
 		launchGame.setText("Launch Game");
-        launchGame.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                launchGameMousePressed(evt);
-            }
-        });
-        mapEditor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                mapEditorMousePressed(evt);
-            }
-        });
+		launchGame.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mousePressed(java.awt.event.MouseEvent evt) {
+				launchGameMousePressed(evt);
+			}
+		});
+		mapEditor.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mousePressed(java.awt.event.MouseEvent evt) {
+				mapEditorMousePressed(evt);
+			}
+		});
 		file.add(launchGame);
 
 		openMap.setText("Open Map");
@@ -205,16 +205,16 @@ public class GameStarter extends javax.swing.JFrame {
 	private void exitMousePressed(java.awt.event.MouseEvent evt) {
 		System.exit(0);
 	}
-	
-    private void launchGameMousePressed(java.awt.event.MouseEvent evt) {                                        
-    	gameStarterComponents.userOptinalsSetter();
-    } 
-    
-    private void mapEditorMousePressed(java.awt.event.MouseEvent evt) {                                        
+
+	private void launchGameMousePressed(java.awt.event.MouseEvent evt) {
+		gameStarterComponents.userOptinalsSetter();
+	}
+
+	private void mapEditorMousePressed(java.awt.event.MouseEvent evt) {
 		MapEditor mapEditor = new MapEditor();
 		mapEditor.setVisible(true);
-    } 
-	
+	}
+
 	// Variables declaration - do not modify
 	private javax.swing.JMenu Window;
 	private javax.swing.JMenuItem about;
