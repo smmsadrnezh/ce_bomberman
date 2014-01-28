@@ -44,14 +44,17 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		 this.add(panel1) ;
 		 panel1.setBounds(0, 0, 120, 480);
 		 panel1.setVisible(true);
-		 this.grabFocus();
+		
 		 
 		// gameBoard panel
-		Panel gameBoard = new Panel();
+		JPanel gameBoard = new JPanel();
 		this.add(gameBoard);
 		gameBoard.setBounds(120, 0, 480, 480);
 		gameBoard.setBackground(Color.GRAY);
 		gameBoard.setLayout(null);
+		gameBoard.setFocusable(true);
+		gameBoard.requestFocusInWindow() ;
+		gameBoard.grabFocus();	
 
 		this.players = players;
 		for (int i = 0; i < 4; i++) {
@@ -87,6 +90,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 				if (i != 0 && i != 14 && j != 0 && j != 14)
 					cells[i][j].setContent("empty");
 			}
+		
 		// for (int i = 0; i < 15; i++)
 		// for (int j = 0; j < 15; j++) {
 		// if (i == 0 || i == 14 || j == 0 || j == 14) {

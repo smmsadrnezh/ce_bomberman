@@ -1,13 +1,16 @@
 package com.cebomberman.game.graphics;
 
-import java.awt.Panel;
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 /**
  *
  * @author smmsadrnezh
  */
-public class GameBoardPanel extends Panel {
+public class GameBoardPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form GameBoardPanel
@@ -25,7 +28,7 @@ public class GameBoardPanel extends Panel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        openGameStarter = new javax.swing.JToggleButton();
         gameLogo = new javax.swing.JLabel();
         ceBomberman = new javax.swing.JLabel();
         player1 = new javax.swing.JPanel();
@@ -44,23 +47,19 @@ public class GameBoardPanel extends Panel {
         nickName3 = new javax.swing.JLabel();
         lifeNumber3 = new javax.swing.JLabel();
         bombNumber3 = new javax.swing.JLabel();
-        openGameStarter = new javax.swing.JToggleButton();
-        exit = new javax.swing.JToggleButton();
         countdown = new javax.swing.JLabel();
         timerProgressBar = new javax.swing.JProgressBar();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
+        gameStarter = new javax.swing.JButton();
+        exit = new javax.swing.JButton();
+        fx = new javax.swing.JButton();
+        music = new javax.swing.JButton();
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        openGameStarter.setText("Game Starter");
+        openGameStarter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openGameStarterActionPerformed(evt);
+            }
+        });
 
         gameLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gameLogo.setIcon(new javax.swing.ImageIcon("/home/smmsadrnezh/NetBeansProjects/GameStarterGui/images/logo.png")); // NOI18N
@@ -190,29 +189,39 @@ public class GameBoardPanel extends Panel {
                 .addGap(0, 2, Short.MAX_VALUE))
         );
 
-        openGameStarter.setText("Game Starter");
-        openGameStarter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openGameStarterActionPerformed(evt);
+        countdown.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        countdown.setText("timer");
+
+        gameStarter.setText("Game Starter");
+        gameStarter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                gameStarterKeyPressed(evt);
             }
         });
 
         exit.setText("Exit");
-        exit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitActionPerformed(evt);
+        exit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMouseClicked(evt);
             }
         });
 
-        countdown.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        countdown.setText("timer");
-
-        jToggleButton1.setText("FX");
-
-        jToggleButton2.setText("Music");
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+        fx.setText("FX");
+        fx.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fxMouseClicked(evt);
+            }
+        });
+        fx.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton2ActionPerformed(evt);
+                fxActionPerformed(evt);
+            }
+        });
+
+        music.setText("Music");
+        music.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                musicMousePressed(evt);
             }
         });
 
@@ -223,24 +232,22 @@ public class GameBoardPanel extends Panel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(gameLogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(openGameStarter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(player3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(player4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(player1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(timerProgressBar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(countdown, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ceBomberman, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(player2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(exit, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jToggleButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jToggleButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(fx, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(music, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(gameLogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(player3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(player4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(player1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(timerProgressBar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(countdown, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ceBomberman, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(player2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(gameStarter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(exit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(15, 21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,27 +269,40 @@ public class GameBoardPanel extends Panel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(player3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(openGameStarter)
+                .addComponent(gameStarter)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jToggleButton1)
-                    .addComponent(jToggleButton2)))
+                    .addComponent(fx)
+                    .addComponent(music))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
     }// </editor-fold>                        
-
-    private void exitActionPerformed(java.awt.event.ActionEvent evt) {                                     
-        // TODO add your handling code here:
-    }                                    
 
     private void openGameStarterActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
     }                                               
 
-    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                               
+    private void fxActionPerformed(java.awt.event.ActionEvent evt) {                                   
         // TODO add your handling code here:
-    }                                              
+    }                                  
+
+    private void exitMouseClicked(java.awt.event.MouseEvent evt) {                                  
+
+    }                                 
+
+    private void gameStarterKeyPressed(java.awt.event.KeyEvent evt) {                                       
+        // TODO add your handling code here:
+    }                                      
+
+    private void fxMouseClicked(java.awt.event.MouseEvent evt) {                                
+        // TODO add your handling code here:
+    }                               
+
+    private void musicMousePressed(java.awt.event.MouseEvent evt) {                                   
+        // TODO add your handling code here:
+    }                                  
 
 
     // Variables declaration - do not modify                     
@@ -292,15 +312,15 @@ public class GameBoardPanel extends Panel {
     private javax.swing.JLabel bombNumber3;
     private javax.swing.JLabel ceBomberman;
     private javax.swing.JLabel countdown;
-    private javax.swing.JToggleButton exit;
+    private javax.swing.JButton exit;
+    private javax.swing.JButton fx;
     private javax.swing.JLabel gameLogo;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
+    private javax.swing.JButton gameStarter;
     private javax.swing.JLabel lifeNumber;
     private javax.swing.JLabel lifeNumber1;
     private javax.swing.JLabel lifeNumber2;
     private javax.swing.JLabel lifeNumber3;
+    private javax.swing.JButton music;
     private javax.swing.JLabel nickName;
     private javax.swing.JLabel nickName1;
     private javax.swing.JLabel nickName2;

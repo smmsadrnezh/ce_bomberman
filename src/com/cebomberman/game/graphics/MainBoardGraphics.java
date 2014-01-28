@@ -4,21 +4,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import com.cebomberman.game.gameplay.Player;
 
-/**
- * 
- * @author
+/** 
+ * makes the main frame of game
+ * @author Masud and Arman
  * 
  */
 public class MainBoardGraphics extends JFrame {
-	// final public Cell[][] cells = new Cell[15][15];
 	int keyPressed = 0;
 	final JLabel player = new JLabel();
 	public MainBoardComponents jp;
-	/**
-	 * 
-	 */
+
 	public Player[] players;
-	
+/**
+ * 	set properties of main frame
+ * @param players sends players to GameBoardComponents
+ */
 	public MainBoardGraphics(Player[] players) {
 		super("Bomberman");
 		this.players = players;
