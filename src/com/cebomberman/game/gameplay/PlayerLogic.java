@@ -21,10 +21,12 @@ public class PlayerLogic {
 	private int speed = 5;
 	private int bombStrength;
 	private int bombNumber;
-	private boolean invertArrowKeys = false ;
-	private boolean passingAbility ;
-	Timer timer = new Timer() ;
-	ArrayList<String> positiveAbilities = new ArrayList<>() ;
+	private boolean invertArrowKeys = false;
+	private boolean passingAbility;
+	private boolean loseBombAbility ;
+	Timer timer = new Timer();
+	ArrayList<String> positiveAbilities = new ArrayList<>();
+
 	// public int bombX;
 	// public int bombY;
 
@@ -50,68 +52,76 @@ public class PlayerLogic {
 	public void getBonus(String bonus) {
 		switch (bonus) {
 		case "speedUp":
-			positiveAbilities.add("speedUp") ;
+			positiveAbilities.add("speedUp");
 			this.speed += 5;
 			break;
 		case "addLife":
-			positiveAbilities.add("addLife") ;
+			positiveAbilities.add("addLife");
 			this.lifeNumber++;
 			break;
 		case "bombNumberIncrement":
-			positiveAbilities.add("bombNumberIncrement") ;
+			positiveAbilities.add("bombNumberIncrement");
 			this.bombNumber++;
 			break;
 		case "bombStrengthIncrement":
-			positiveAbilities.add("bombStrengthIncrement") ;
+			positiveAbilities.add("bombStrengthIncrement");
 			this.bombStrength++;
 			break;
 		case "passingAbility":
-			positiveAbilities.add("passingAbility") ;
-			this.passingAbility = true; 
-			 timer.scheduleAtFixedRate(new TimerTask() {
-					@Override
-					public void run() {
-						// TODO Auto-generated method stub
-						passingAbility = false ;
-					}
-						
-					}, 5000, 1);
-			break;
-		case "invertArrowKeys":
-			
-			 invertArrowKeys = true ;
-			 timer.scheduleAtFixedRate(new TimerTask() {
+			positiveAbilities.add("passingAbility");
+			this.passingAbility = true;
+			timer.scheduleAtFixedRate(new TimerTask() {
 				@Override
 				public void run() {
 					// TODO Auto-generated method stub
-					 invertArrowKeys = false ;
+					passingAbility = false;
 				}
-					
-				}, 5000, 1);
+
+			}, 5000, 1);
+			break;
+		case "invertArrowKeys":
+
+			invertArrowKeys = true;
+			timer.scheduleAtFixedRate(new TimerTask() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					invertArrowKeys = false;
+				}
+
+			}, 5000, 1);
 
 			break;
 		case "loseLastAbility":
-			switch(positiveAbilities.get(positiveAbilities.size()-1)){
-				case "speedUp" :
-					
-					break;
-				case "addLife" :
-					
-					break;
-				case "bombNumberIncrement" :
-					
-					break;
-				case "bombStrengthIncrement" :
-					
-					break;
-				case "passingAbility" :
-					passingAbility = false;
-					break;
+			switch (positiveAbilities.get(positiveAbilities.size() - 1)) {
+			case "speedUp":
+				this.speed -= 5;
+				break;
+			case "addLife":
+				this.lifeNumber-- ;
+				break;
+			case "bombNumberIncrement":
+				this.bombNumber-- ;
+				break;
+			case "bombStrengthIncrement":
+				this.bombStrength--;
+				break;
+			case "passingAbility":
+				passingAbility = false;
+				break;
 			}
-			positiveAbilities.remove(positiveAbilities.size()-1) ;
+			positiveAbilities.remove(positiveAbilities.size() - 1);
 			break;
 		case "loseBombingAbility":
+			setLoseBombAbility(true) ;
+			timer.scheduleAtFixedRate(new TimerTask() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					setLoseBombAbility(false) ;
+				}
 
+			}, 5000, 1);
 			break;
 		}
 	}
@@ -242,6 +252,14 @@ public class PlayerLogic {
 
 	public void setPassingAbility(boolean passingAbility) {
 		this.passingAbility = passingAbility;
+	}
+
+	public boolean isLoseBombAbility() {
+		return loseBombAbility;
+	}
+
+	public void setLoseBombAbility(boolean loseBombAbility) {
+		this.loseBombAbility = loseBombAbility;
 	}
 
 }

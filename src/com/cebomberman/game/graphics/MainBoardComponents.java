@@ -20,6 +20,7 @@ import com.cebomberman.game.gameplay.Player;
 
 /**
  * sets all properties and features of mainboard of game
+ * 
  * @author arman and masud
  * 
  */
@@ -30,27 +31,27 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	Map map;
 
 	/**
- * creates the components of the main board 
- */
+	 * creates the components of the main board
+	 */
 	public MainBoardComponents(Player[] players) {
 
 		// information panel
-//		GameBoardPanel jp2 = new GameBoardPanel();
-//		this.add(jp2);
-//		jp2.setBounds(0, 0, 120, 480);
-		
-//		GameBoardPanel panel1 = new GameBoardPanel() ;
-//		this.add(panel1) ;
-//		panel1.setBounds(0, 0, 120, 480);
-//		panel1.setLayout(null);
-		
+		// GameBoardPanel jp2 = new GameBoardPanel();
+		// this.add(jp2);
+		// jp2.setBounds(0, 0, 120, 480);
+
+		// GameBoardPanel panel1 = new GameBoardPanel() ;
+		// this.add(panel1) ;
+		// panel1.setBounds(0, 0, 120, 480);
+		// panel1.setLayout(null);
+
 		// gameBoard panel
 		Panel gameBoard = new Panel();
 		this.add(gameBoard);
 		gameBoard.setBounds(120, 0, 480, 480);
 		gameBoard.setBackground(Color.GRAY);
 		gameBoard.setLayout(null);
-		
+
 		this.players = players;
 		for (int i = 0; i < 4; i++) {
 			gameBoard.add(players[i].playerGraphics);
@@ -111,9 +112,10 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		new Thread(this).start();
 
 	}
-/**
- * this method sets the content of all boxes by the probability  
- */
+
+	/**
+	 * this method sets the content of all boxes by the probability
+	 */
 	void setBoxContent() {
 
 		int boxNumber = 0;
@@ -154,7 +156,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		for (int i = 0; i < boxNumber; i++) {
 			Random temp = new Random();
 			boxRandomProbability[i] = temp.nextDouble();
-			//System.out.println(boxRandomProbability[i]);
+			// System.out.println(boxRandomProbability[i]);
 			if (0 < boxRandomProbability[i]
 					&& boxRandomProbability[i] < (float) speedupProbability
 							/ totalProbability)
@@ -217,13 +219,10 @@ public class MainBoardComponents extends JPanel implements Runnable {
 							+ invertArrowKeysProbability
 							+ loseLastAbilityProbability + loseBombingAbilityProbability)
 							/ totalProbability)
-				boxCellPointer[i].box
-						.setContent("loseBombingAbility");
+				boxCellPointer[i].box.setContent("loseBombingAbility");
 
 		}
 
-		for (int i = 0; i < 10; i++)
-			System.out.println(boxCellPointer[i].box.getContent());
 	}
 
 	/**
@@ -244,7 +243,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	/**
 	 * 
 	 * @param cell
-	 * @param imagePath path of the image that will be set on the cell
+	 * @param imagePath
+	 *            path of the image that will be set on the cell
 	 */
 	private void setCellImage(CellGraphics cell, String imagePath) {
 		// cell.setDisabledIcon(new ImageIcon(imagePath));
@@ -253,8 +253,10 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 	/**
 	 * 
-	 * @param i row of the cell 
-	 * @param j	column of the cell
+	 * @param i
+	 *            row of the cell
+	 * @param j
+	 *            column of the cell
 	 */
 	private void setDefaultImage(int i, int j) {
 		// for (int i = 0; i < 15; i++)
@@ -277,9 +279,12 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 	/**
 	 * 
-	 * @param row = row of the bomb cell
-	 * @param column = column of the bomb cell
-	 * @param strength = strength of the bomb
+	 * @param row
+	 *            = row of the bomb cell
+	 * @param column
+	 *            = column of the bomb cell
+	 * @param strength
+	 *            = strength of the bomb
 	 */
 	public void activateBomb(final int row, final int column, final int strength) {
 		// fireEffect(row, column, strength);
@@ -336,9 +341,10 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 	/**
 	 * 
-	 * @param row 
+	 * @param row
 	 * @param column
-	 * @param strength = strength of the bomb
+	 * @param strength
+	 *            = strength of the bomb
 	 */
 	private void fireUp(int row, int column, int strength) {
 		boolean flag = true;
@@ -370,7 +376,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	 * 
 	 * @param row
 	 * @param column
-	 * @param strength = strength of the bomb
+	 * @param strength
+	 *            = strength of the bomb
 	 */
 	private void fireDown(int row, int column, int strength) {
 		boolean flag = true;
@@ -402,7 +409,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	 * 
 	 * @param row
 	 * @param column
-	 * @param strength = strength of the bomb
+	 * @param strength
+	 *            = strength of the bomb
 	 */
 	private void fireRight(int row, int column, int strength) {
 		boolean flag = true;
@@ -434,8 +442,9 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	 * 
 	 * @param row
 	 * @param column
-	 * @param strength = strength of the bomb
-	 */ 
+	 * @param strength
+	 *            = strength of the bomb
+	 */
 	private void fireLeft(int row, int column, int strength) {
 		boolean flag = true;
 		for (int i = column - 1; i > column - strength; i--) {
@@ -465,11 +474,15 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 	/**
 	 * 
-	 * @param row = row of the bomb
-	 * @param column = column of the bomb
-	 * @param strength = strength of the bomb
+	 * @param row
+	 *            = row of the bomb
+	 * @param column
+	 *            = column of the bomb
+	 * @param strength
+	 *            = strength of the bomb
 	 */
-	public void fireEffect(final int row, final int column, final int strength,final Player bomber) {
+	public void fireEffect(final int row, final int column, final int strength,
+			final Player bomber) {
 		final Timer timer1 = new Timer();
 		final Timer timer2 = new Timer();
 		timer1.scheduleAtFixedRate(new TimerTask() {
@@ -507,7 +520,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 								cells[i][j].setIsFired(false);
 							}
 					}
-				bomber.playerLogic.setBombNumber(bomber.playerLogic.getBombNumber()+1);
+				bomber.playerLogic.setBombNumber(bomber.playerLogic
+						.getBombNumber() + 1);
 				activateBomb(row, column, strength);
 				timer2.cancel();
 
@@ -515,12 +529,12 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 		}, 4000, 1);
 
-	
 	}
 
 	/**
- * ckecks the number of player lives and set appropriate properties when player get bonus 
- */
+	 * ckecks the number of player lives and set appropriate properties when
+	 * player get bonus
+	 */
 	@Override
 	public void run() {
 		while (true) {
@@ -558,7 +572,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 						}
 					}
 				}
-			 System.out.println(players[0].playerLogic.getBombNumber());
+			
 			for (int i = 1; i < 14; i++)
 				for (int j = 1; j < 14; j++)
 					for (int k = 0; k < 4; k++) {
@@ -575,7 +589,38 @@ public class MainBoardComponents extends JPanel implements Runnable {
 							}
 						}
 					}
+		for(int k = 0 ; k < 4 ; k++)
+			for (int i = 0; i < 14; i++)
+				for (int j = 0; j < 14; j++) {
+					if (cells[i][j].getContent()=="hole"
+							&& players[k].playerGraphics
+									.getCurrentPositionX() == j
+							&& players[k].playerGraphics
+									.getCurrentPositionY() == i) { // // k=
+																	// player
+																	// numbers
+						if (players[k].playerLogic.getLifeNumber() == 1) {
 
+							players[k].playerGraphics.boom();
+							try {
+								Thread.sleep(1000);
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							players[k].playerGraphics.setVisible(false);
+							// System.out.println("test");
+						}
+						players[k].playerLogic.lifeNumberDecrement();
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				}
+
+		}
 		}
 
 	}

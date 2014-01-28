@@ -329,6 +329,7 @@ public class Controller implements Runnable {
 							}
 							break;
 						case 32:
+							if(!players[0].playerLogic.isLoseBombAbility()){
 							if (players[0].playerLogic.getBombNumber() > 0) {
 								mainBoard.players[0].playerLogic.bombing(
 										mainBoard.players[0].playerGraphics
@@ -363,6 +364,7 @@ public class Controller implements Runnable {
 												.getCurrentPositionX(),
 										mainBoard.players[0].playerLogic
 												.getBombStrength(),players[0]);
+							}
 							}
 							break;
 						case 65:
