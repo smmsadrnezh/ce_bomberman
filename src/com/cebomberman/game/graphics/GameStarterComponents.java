@@ -2106,8 +2106,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
 
 	public void gameVariablesSetter(){
 		GameLauncher launchGame = new GameLauncher();
-		launchGame.gameLauncher(fileLocation.getText(),minutes.getText(),seconds.getText();
-);
+		launchGame.gameLauncher(fileLocation.getText(),minutes.getText(),seconds.getText());
 		Networking network = new Networking(passwordField1.getPassword(),portNumberField1.getText(),ipAddressField1.getText(),internetPasswordField.getPassword());
 		switch (Integer.parseInt(playersNumber.getText())) {
 		case 2 :
