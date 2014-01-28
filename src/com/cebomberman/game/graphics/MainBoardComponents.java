@@ -120,7 +120,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 		int speedupProbability = 3;
 		int bombNumberIncrementProbability = 3;
-		int bombStrenghtIncrementProbability = 2;
+		int bombStrengthIncrementProbability = 2;
 		int addLifeProbability = 1;
 		int passingAbilityProbability = 1;
 		int invertArrowKeysProbability = 1;
@@ -129,7 +129,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 		int totalProbability = speedupProbability
 				+ bombNumberIncrementProbability
-				+ bombStrenghtIncrementProbability + addLifeProbability
+				+ bombStrengthIncrementProbability + addLifeProbability
 				+ passingAbilityProbability + invertArrowKeysProbability
 				+ loseLastAbilityProbability + loseBombingAbilityProbability;
 
@@ -154,7 +154,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		for (int i = 0; i < boxNumber; i++) {
 			Random temp = new Random();
 			boxRandomProbability[i] = temp.nextDouble();
-			System.out.println(boxRandomProbability[i]);
+			//System.out.println(boxRandomProbability[i]);
 			if (0 < boxRandomProbability[i]
 					&& boxRandomProbability[i] < (float) speedupProbability
 							/ totalProbability)
@@ -167,52 +167,52 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			if ((float) (speedupProbability + bombNumberIncrementProbability)
 					/ totalProbability < boxRandomProbability[i]
 					&& boxRandomProbability[i] < (float) (speedupProbability
-							+ bombNumberIncrementProbability + bombStrenghtIncrementProbability)
+							+ bombNumberIncrementProbability + bombStrengthIncrementProbability)
 							/ totalProbability)
-				boxCellPointer[i].box.setContent("bombStrenghtIncrement");
-			if ((float) (speedupProbability + bombNumberIncrementProbability + bombStrenghtIncrementProbability)
+				boxCellPointer[i].box.setContent("bombStrengthIncrement");
+			if ((float) (speedupProbability + bombNumberIncrementProbability + bombStrengthIncrementProbability)
 					/ totalProbability < boxRandomProbability[i]
 					&& boxRandomProbability[i] < (float) (speedupProbability
 							+ bombNumberIncrementProbability
-							+ bombStrenghtIncrementProbability + addLifeProbability)
+							+ bombStrengthIncrementProbability + addLifeProbability)
 							/ totalProbability)
 				boxCellPointer[i].box.setContent("addLife");
 			if ((float) (speedupProbability + bombNumberIncrementProbability
-					+ bombStrenghtIncrementProbability + addLifeProbability)
+					+ bombStrengthIncrementProbability + addLifeProbability)
 					/ totalProbability < boxRandomProbability[i]
 					&& boxRandomProbability[i] < (float) (speedupProbability
 							+ bombNumberIncrementProbability
-							+ bombStrenghtIncrementProbability
+							+ bombStrengthIncrementProbability
 							+ addLifeProbability + passingAbilityProbability)
 							/ totalProbability)
 				boxCellPointer[i].box.setContent("passingAbility");
 			if ((float) (speedupProbability + bombNumberIncrementProbability
-					+ bombStrenghtIncrementProbability + addLifeProbability + passingAbilityProbability)
+					+ bombStrengthIncrementProbability + addLifeProbability + passingAbilityProbability)
 					/ totalProbability < boxRandomProbability[i]
 					&& boxRandomProbability[i] < (float) (speedupProbability
 							+ bombNumberIncrementProbability
-							+ bombStrenghtIncrementProbability
+							+ bombStrengthIncrementProbability
 							+ addLifeProbability + passingAbilityProbability + invertArrowKeysProbability)
 							/ totalProbability)
 				boxCellPointer[i].box.setContent("invertArrowKeys");
 			if ((float) (speedupProbability + bombNumberIncrementProbability
-					+ bombStrenghtIncrementProbability + addLifeProbability
+					+ bombStrengthIncrementProbability + addLifeProbability
 					+ passingAbilityProbability + invertArrowKeysProbability)
 					/ totalProbability < boxRandomProbability[i]
 					&& boxRandomProbability[i] < (float) (speedupProbability
 							+ bombNumberIncrementProbability
-							+ bombStrenghtIncrementProbability
+							+ bombStrengthIncrementProbability
 							+ addLifeProbability + passingAbilityProbability
 							+ invertArrowKeysProbability + loseLastAbilityProbability)
 							/ totalProbability)
 				boxCellPointer[i].box.setContent("loseLastAbility");
 			if ((float) (speedupProbability + bombNumberIncrementProbability
-					+ bombStrenghtIncrementProbability + addLifeProbability
+					+ bombStrengthIncrementProbability + addLifeProbability
 					+ passingAbilityProbability + invertArrowKeysProbability + loseLastAbilityProbability)
 					/ totalProbability < boxRandomProbability[i]
 					&& boxRandomProbability[i] < (float) (speedupProbability
 							+ bombNumberIncrementProbability
-							+ bombStrenghtIncrementProbability
+							+ bombStrengthIncrementProbability
 							+ addLifeProbability + passingAbilityProbability
 							+ invertArrowKeysProbability
 							+ loseLastAbilityProbability + loseBombingAbilityProbability)
@@ -302,7 +302,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 									setCellImage(cells[i][j],
 											cells[i][j].box
 													.getBombNumberImagePath());
-								else if (cells[i][j].box.getContent() == "bombStrenghtIncrement")
+								else if (cells[i][j].box.getContent() == "bombStrengthIncrement")
 									setCellImage(cells[i][j],
 											cells[i][j].box
 													.getBombStrengthImagePath());
@@ -558,7 +558,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 						}
 					}
 				}
-			// System.out.println(players[0].playerLogic.getLifeNumber());
+			 System.out.println(players[0].playerLogic.getBombNumber());
 			for (int i = 1; i < 14; i++)
 				for (int j = 1; j < 14; j++)
 					for (int k = 0; k < 4; k++) {

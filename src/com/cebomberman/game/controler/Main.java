@@ -10,8 +10,8 @@ import com.cebomberman.game.graphics.GameStarter;
 
 public class Main {
 	public static void main(String[] args) {
-
-		GameStarter gameSwitch = new GameStarter();
-
+		
+		//GameStarter gameSwitch = new GameStarter();
+		new Controller() ; 
 	}
 }

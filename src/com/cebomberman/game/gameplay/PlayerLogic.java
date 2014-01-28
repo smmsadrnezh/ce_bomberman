@@ -1,5 +1,11 @@
 package com.cebomberman.game.gameplay;
 
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javax.print.attribute.Size2DSyntax;
+
 /**
  * 
  * @author
@@ -15,7 +21,10 @@ public class PlayerLogic {
 	private int speed = 5;
 	private int bombStrength;
 	private int bombNumber;
-
+	private boolean invertArrowKeys = false ;
+	private boolean passingAbility ;
+	Timer timer = new Timer() ;
+	ArrayList<String> positiveAbilities = new ArrayList<>() ;
 	// public int bombX;
 	// public int bombY;
 
@@ -41,27 +50,60 @@ public class PlayerLogic {
 	public void getBonus(String bonus) {
 		switch (bonus) {
 		case "speedUp":
+			positiveAbilities.add("speedUp") ;
 			this.speed += 5;
 			break;
 		case "addLife":
+			positiveAbilities.add("addLife") ;
 			this.lifeNumber++;
 			break;
 		case "bombNumberIncrement":
+			positiveAbilities.add("bombNumberIncrement") ;
 			this.bombNumber++;
 			break;
-		case "bombStrenghtIncrement":
+		case "bombStrengthIncrement":
+			positiveAbilities.add("bombStrengthIncrement") ;
 			this.bombStrength++;
 			break;
 		case "passingAbility":
-
+			positiveAbilities.add("passingAbility") ;
+			this.passingAbility = true; 
+			 timer.scheduleAtFixedRate(new TimerTask() {
+					@Override
+					public void run() {
+						// TODO Auto-generated method stub
+						passingAbility = false ;
+					}
+						
+					}, 5000, 1);
 			break;
 		case "invertArrowKeys":
+			
+			 invertArrowKeys = true ;
+			 timer.scheduleAtFixedRate(new TimerTask() {
+				@Override
+				public void run() {
+					// TODO Auto-generated method stub
+					 invertArrowKeys = false ;
+				}
+					
+				}, 5000, 1);
 
 			break;
-		case "loseLastAbilityProbability":
-
+		case "loseLastAbility":
+			switch(positiveAbilities.get(positiveAbilities.size()-1))
+				case "" :
+					
+					break;
+				case "" :
+					
+					break;
+				case "" :
+					
+					break;
+			positiveAbilities.remove(positiveAbilities.size()-1) ;
 			break;
-		case "loseBombingAbilityProbability":
+		case "loseBombingAbility":
 
 			break;
 		}
@@ -177,6 +219,22 @@ public class PlayerLogic {
 
 	public void setPlayerNickname(String playerNickname) {
 		this.playerNickname = playerNickname;
+	}
+
+	public boolean isInvertArrowKeys() {
+		return invertArrowKeys;
+	}
+
+	public void setInvertArrowKeys(boolean invertArrowKeys) {
+		this.invertArrowKeys = invertArrowKeys;
+	}
+
+	public boolean isPassingAbility() {
+		return passingAbility;
+	}
+
+	public void setPassingAbility(boolean passingAbility) {
+		this.passingAbility = passingAbility;
 	}
 
 }

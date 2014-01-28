@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import com.cebomberman.game.gameplay.Player;
 import com.cebomberman.game.graphics.CellGraphics;
 import com.cebomberman.game.graphics.MainBoardGraphics;
+
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
@@ -21,6 +22,7 @@ import java.util.Set;
 
 public class Controller implements Runnable {
 	Thread a;
+	CellGraphics test = new CellGraphics();
 	public int playerNumbers = 4;
 	String fileLocation;
 	public Player[] players = new Player[playerNumbers];
@@ -203,18 +205,95 @@ public class Controller implements Runnable {
 
 	}
 
-	/**
-	 * 
-	 * @param playerNumbers
-	 */
-	void PlayerBuilder(int playerNumbers) {
-
+	void moveUp(){
+		test = mainBoard.jp.getCell(
+				mainBoard.players[0].playerGraphics
+						.getCurrentPositionY() - 1,
+				mainBoard.players[0].playerGraphics
+						.getCurrentPositionX());
+		if(!players[0].playerLogic.isPassingAbility()){
+		if (!(test.isBlocked()
+				&& !(test.isBlocked() && test.box
+						.isOpened()) && mainBoard.players[0].playerGraphics
+				.getY() <= test.getY() + 32))
+			mainBoard.players[0].playerGraphics
+					.moveUp(players[0].playerLogic
+							.getSpeed());
+		}else{
+			mainBoard.players[0].playerGraphics
+			.moveUp(players[0].playerLogic
+					.getSpeed());
+		}
+		
 	}
+	void moveDown(){
+		test = mainBoard.jp.getCell(
+				mainBoard.players[0].playerGraphics
+						.getCurrentPositionY() + 1,
+				mainBoard.players[0].playerGraphics
+						.getCurrentPositionX());
+		if(!players[0].playerLogic.isPassingAbility()){
+		if (!(test.isBlocked()
+				&& !(test.isBlocked() && test.box
+						.isOpened()) && mainBoard.players[0].playerGraphics
+				.getY() + 32 >= test.getY()))
+			mainBoard.players[0].playerGraphics
+					.moveDown(players[0].playerLogic
+							.getSpeed());
+		}else{
+			mainBoard.players[0].playerGraphics
+			.moveDown(players[0].playerLogic
+					.getSpeed());
+		}
+	}
+	void moveLeft(){
+		test = mainBoard.jp.getCell(
+				mainBoard.players[0].playerGraphics
+						.getCurrentPositionY(),
+				mainBoard.players[0].playerGraphics
+						.getCurrentPositionX() - 1);
+		if(!players[0].playerLogic.isPassingAbility()){
+		if (!(test.isBlocked()
+				&& !(test.isBlocked() && test.box
+						.isOpened()) && mainBoard.players[0].playerGraphics
+				.getX() <= test.getX() + 32))
+			mainBoard.players[0].playerGraphics
+					.moveLeft(players[0].playerLogic
+							.getSpeed());
+		}else{
+			mainBoard.players[0].playerGraphics
+			.moveLeft(players[0].playerLogic
+					.getSpeed());
+		}
+		
+	}
+	void moveRight(){
+		test = mainBoard.jp.getCell(
+				mainBoard.players[0].playerGraphics
+						.getCurrentPositionY(),
+				mainBoard.players[0].playerGraphics
+						.getCurrentPositionX() + 1);
+		if(!players[0].playerLogic.isPassingAbility()){
+		if (!(test.isBlocked()
+				&& !(test.isBlocked() && test.box
+						.isOpened()) && mainBoard.players[0].playerGraphics
+				.getX() + 32 >= test.getX()))
+			mainBoard.players[0].playerGraphics
+					.moveRight(players[0].playerLogic
+							.getSpeed());
+		}else{
+			mainBoard.players[0].playerGraphics
+			.moveRight(players[0].playerLogic
+					.getSpeed());
+		}
+		
+	}
+	
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		CellGraphics test = new CellGraphics();
+		//CellGraphics test = new CellGraphics();
 		while (true) {
 
 			if (pressedKeys.size() != 0) {
@@ -222,63 +301,32 @@ public class Controller implements Runnable {
 					for (int key : pressedKeys) {
 						switch (key) {
 						case 37:
-							// mainBoard.players[0].playerGraphics.moveLeft();
-
-							test = mainBoard.jp.getCell(
-									mainBoard.players[0].playerGraphics
-											.getCurrentPositionY(),
-									mainBoard.players[0].playerGraphics
-											.getCurrentPositionX() - 1);
-							if (!(test.isBlocked()
-									&& !(test.isBlocked() && test.box
-											.isOpened()) && mainBoard.players[0].playerGraphics
-									.getX() <= test.getX() + 32))
-								mainBoard.players[0].playerGraphics
-										.moveLeft(players[0].playerLogic
-												.getSpeed());
-
+							if(players[0].playerLogic.isInvertArrowKeys()) {
+								moveRight();	
+							}else{
+								moveLeft() ;
+							}
 							break;
 						case 38:
-							test = mainBoard.jp.getCell(
-									mainBoard.players[0].playerGraphics
-											.getCurrentPositionY() - 1,
-									mainBoard.players[0].playerGraphics
-											.getCurrentPositionX());
-							if (!(test.isBlocked()
-									&& !(test.isBlocked() && test.box
-											.isOpened()) && mainBoard.players[0].playerGraphics
-									.getY() <= test.getY() + 32))
-								mainBoard.players[0].playerGraphics
-										.moveUp(players[0].playerLogic
-												.getSpeed());
+							if(players[0].playerLogic.isInvertArrowKeys()) {
+								moveDown();	
+							}else{
+								moveUp() ;
+							}
 							break;
 						case 39:
-							test = mainBoard.jp.getCell(
-									mainBoard.players[0].playerGraphics
-											.getCurrentPositionY(),
-									mainBoard.players[0].playerGraphics
-											.getCurrentPositionX() + 1);
-							if (!(test.isBlocked()
-									&& !(test.isBlocked() && test.box
-											.isOpened()) && mainBoard.players[0].playerGraphics
-									.getX() + 32 >= test.getX()))
-								mainBoard.players[0].playerGraphics
-										.moveRight(players[0].playerLogic
-												.getSpeed());
+							if(players[0].playerLogic.isInvertArrowKeys()) {
+								moveLeft();	
+							}else{
+								moveRight() ;
+							}
 							break;
 						case 40:
-							test = mainBoard.jp.getCell(
-									mainBoard.players[0].playerGraphics
-											.getCurrentPositionY() + 1,
-									mainBoard.players[0].playerGraphics
-											.getCurrentPositionX());
-							if (!(test.isBlocked()
-									&& !(test.isBlocked() && test.box
-											.isOpened()) && mainBoard.players[0].playerGraphics
-									.getY() + 32 >= test.getY()))
-								mainBoard.players[0].playerGraphics
-										.moveDown(players[0].playerLogic
-												.getSpeed());
+							if(players[0].playerLogic.isInvertArrowKeys()) {
+								moveUp();	
+							}else{
+								moveDown() ;
+							}
 							break;
 						case 32:
 							if (players[0].playerLogic.getBombNumber() > 0) {
@@ -287,6 +335,13 @@ public class Controller implements Runnable {
 												.getCurrentPositionX(),
 										mainBoard.players[0].playerGraphics
 												.getCurrentPositionY());
+										try {
+											Thread.sleep(100);
+										} catch (InterruptedException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+										
 								mainBoard.jp.setCellContent(
 										mainBoard.players[0].playerGraphics
 												.getCurrentPositionY(),
@@ -454,4 +509,7 @@ public class Controller implements Runnable {
 		}
 
 	}
+	
+	
+	
 }
