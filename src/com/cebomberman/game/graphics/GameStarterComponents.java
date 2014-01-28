@@ -1673,7 +1673,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
 																Short.MAX_VALUE))
 										.addContainerGap()));
 
-		starterBody.addTab("Feedback", feedback);
+		starterBody.addTab("Report Bug", feedback);
 
 		musicSwitch.setText("Music");
 		musicSwitch.addActionListener(new java.awt.event.ActionListener() {
@@ -2068,13 +2068,11 @@ public class GameStarterComponents extends javax.swing.JPanel {
 
 	private void browseButtonMouseClicked(java.awt.event.MouseEvent evt) {
 		BrowseMap browseMap = new BrowseMap();
-		browseMap.setBounds(0, 0, 650, 350);
 		browseMap.setVisible(true);
 	}
 
 	private void loadMapMouseClicked(java.awt.event.MouseEvent evt) {
 		BrowseMap browseMap = new BrowseMap();
-		browseMap.setBounds(0, 0, 650, 350);
 		browseMap.setVisible(true);
 	}
 
@@ -2086,18 +2084,16 @@ public class GameStarterComponents extends javax.swing.JPanel {
 
 	private void highScoresMouseClicked(java.awt.event.MouseEvent evt) {
 		HighScores highScores = new HighScores();
-		highScores.setBounds(0, 0, 159, 310);
 		highScores.setVisible(true);
 	}
 
 	private void helpMouseClicked(java.awt.event.MouseEvent evt) {
 		HelpContents help = new HelpContents();
-		help.setBounds(0, 0, 400, 300);
 		help.setVisible(true);
 	}
 
 	private void launchGameMouseClicked(java.awt.event.MouseEvent evt) {
-		gameVariablesSetter();
+		userOptinalsSetter();
 	}
 	
     private void launchMapEditorMouseClicked(java.awt.event.MouseEvent evt) { 
@@ -2110,7 +2106,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
 //    	test.setVisible(true);
     }    
 
-	public void gameVariablesSetter(){
+	public void userOptinalsSetter(){
 		GameLauncher launchGame = new GameLauncher();
 		launchGame.gameLauncher(fileLocation.getText(),minutes.getText(),seconds.getText());
 		Networking network = new Networking(passwordField1.getPassword(),portNumberField1.getText(),ipAddressField1.getText(),internetPasswordField.getPassword());

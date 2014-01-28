@@ -72,6 +72,16 @@ public class GameStarter extends javax.swing.JFrame {
 		file.setText("File");
 
 		launchGame.setText("Launch Game");
+        launchGame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                launchGameMousePressed(evt);
+            }
+        });
+        mapEditor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                mapEditorMousePressed(evt);
+            }
+        });
 		file.add(launchGame);
 
 		openMap.setText("Open Map");
@@ -169,19 +179,16 @@ public class GameStarter extends javax.swing.JFrame {
 
 	private void openMapMousePressed(java.awt.event.MouseEvent evt) {
 		BrowseMap browseMap = new BrowseMap();
-		browseMap.setBounds(0, 0, 650, 350);
 		browseMap.setVisible(true);
 	}
 
 	private void highScoreMousePressed(java.awt.event.MouseEvent evt) {
 		HighScores highScore = new HighScores();
-		highScore.setBounds(0, 0, 159, 310);
 		highScore.setVisible(true);
 	}
 
 	private void helpContentsMousePressed(java.awt.event.MouseEvent evt) {
 		HelpContents helpContents = new HelpContents();
-		help.setBounds(0, 0, 400, 300);
 		helpContents.setVisible(true);
 	}
 
@@ -198,7 +205,16 @@ public class GameStarter extends javax.swing.JFrame {
 	private void exitMousePressed(java.awt.event.MouseEvent evt) {
 		System.exit(0);
 	}
-
+	
+    private void launchGameMousePressed(java.awt.event.MouseEvent evt) {                                        
+    	gameStarterComponents.userOptinalsSetter();
+    } 
+    
+    private void mapEditorMousePressed(java.awt.event.MouseEvent evt) {                                        
+		MapEditor mapEditor = new MapEditor();
+		mapEditor.setVisible(true);
+    } 
+	
 	// Variables declaration - do not modify
 	private javax.swing.JMenu Window;
 	private javax.swing.JMenuItem about;
