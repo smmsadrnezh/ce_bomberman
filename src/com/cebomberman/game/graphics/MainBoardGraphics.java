@@ -27,14 +27,6 @@ public class MainBoardGraphics extends JFrame {
 		setContentPane(jp);
 		jp.setLayout(null);
 		
-//<<<<<<< HEAD
-//		
-//		
-//=======
-//		GameBoardPanel jp2 = new GameBoardPanel();
-//		setContentPane(jp2);
-//
-//>>>>>>> branch 'master' of https://github.com/smmsadrnezh/CE-Bomberman.git
 		// mainboard and its features
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
