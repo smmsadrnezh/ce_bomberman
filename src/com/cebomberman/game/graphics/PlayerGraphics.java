@@ -16,9 +16,8 @@ public class PlayerGraphics extends JLabel {
 	private String righMovingtImageLocation;
 	private String leftMovingImageLocation;
 	private String boomImage;
-	private int speed = 5 ;
-	
-	
+	private int speed = 5;
+
 	private int currentPositionX;
 	private int currentPositionY;
 
@@ -26,8 +25,6 @@ public class PlayerGraphics extends JLabel {
 	 * 
 	 */
 	public PlayerGraphics() {
-
-		
 
 	}
 
@@ -47,7 +44,7 @@ public class PlayerGraphics extends JLabel {
 	 */
 	public void moveLeft(int speed) {
 		setIcon(new ImageIcon(leftMovingImageLocation));
-		setLocation(getX()- speed ,getY());
+		setLocation(getX() - speed, getY());
 	}
 
 	/**
@@ -100,17 +97,19 @@ public class PlayerGraphics extends JLabel {
 			currentPositionY++;
 		return currentPositionY;
 	}
-	public void boom(){
-		this.setIcon(new ImageIcon(this.boomImage)) ;
+
+	public void boom() {
+		this.setIcon(new ImageIcon(this.boomImage));
 	}
+
 	public String getColor() {
 		return color;
 	}
 
 	public void setColor(String color) {
 		this.color = color;
-		
-		this.rightImageLocation = "images/players/"+ color + "/right.gif";
+
+		this.rightImageLocation = "images/players/" + color + "/right.gif";
 		this.leftImageLocation = "images/players/" + color + "/left.gif";
 		this.upImageLocation = "images/players/" + color + "/up.gif";
 		this.downImageLocation = "images/players/" + color + "/down.gif";
@@ -123,8 +122,8 @@ public class PlayerGraphics extends JLabel {
 				+ "/movingup.gif";
 		this.downMovingImageLocation = "images/players/" + color
 				+ "/movingdown.gif";
-		this.boomImage = "images/players/" + color +"/="+ color+ "boom.gif" ;
-		
+		this.boomImage = "images/players/" + color + "/=" + color + "boom.gif";
+
 	}
 
 	public int getSpeed() {
@@ -136,20 +135,19 @@ public class PlayerGraphics extends JLabel {
 	}
 
 	public void setUpImage() {
-		 this.setIcon(new ImageIcon(upImageLocation));
+		this.setIcon(new ImageIcon(upImageLocation));
 	}
+
 	public void setDownImage() {
 		this.setIcon(new ImageIcon(downImageLocation));
 	}
+
 	public void setRightImage() {
 		this.setIcon(new ImageIcon(rightImageLocation));
 	}
+
 	public void setLeftImage() {
 		this.setIcon(new ImageIcon(leftImageLocation));
 	}
-
-
-	
-
 
 }

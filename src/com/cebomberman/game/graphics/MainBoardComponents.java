@@ -142,15 +142,15 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 		double[] boxRandomProbability = new double[boxNumber];
 		CellGraphics[] boxCellPointer = new CellGraphics[boxNumber];
-			int h=0;
-			for (int j = 0; j < map.getMapWidth(); j++) 
-				for (int k = 0; k < map.getMapHeight(); k++) {
-					if (cells[j][k].getContent() == "box"){
-						boxCellPointer[h] = cells[j][k];
-						h++ ;
+		int h = 0;
+		for (int j = 0; j < map.getMapWidth(); j++)
+			for (int k = 0; k < map.getMapHeight(); k++) {
+				if (cells[j][k].getContent() == "box") {
+					boxCellPointer[h] = cells[j][k];
+					h++;
 				}
 			}
-		
+
 		for (int i = 0; i < boxNumber; i++) {
 			Random temp = new Random();
 			boxRandomProbability[i] = temp.nextDouble();
@@ -217,7 +217,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 							+ invertArrowKeysProbability
 							+ loseLastAbilityProbability + loseBombingAbilityProbability)
 							/ totalProbability)
-				boxCellPointer[i].box.setContent("loseBombingAbilityProbability");
+				boxCellPointer[i].box
+						.setContent("loseBombingAbilityProbability");
 
 		}
 

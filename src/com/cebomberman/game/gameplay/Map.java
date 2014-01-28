@@ -48,7 +48,7 @@ public class Map {
 			for (int i = 0; i < this.mapWidth; i++) {
 				lineTemp = mapStream.readLine();
 				for (int j = 0; j < this.mapHeight; j++) {
-					
+
 					switch (lineTemp.charAt(j)) {
 					case 'b':
 						this.map[i][j] = "box";

@@ -3,7 +3,7 @@ package com.cebomberman.game.graphics;
 
 /**
  *
- * @author smmsadrnezh
+ * @author 
  */
 public class BrowseMap extends javax.swing.JFrame {
 

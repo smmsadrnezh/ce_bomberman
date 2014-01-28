@@ -1,7 +1,5 @@
 package com.cebomberman.game.gameplay;
 
-import java.util.ArrayList;
-
 /**
  * 
  * @author
@@ -13,8 +11,8 @@ public class PlayerLogic {
 	private boolean isWinner = false;
 	private String playerName;
 	private int lifeNumber;
-	private int speed=5;
-	private int bombStrength ;
+	private int speed = 5;
+	private int bombStrength;
 	private int bombNumber;
 
 	// public int bombX;
@@ -26,7 +24,7 @@ public class PlayerLogic {
 	public PlayerLogic() {
 		this.lifeNumber = 1;
 		this.bombStrength = 2;
-		this.bombNumber = 1 ;
+		this.bombNumber = 1;
 	}
 
 	/**
@@ -48,22 +46,22 @@ public class PlayerLogic {
 			this.lifeNumber++;
 			break;
 		case "bombNumberIncrement":
-			this.bombNumber++ ;
+			this.bombNumber++;
 			break;
 		case "bombStrenghtIncrement":
 			this.bombStrength++;
 			break;
 		case "passingAbility":
-			
+
 			break;
 		case "invertArrowKeys":
-			
+
 			break;
 		case "loseLastAbilityProbability":
-		
+
 			break;
 		case "loseBombingAbilityProbability":
-			
+
 			break;
 		}
 	}

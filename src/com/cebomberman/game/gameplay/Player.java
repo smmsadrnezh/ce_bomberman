@@ -17,20 +17,22 @@ public class Player {
 	public Player() {
 		playerLogic = new PlayerLogic();
 		playerGraphics = new PlayerGraphics();
-		//playerGraphics.setSpeed(playerLogic.getSpeed()) ; 
+		// playerGraphics.setSpeed(playerLogic.getSpeed()) ;
 	}
 
 	/**
 	 * 
 	 */
 	public void setBombCoordinate() {
-		//playerLogic.bombX = playerGraphics.getCurrentPositionX();
-		//playerLogic.bombY = playerGraphics.getCurrentPositionY();
+		// playerLogic.bombX = playerGraphics.getCurrentPositionX();
+		// playerLogic.bombY = playerGraphics.getCurrentPositionY();
 	}
-	private void removePoint(){
-		
+
+	private void removePoint() {
+
 	}
-	private void invertKeys(){
-		
+
+	private void invertKeys() {
+
 	}
 }

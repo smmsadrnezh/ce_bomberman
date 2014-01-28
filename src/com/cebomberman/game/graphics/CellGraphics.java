@@ -3,34 +3,38 @@ package com.cebomberman.game.graphics;
 import javax.swing.JLabel;
 
 import com.cebomberman.game.gameplay.BoxCell;
+
 /**
  * 
  * @author
- *
+ * 
  */
 public class CellGraphics extends JLabel {
-	private String content ;
-	private boolean isFired ;
-	
+	private String content;
+	private boolean isFired;
+
 	public BoxCell box = new BoxCell();
-	
-	public CellGraphics(){
-		
+
+	public CellGraphics() {
+
 	}
-	
-	public boolean isFired(){
+
+	public boolean isFired() {
 		return isFired;
 	}
-	public boolean isBlocked(){
-		if(getContent()=="block" || getContent()== "box" || getContent()=="bomb"){
+
+	public boolean isBlocked() {
+		if (getContent() == "block" || getContent() == "box"
+				|| getContent() == "bomb") {
 			return true;
 		}
-		return false ;
+		return false;
 	}
-	
-	public void setIsFired(boolean isFired){
+
+	public void setIsFired(boolean isFired) {
 		this.isFired = isFired;
 	}
+
 	/**
 	 * 
 	 * @return
@@ -38,6 +42,7 @@ public class CellGraphics extends JLabel {
 	public String getContent() {
 		return content;
 	}
+
 	/**
 	 * 
 	 * @param content
