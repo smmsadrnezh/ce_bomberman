@@ -29,32 +29,33 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	Player[] players;
 	Thread thread1;
 	Map map;
-
+	int row;
+	int column;
+	
 	/**
 	 * creates the components of the main board
 	 */
 	public MainBoardComponents(Player[] players) {
 
 		// information panel
-//		 GameBoardPanel jp2 = new GameBoardPanel();
-//		 this.add(jp2);
-//		 jp2.setBounds(0, 0, 120, 480);
+		// GameBoardPanel jp2 = new GameBoardPanel();
+		// this.add(jp2);
+		// jp2.setBounds(0, 0, 120, 480);
 
-//		 GameBoardPanel panel1 = new GameBoardPanel() ;
-//		 this.add(panel1) ;
-//		 panel1.setBounds(0, 0, 120, 480);
-//		 panel1.setVisible(true);
-		
-		 
+		// GameBoardPanel panel1 = new GameBoardPanel() ;
+		// this.add(panel1) ;
+		// panel1.setBounds(0, 0, 120, 480);
+		// panel1.setVisible(true);
+
 		// gameBoard panel
 		JPanel gameBoard = new JPanel();
 		this.add(gameBoard);
 		gameBoard.setBounds(120, 0, 480, 480);
 		gameBoard.setBackground(Color.GRAY);
 		gameBoard.setLayout(null);
-	//	gameBoard.setFocusable(true);
-	//	gameBoard.requestFocusInWindow() ;
-	//	gameBoard.grabFocus();	
+		// gameBoard.setFocusable(true);
+		// gameBoard.requestFocusInWindow() ;
+		// gameBoard.grabFocus();
 
 		this.players = players;
 		for (int i = 0; i < 4; i++) {
@@ -63,49 +64,23 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 		}
 
-		players[0].playerGraphics.setColor("yellow");
-		players[0].playerGraphics.setRightImage();
-		players[0].playerGraphics.setBounds(32, 32, 32, 32);
+		// map
+		map = new Map();
+		map.mapCellReader("map.txt");
 
-		players[1].playerGraphics.setColor("green");
-		players[1].playerGraphics.setBounds(416, 32, 32, 32);
-		players[1].playerGraphics.setLeftImage();
+		row = map.getMapWidth();
+		column = map.getMapHeight();
 
-		players[2].playerGraphics.setColor("blue");
-		players[2].playerGraphics.setBounds(32, 416, 32, 32);
-		players[2].playerGraphics.setRightImage();
-
-		players[3].playerGraphics.setColor("red");
-		players[3].playerGraphics.setBounds(416, 416, 32, 32);
-		players[3].playerGraphics.setLeftImage();
-
-		// new Thread(this).start();
-
-		for (int i = 0; i < 15; i++)
-			for (int j = 0; j < 15; j++) {
+		for (int i = 0; i < row; i++)
+			for (int j = 0; j < column; j++) {
 				cells[i][j] = new CellGraphics();
 				gameBoard.add(cells[i][j]);
 				cells[i][j].setBounds(32 * (j), 32 * (i), 32, 32);
 				cells[i][j].setBackground(Color.GRAY);
-				if (i != 0 && i != 14 && j != 0 && j != 14)
+				if (i != 0 && i != row && j != 0 && j != column)
 					cells[i][j].setContent("empty");
 			}
-		
-		// for (int i = 0; i < 15; i++)
-		// for (int j = 0; j < 15; j++) {
-		// if (i == 0 || i == 14 || j == 0 || j == 14) {
-		// cells[i][j].setIcon(new ImageIcon("images/brick.gif"));
-		// setCellContent(i, j, "block");
-		// }
-		// }
-		// cells[2][3].box.setContent("speed");
-		// cells[4][3].box.setContent("life");
-		// setCellContent(5, 5, "box");
-		// setCellContent(4, 5, "box");
-		// setCellContent(3, 5, "block");
 
-		map = new Map();
-		map.mapCellReader("map.txt");
 		for (int i = 0; i < map.getMapWidth(); i++) {
 			for (int j = 0; j < map.getMapHeight(); j++) {
 				setCellContent(i, j, map.getMap(i, j));
@@ -113,7 +88,26 @@ public class MainBoardComponents extends JPanel implements Runnable {
 			}
 
 		}
+
 		setBoxContent();
+
+		players[0].playerGraphics.setColor("yellow");
+		players[0].playerGraphics.setRightImage();
+		players[0].playerGraphics.setBounds(32, 32, 32, 32);
+
+		players[1].playerGraphics.setColor("green");
+		players[1].playerGraphics.setBounds((column - 2) * 32, 32, 32, 32);
+		players[1].playerGraphics.setLeftImage();
+
+		players[2].playerGraphics.setColor("blue");
+		players[2].playerGraphics.setBounds(32, (row - 2) * 32, 32, 32);
+		players[2].playerGraphics.setRightImage();
+
+		players[3].playerGraphics.setColor("red");
+		players[3].playerGraphics.setBounds((column - 2) * 32, (row - 2) * 32,
+				32, 32);
+		players[3].playerGraphics.setLeftImage();
+
 		new Thread(this).start();
 
 	}
@@ -299,7 +293,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		for (int i = row - strength; i <= row + strength; i++)
 			for (int j = column - strength; j <= column + strength; j++) {
 				if (i == row || j == column)
-					if (i > 0 && i < 14 && j > 0 && j < 14)
+					if (i > 0 && i < this.row && j > 0 && j < this.column)
 						if (cells[i][j].getContent() == "box") {
 							if (cells[i][j].box.isOpened())
 								if (cells[i][j].box.getContent() == "addLife")
@@ -488,6 +482,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	 */
 	public void fireEffect(final int row, final int column, final int strength,
 			final Player bomber) {
+		final int boardRow = this.row ;
+		final int boardColumn = this.column ;
 		final Timer timer1 = new Timer();
 		final Timer timer2 = new Timer();
 		timer1.scheduleAtFixedRate(new TimerTask() {
@@ -520,7 +516,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 				for (int i = row - strength; i <= row + strength; i++)
 					for (int j = column - strength; j <= column + strength; j++) {
 						if (i == row || j == column)
-							if (i > 0 && i < 14 && j > 0 && j < 14) {
+							if (i > 0 && i < boardRow && j > 0 && j < boardColumn) {
 								setDefaultImage(i, j);
 								cells[i][j].setIsFired(false);
 							}
@@ -543,8 +539,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	@Override
 	public void run() {
 		while (true) {
-			for (int i = 1; i < 14; i++)
-				for (int j = 1; j < 14; j++) {
+			for (int i = 1; i < row; i++)
+				for (int j = 1; j < column; j++) {
 					for (int k = 0; k < 4; k++) {
 						if (cells[i][j].isFired()
 								&& players[k].playerGraphics
@@ -564,7 +560,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 								}
 								players[k].playerGraphics.setVisible(false);
 								players[k].playerLogic.setDead(true);
-								
+
 								// System.out.println("test");
 							}
 							players[k].playerLogic.lifeNumberDecrement();
@@ -579,9 +575,9 @@ public class MainBoardComponents extends JPanel implements Runnable {
 						}
 					}
 				}
-			
-			for (int i = 1; i < 14; i++)
-				for (int j = 1; j < 14; j++)
+
+			for (int i = 1; i < row; i++)
+				for (int j = 1; j < column; j++)
 					for (int k = 0; k < 4; k++) {
 						if (cells[i][j].box.isOpened()) {
 							if (players[k].playerGraphics.getCurrentPositionX() == j
@@ -596,39 +592,39 @@ public class MainBoardComponents extends JPanel implements Runnable {
 							}
 						}
 					}
-		for(int k = 0 ; k < 4 ; k++)
-			for (int i = 0; i < 14; i++)
-				for (int j = 0; j < 14; j++) {
-					if (cells[i][j].getContent()=="hole"
-							&& players[k].playerGraphics
-									.getCurrentPositionX() == j
-							&& players[k].playerGraphics
-									.getCurrentPositionY() == i) { // // k=
-																	// player
-																	// numbers
-						if (players[k].playerLogic.getLifeNumber() == 1) {
+			for (int k = 0; k < 4; k++)
+				for (int i = 0; i < row; i++)
+					for (int j = 0; j < column; j++) {
+						if (cells[i][j].getContent() == "hole"
+								&& players[k].playerGraphics
+										.getCurrentPositionX() == j
+								&& players[k].playerGraphics
+										.getCurrentPositionY() == i) { // // k=
+																		// player
+																		// numbers
+							if (players[k].playerLogic.getLifeNumber() == 1) {
 
-							players[k].playerGraphics.boom();
+								players[k].playerGraphics.boom();
+								try {
+									Thread.sleep(1000);
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								players[k].playerGraphics.setVisible(false);
+								players[k].playerLogic.setDead(true);
+								// System.out.println("test");
+							}
+							players[k].playerLogic.lifeNumberDecrement();
 							try {
 								Thread.sleep(1000);
 							} catch (InterruptedException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
-							players[k].playerGraphics.setVisible(false);
-							players[k].playerLogic.setDead(true);
-							// System.out.println("test");
 						}
-						players[k].playerLogic.lifeNumberDecrement();
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				}
 
-		}
+					}
 		}
 
 	}
