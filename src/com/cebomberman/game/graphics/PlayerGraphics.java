@@ -122,7 +122,7 @@ public class PlayerGraphics extends JLabel {
 				+ "/movingup.gif";
 		this.downMovingImageLocation = "images/players/" + color
 				+ "/movingdown.gif";
-		this.boomImage = "images/players/" + color + "/=" + color + "boom.gif";
+		this.boomImage = "images/players/" + color + "/" + color + "boom.gif";
 
 	}
 

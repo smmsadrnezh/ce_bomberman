@@ -1,12 +1,17 @@
 my_map
-10 10
-BBBBBBBBBB
-BSooooooSB
-BoobSooboB
-BooboobooB
-BobobobboB
-BooboboboB
-BooSbSoooB
-BoohoboboB
-BohooboboB
-BBBBBBBBBB
+15 15
+BBBBBBBBBBBBBBB
+BSoooooooooooSB
+BooooobSooooboB
+BoooobooboooooB
+BoboobooooobboB
+BoobooobooooboB
+BoooooSbSoooooB
+BoohobooboooooB
+BohoobooobooooB
+BohoobooobooooB
+BohoobooobooooB
+BohoobooobooooB
+BohoobooobooooB
+BohoobooobooooB
+BBBBBBBBBBBBBBB

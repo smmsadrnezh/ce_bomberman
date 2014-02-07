@@ -30,7 +30,7 @@ public class Controller implements Runnable {
 	ArrayList<Integer> pressedKeys1 = new ArrayList<>();
 	Set<Integer> pressedKeys = new HashSet<Integer>();
 
-	public Controller() {
+	public Controller(int playerNumbers) {
 
 		a = new Thread(this);
 		a.setDaemon(true);
@@ -39,8 +39,7 @@ public class Controller implements Runnable {
 		for (int i = 0; i < playerNumbers; i++) {
 			players[i] = new Player();
 		}
-		mainBoard = new MainBoardGraphics(players);
-		// mainBoard.jp.setCellContent(5, 5, "box");
+		mainBoard = new MainBoardGraphics(players, playerNumbers);
 		mainBoard.addKeyListener(new KeyListener() {
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
@@ -205,95 +204,77 @@ public class Controller implements Runnable {
 
 	}
 
-	void moveUp(int i){
+	void moveUp(int i) {
 		test = mainBoard.jp.getCell(
+				mainBoard.players[i].playerGraphics.getCurrentPositionY() - 1,
+				mainBoard.players[i].playerGraphics.getCurrentPositionX());
+		if (!players[i].playerLogic.isPassingAbility()) {
+			if (!(test.isBlocked()
+					&& !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[i].playerGraphics
+					.getY() <= test.getY() + 32))
 				mainBoard.players[i].playerGraphics
-						.getCurrentPositionY() - 1,
-				mainBoard.players[i].playerGraphics
-						.getCurrentPositionX());
-		if(!players[i].playerLogic.isPassingAbility()){
-		if (!(test.isBlocked()
-				&& !(test.isBlocked() && test.box
-						.isOpened()) && mainBoard.players[i].playerGraphics
-				.getY() <= test.getY() + 32))
-			mainBoard.players[i].playerGraphics
-					.moveUp(players[i].playerLogic
-							.getSpeed());
-		}else{
-			mainBoard.players[i].playerGraphics
-			.moveUp(players[i].playerLogic
+						.moveUp(players[i].playerLogic.getSpeed());
+		} else {
+			mainBoard.players[i].playerGraphics.moveUp(players[i].playerLogic
 					.getSpeed());
 		}
-		
+
 	}
-	void moveDown(int i){
+
+	void moveDown(int i) {
 		test = mainBoard.jp.getCell(
+				mainBoard.players[i].playerGraphics.getCurrentPositionY() + 1,
+				mainBoard.players[i].playerGraphics.getCurrentPositionX());
+		if (!players[i].playerLogic.isPassingAbility()) {
+			if (!(test.isBlocked()
+					&& !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[i].playerGraphics
+					.getY() + 32 >= test.getY()))
 				mainBoard.players[i].playerGraphics
-						.getCurrentPositionY() + 1,
-				mainBoard.players[i].playerGraphics
-						.getCurrentPositionX());
-		if(!players[i].playerLogic.isPassingAbility()){
-		if (!(test.isBlocked()
-				&& !(test.isBlocked() && test.box
-						.isOpened()) && mainBoard.players[i].playerGraphics
-				.getY() + 32 >= test.getY()))
-			mainBoard.players[i].playerGraphics
-					.moveDown(players[i].playerLogic
-							.getSpeed());
-		}else{
-			mainBoard.players[i].playerGraphics
-			.moveDown(players[i].playerLogic
+						.moveDown(players[i].playerLogic.getSpeed());
+		} else {
+			mainBoard.players[i].playerGraphics.moveDown(players[i].playerLogic
 					.getSpeed());
 		}
 	}
-	void moveLeft(int i){
+
+	void moveLeft(int i) {
 		test = mainBoard.jp.getCell(
+				mainBoard.players[i].playerGraphics.getCurrentPositionY(),
+				mainBoard.players[i].playerGraphics.getCurrentPositionX() - 1);
+		if (!players[i].playerLogic.isPassingAbility()) {
+			if (!(test.isBlocked()
+					&& !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[i].playerGraphics
+					.getX() <= test.getX() + 32))
 				mainBoard.players[i].playerGraphics
-						.getCurrentPositionY(),
-				mainBoard.players[i].playerGraphics
-						.getCurrentPositionX() - 1);
-		if(!players[i].playerLogic.isPassingAbility()){
-		if (!(test.isBlocked()
-				&& !(test.isBlocked() && test.box
-						.isOpened()) && mainBoard.players[i].playerGraphics
-				.getX() <= test.getX() + 32))
-			mainBoard.players[i].playerGraphics
-					.moveLeft(players[i].playerLogic
-							.getSpeed());
-		}else{
-			mainBoard.players[i].playerGraphics
-			.moveLeft(players[i].playerLogic
+						.moveLeft(players[i].playerLogic.getSpeed());
+		} else {
+			mainBoard.players[i].playerGraphics.moveLeft(players[i].playerLogic
 					.getSpeed());
 		}
-		
+
 	}
-	void moveRight(int i){
+
+	void moveRight(int i) {
 		test = mainBoard.jp.getCell(
+				mainBoard.players[i].playerGraphics.getCurrentPositionY(),
+				mainBoard.players[i].playerGraphics.getCurrentPositionX() + 1);
+		if (!players[i].playerLogic.isPassingAbility()) {
+			if (!(test.isBlocked()
+					&& !(test.isBlocked() && test.box.isOpened()) && mainBoard.players[i].playerGraphics
+					.getX() + 32 >= test.getX()))
 				mainBoard.players[i].playerGraphics
-						.getCurrentPositionY(),
-				mainBoard.players[i].playerGraphics
-						.getCurrentPositionX() + 1);
-		if(!players[i].playerLogic.isPassingAbility()){
-		if (!(test.isBlocked()
-				&& !(test.isBlocked() && test.box
-						.isOpened()) && mainBoard.players[i].playerGraphics
-				.getX() + 32 >= test.getX()))
+						.moveRight(players[i].playerLogic.getSpeed());
+		} else {
 			mainBoard.players[i].playerGraphics
-					.moveRight(players[i].playerLogic
-							.getSpeed());
-		}else{
-			mainBoard.players[i].playerGraphics
-			.moveRight(players[i].playerLogic
-					.getSpeed());
+					.moveRight(players[i].playerLogic.getSpeed());
 		}
-		
+
 	}
-	
 
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		//CellGraphics test = new CellGraphics();
+		// CellGraphics test = new CellGraphics();
 		while (true) {
 
 			if (pressedKeys.size() != 0) {
@@ -301,278 +282,302 @@ public class Controller implements Runnable {
 					for (int key : pressedKeys) {
 						switch (key) {
 						case 37:
-							if(players[0].playerLogic.isInvertArrowKeys()) {
-								moveRight(0);	
-							}else{
-								moveLeft(0) ;
+							if (players[0].playerLogic.isInvertArrowKeys()) {
+								moveRight(0);
+							} else {
+								moveLeft(0);
 							}
 							break;
 						case 38:
-							if(players[0].playerLogic.isInvertArrowKeys()) {
-								moveDown(0);	
-							}else{
-								moveUp(0) ;
+							if (players[0].playerLogic.isInvertArrowKeys()) {
+								moveDown(0);
+							} else {
+								moveUp(0);
 							}
 							break;
 						case 39:
-							if(players[0].playerLogic.isInvertArrowKeys()) {
-								moveLeft(0);	
-							}else{
-								moveRight(0) ;
+							if (players[0].playerLogic.isInvertArrowKeys()) {
+								moveLeft(0);
+							} else {
+								moveRight(0);
 							}
 							break;
 						case 40:
-							if(players[0].playerLogic.isInvertArrowKeys()) {
-								moveUp(0);	
-							}else{
-								moveDown(0) ;
+							if (players[0].playerLogic.isInvertArrowKeys()) {
+								moveUp(0);
+							} else {
+								moveDown(0);
 							}
 							break;
 						case 32:
-							if(!players[0].playerLogic.isDead())
-							if(!players[0].playerLogic.isLoseBombAbility()){
-							if (players[0].playerLogic.getBombNumber() > 0) {
-								mainBoard.players[0].playerLogic.bombing(
-										mainBoard.players[0].playerGraphics
-												.getCurrentPositionX(),
-										mainBoard.players[0].playerGraphics
-												.getCurrentPositionY());
+							if (!players[0].playerLogic.isDead())
+								if (!players[0].playerLogic.isLoseBombAbility()) {
+									if (players[0].playerLogic.getBombNumber() > 0) {
+										mainBoard.players[0].playerLogic
+												.bombing(
+														mainBoard.players[0].playerGraphics
+																.getCurrentPositionX(),
+														mainBoard.players[0].playerGraphics
+																.getCurrentPositionY());
 										try {
 											Thread.sleep(100);
 										} catch (InterruptedException e) {
 											// TODO Auto-generated catch block
 											e.printStackTrace();
 										}
-										
-								mainBoard.jp.setCellContent(
-										mainBoard.players[0].playerGraphics
-												.getCurrentPositionY(),
-										mainBoard.players[0].playerGraphics
-												.getCurrentPositionX(), "bomb");
-								mainBoard.jp
-										.getCell(
-												mainBoard.players[0].playerGraphics
-														.getCurrentPositionY(),
-												mainBoard.players[0].playerGraphics
-														.getCurrentPositionX())
-										.setIcon(
-												new ImageIcon("images/bomb.gif"));
-								// mainBoard.players[0].playerLogic.setBombStrength(3);
-								mainBoard.jp.fireEffect(
-										mainBoard.players[0].playerGraphics
-												.getCurrentPositionY(),
-										mainBoard.players[0].playerGraphics
-												.getCurrentPositionX(),
-										mainBoard.players[0].playerLogic
-												.getBombStrength(),players[0]);
-							}
-							}
+
+										mainBoard.jp
+												.setCellContent(
+														mainBoard.players[0].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[0].playerGraphics
+																.getCurrentPositionX(),
+														"bomb");
+										mainBoard.jp
+												.getCell(
+														mainBoard.players[0].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[0].playerGraphics
+																.getCurrentPositionX())
+												.setIcon(
+														new ImageIcon(
+																"images/bomb.gif"));
+										// mainBoard.players[0].playerLogic.setBombStrength(3);
+										mainBoard.jp
+												.fireEffect(
+														mainBoard.players[0].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[0].playerGraphics
+																.getCurrentPositionX(),
+														mainBoard.players[0].playerLogic
+																.getBombStrength(),
+														players[0]);
+									}
+								}
 							break;
 						case 65:
-							if(players[1].playerLogic.isInvertArrowKeys()) {
-								moveRight(1);	
-							}else{
-								moveLeft(1) ;
+							if (players[1].playerLogic.isInvertArrowKeys()) {
+								moveRight(1);
+							} else {
+								moveLeft(1);
 							}
 							break;
 						case 87:
-							if(players[1].playerLogic.isInvertArrowKeys()) {
-								moveDown(1);	
-							}else{
-								moveUp(1) ;
+							if (players[1].playerLogic.isInvertArrowKeys()) {
+								moveDown(1);
+							} else {
+								moveUp(1);
 							}
 							break;
 						case 68:
-							if(players[1].playerLogic.isInvertArrowKeys()) {
-								moveLeft(1);	
-							}else{
-								moveRight(1) ;
+							if (players[1].playerLogic.isInvertArrowKeys()) {
+								moveLeft(1);
+							} else {
+								moveRight(1);
 							}
 							break;
 						case 83:
-							if(players[1].playerLogic.isInvertArrowKeys()) {
-								moveUp(1);	
-							}else{
-								moveDown(1) ;
+							if (players[1].playerLogic.isInvertArrowKeys()) {
+								moveUp(1);
+							} else {
+								moveDown(1);
 							}
 							break;
 						case 81: // bomb
-							if(!players[1].playerLogic.isDead())
-								if(!players[1].playerLogic.isLoseBombAbility()){
-								if (players[1].playerLogic.getBombNumber() > 0) {
-									mainBoard.players[1].playerLogic.bombing(
-											mainBoard.players[1].playerGraphics
-													.getCurrentPositionX(),
-											mainBoard.players[1].playerGraphics
-													.getCurrentPositionY());
-											try {
-												Thread.sleep(100);
-											} catch (InterruptedException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
-											}
-											
-									mainBoard.jp.setCellContent(
-											mainBoard.players[1].playerGraphics
-													.getCurrentPositionY(),
-											mainBoard.players[1].playerGraphics
-													.getCurrentPositionX(), "bomb");
-									mainBoard.jp
-											.getCell(
-													mainBoard.players[1].playerGraphics
-															.getCurrentPositionY(),
-													mainBoard.players[1].playerGraphics
-															.getCurrentPositionX())
-											.setIcon(
-													new ImageIcon("images/bomb.gif"));
-									mainBoard.jp.fireEffect(
-											mainBoard.players[1].playerGraphics
-													.getCurrentPositionY(),
-											mainBoard.players[1].playerGraphics
-													.getCurrentPositionX(),
-											mainBoard.players[1].playerLogic
-													.getBombStrength(),players[1]);
+							if (!players[1].playerLogic.isDead())
+								if (!players[1].playerLogic.isLoseBombAbility()) {
+									if (players[1].playerLogic.getBombNumber() > 0) {
+										mainBoard.players[1].playerLogic
+												.bombing(
+														mainBoard.players[1].playerGraphics
+																.getCurrentPositionX(),
+														mainBoard.players[1].playerGraphics
+																.getCurrentPositionY());
+										try {
+											Thread.sleep(100);
+										} catch (InterruptedException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+
+										mainBoard.jp
+												.setCellContent(
+														mainBoard.players[1].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[1].playerGraphics
+																.getCurrentPositionX(),
+														"bomb");
+										mainBoard.jp
+												.getCell(
+														mainBoard.players[1].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[1].playerGraphics
+																.getCurrentPositionX())
+												.setIcon(
+														new ImageIcon(
+																"images/bomb.gif"));
+										mainBoard.jp
+												.fireEffect(
+														mainBoard.players[1].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[1].playerGraphics
+																.getCurrentPositionX(),
+														mainBoard.players[1].playerLogic
+																.getBombStrength(),
+														players[1]);
+									}
 								}
-								}
-								
+
 							break;
 						case 71:
-							if(players[2].playerLogic.isInvertArrowKeys()) {
-								moveRight(2);	
-							}else{
-								moveLeft(2) ;
+							if (players[2].playerLogic.isInvertArrowKeys()) {
+								moveRight(2);
+							} else {
+								moveLeft(2);
 							}
 							break;
 						case 89:
-							if(players[2].playerLogic.isInvertArrowKeys()) {
-								moveDown(2);	
-							}else{
-								moveUp(2) ;
+							if (players[2].playerLogic.isInvertArrowKeys()) {
+								moveDown(2);
+							} else {
+								moveUp(2);
 							}
 							break;
 						case 74: // j
 
-							if(players[2].playerLogic.isInvertArrowKeys()) {
-								moveLeft(2);	
-							}else{
-								moveRight(2) ;
+							if (players[2].playerLogic.isInvertArrowKeys()) {
+								moveLeft(2);
+							} else {
+								moveRight(2);
 							}
 							break;
 						case 72: // h
-							if(players[2].playerLogic.isInvertArrowKeys()) {
-								moveUp(2);	
-							}else{
-								moveDown(2) ;
+							if (players[2].playerLogic.isInvertArrowKeys()) {
+								moveUp(2);
+							} else {
+								moveDown(2);
 							}
 							break;
 						case 84:// bomb
-							if(!players[2].playerLogic.isDead())
-								if(!players[2].playerLogic.isLoseBombAbility()){
-								if (players[2].playerLogic.getBombNumber() > 0) {
-									mainBoard.players[2].playerLogic.bombing(
-											mainBoard.players[2].playerGraphics
-													.getCurrentPositionX(),
-											mainBoard.players[2].playerGraphics
-													.getCurrentPositionY());
-											try {
-												Thread.sleep(100);
-											} catch (InterruptedException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
-											}
-											
-									mainBoard.jp.setCellContent(
-											mainBoard.players[2].playerGraphics
-													.getCurrentPositionY(),
-											mainBoard.players[2].playerGraphics
-													.getCurrentPositionX(), "bomb");
-									mainBoard.jp
-											.getCell(
-													mainBoard.players[2].playerGraphics
-															.getCurrentPositionY(),
-													mainBoard.players[2].playerGraphics
-															.getCurrentPositionX())
-											.setIcon(
-													new ImageIcon("images/bomb.gif"));
-									mainBoard.jp.fireEffect(
-											mainBoard.players[2].playerGraphics
-													.getCurrentPositionY(),
-											mainBoard.players[2].playerGraphics
-													.getCurrentPositionX(),
-											mainBoard.players[2].playerLogic
-													.getBombStrength(),players[2]);
-								}
+							if (!players[2].playerLogic.isDead())
+								if (!players[2].playerLogic.isLoseBombAbility()) {
+									if (players[2].playerLogic.getBombNumber() > 0) {
+										mainBoard.players[2].playerLogic
+												.bombing(
+														mainBoard.players[2].playerGraphics
+																.getCurrentPositionX(),
+														mainBoard.players[2].playerGraphics
+																.getCurrentPositionY());
+										try {
+											Thread.sleep(100);
+										} catch (InterruptedException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+
+										mainBoard.jp
+												.setCellContent(
+														mainBoard.players[2].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[2].playerGraphics
+																.getCurrentPositionX(),
+														"bomb");
+										mainBoard.jp
+												.getCell(
+														mainBoard.players[2].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[2].playerGraphics
+																.getCurrentPositionX())
+												.setIcon(
+														new ImageIcon(
+																"images/bomb.gif"));
+										mainBoard.jp
+												.fireEffect(
+														mainBoard.players[2].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[2].playerGraphics
+																.getCurrentPositionX(),
+														mainBoard.players[2].playerLogic
+																.getBombStrength(),
+														players[2]);
+									}
 								}
 							break;
 						case 75:
-							if(players[3].playerLogic.isInvertArrowKeys()) {
-								moveRight(3);	
-							}else{
-								moveLeft(3) ;
+							if (players[3].playerLogic.isInvertArrowKeys()) {
+								moveRight(3);
+							} else {
+								moveLeft(3);
 							}
 							break;
-							
+
 						case 79: // o
-							if(players[3].playerLogic.isInvertArrowKeys()) {
-								moveDown(3);	
-							}else{
-								moveUp(3) ;
+							if (players[3].playerLogic.isInvertArrowKeys()) {
+								moveDown(3);
+							} else {
+								moveUp(3);
 							}
 							break;
 						case 59:
-							if(players[3].playerLogic.isInvertArrowKeys()) {
-								moveLeft(3);	
-							}else{
-								moveRight(3) ;
+							if (players[3].playerLogic.isInvertArrowKeys()) {
+								moveLeft(3);
+							} else {
+								moveRight(3);
 							}
 							break;
 						case 76:
-							if(players[3].playerLogic.isInvertArrowKeys()) {
-								moveUp(3);	
-							}else{
-								moveDown(3) ;
+							if (players[3].playerLogic.isInvertArrowKeys()) {
+								moveUp(3);
+							} else {
+								moveDown(3);
 							}
 							break;
-						case 73: //bomb
-							if(!players[3].playerLogic.isDead())
-								if(!players[3].playerLogic.isLoseBombAbility()){
-								if (players[3].playerLogic.getBombNumber() > 0) {
-									mainBoard.players[3].playerLogic.bombing(
-											mainBoard.players[3].playerGraphics
-													.getCurrentPositionX(),
-											mainBoard.players[3].playerGraphics
-													.getCurrentPositionY());
-											try {
-												Thread.sleep(100);
-											} catch (InterruptedException e) {
-												// TODO Auto-generated catch block
-												e.printStackTrace();
-											}
-											
-									mainBoard.jp.setCellContent(
-											mainBoard.players[3].playerGraphics
-													.getCurrentPositionY(),
-											mainBoard.players[3].playerGraphics
-													.getCurrentPositionX(), "bomb");
-									mainBoard.jp
-											.getCell(
-													mainBoard.players[3].playerGraphics
-															.getCurrentPositionY(),
-													mainBoard.players[3].playerGraphics
-															.getCurrentPositionX())
-											.setIcon(
-													new ImageIcon("images/bomb.gif"));
-									mainBoard.jp.fireEffect(
-											mainBoard.players[3].playerGraphics
-													.getCurrentPositionY(),
-											mainBoard.players[3].playerGraphics
-													.getCurrentPositionX(),
-											mainBoard.players[3].playerLogic
-													.getBombStrength(),players[3]);
-								}
+						case 73: // bomb
+							if (!players[3].playerLogic.isDead())
+								if (!players[3].playerLogic.isLoseBombAbility()) {
+									if (players[3].playerLogic.getBombNumber() > 0) {
+										mainBoard.players[3].playerLogic
+												.bombing(
+														mainBoard.players[3].playerGraphics
+																.getCurrentPositionX(),
+														mainBoard.players[3].playerGraphics
+																.getCurrentPositionY());
+										try {
+											Thread.sleep(100);
+										} catch (InterruptedException e) {
+											// TODO Auto-generated catch block
+											e.printStackTrace();
+										}
+
+										mainBoard.jp
+												.setCellContent(
+														mainBoard.players[3].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[3].playerGraphics
+																.getCurrentPositionX(),
+														"bomb");
+										mainBoard.jp
+												.getCell(
+														mainBoard.players[3].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[3].playerGraphics
+																.getCurrentPositionX())
+												.setIcon(
+														new ImageIcon(
+																"images/bomb.gif"));
+										mainBoard.jp
+												.fireEffect(
+														mainBoard.players[3].playerGraphics
+																.getCurrentPositionY(),
+														mainBoard.players[3].playerGraphics
+																.getCurrentPositionX(),
+														mainBoard.players[3].playerLogic
+																.getBombStrength(),
+														players[3]);
+									}
 								}
 							break;
-							
+
 						}
 
 					}
@@ -591,7 +596,5 @@ public class Controller implements Runnable {
 		}
 
 	}
-	
-	
-	
+
 }

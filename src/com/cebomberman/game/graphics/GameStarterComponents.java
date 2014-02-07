@@ -1,5 +1,6 @@
 package com.cebomberman.game.graphics;
 
+import com.cebomberman.game.controler.Controller;
 import com.cebomberman.game.controler.Networking;
 import com.cebomberman.game.gameplay.Player;
 import com.cebomberman.game.gameplay.Time;
@@ -2106,68 +2107,66 @@ public class GameStarterComponents extends javax.swing.JPanel {
 	}
 
 	public void userOptinalsSetter() {
-	//	Controller controller = new Controller();
+		// Controller controller = new Controller();
 		Player[] players = new Player[4];
 		Time timer = new Time();
-		
-//		controller.fileLocation = fileLocation.getText();
-		int playerNumbers = Integer.parseInt(playersNumber.getText());
-		timer.setGameTimeCountdown(minutes.getText() , seconds.getText());
-		
-		//		try {
-					
-			Networking network = new Networking(passwordField1.getPassword(),
-					portNumberField1.getText(), ipAddressField1.getText(),
-					internetPasswordField.getPassword());
-			switch (Integer.parseInt(playersNumber.getText())) {
-			case 2:
-				players[0] = playerBuilder(
-						firstName.getText(), nickName.getText(),
-						red.isSelected(), green.isSelected(),
-						yellow.isSelected(), blue.isSelected());
-				players[1] = playerBuilder(
-						firstName1.getText(), nickName1.getText(),
-						red1.isSelected(), green1.isSelected(),
-						yellow1.isSelected(), blue1.isSelected());
-				break;
-			case 3:
-				players[0] = playerBuilder(
-						firstName.getText(), nickName.getText(),
-						red.isSelected(), green.isSelected(),
-						yellow.isSelected(), blue.isSelected());
-				players[1] = playerBuilder(
-						firstName1.getText(), nickName1.getText(),
-						red1.isSelected(), green1.isSelected(),
-						yellow1.isSelected(), blue1.isSelected());
-				players[2] = playerBuilder(
-						firstName2.getText(), nickName2.getText(),
-						red2.isSelected(), green2.isSelected(),
-						yellow2.isSelected(), blue2.isSelected());
-				break;
-			case 4:
-				players[0] = playerBuilder(
-						firstName.getText(), nickName.getText(),
-						red.isSelected(), green.isSelected(),
-						yellow.isSelected(), blue.isSelected());
-				players[1] = playerBuilder(
-						firstName1.getText(), nickName1.getText(),
-						red1.isSelected(), green1.isSelected(),
-						yellow1.isSelected(), blue1.isSelected());
-				players[2] = playerBuilder(
-						firstName2.getText(), nickName2.getText(),
-						red2.isSelected(), green2.isSelected(),
-						yellow2.isSelected(), blue2.isSelected());
-				players[3] = playerBuilder(
-						firstName3.getText(), nickName3.getText(),
-						red3.isSelected(), green3.isSelected(),
-						yellow3.isSelected(), blue3.isSelected());
-				break;
-			}
-//		} catch (Exception e) {
 
-//		}
-	//	new Controller(players,playerNumbers) ;
+		// controller.fileLocation = fileLocation.getText();
+		int playerNumbers = Integer.parseInt(playersNumber.getText());
+		timer.setGameTimeCountdown(minutes.getText(), seconds.getText());
+
+		// try {
+
+		Networking network = new Networking(passwordField1.getPassword(),
+				portNumberField1.getText(), ipAddressField1.getText(),
+				internetPasswordField.getPassword());
+		switch (Integer.parseInt(playersNumber.getText())) {
+		case 2:
+			players[0] = playerBuilder(firstName.getText(), nickName.getText(),
+					red.isSelected(), green.isSelected(), yellow.isSelected(),
+					blue.isSelected());
+			players[1] = playerBuilder(firstName1.getText(),
+					nickName1.getText(), red1.isSelected(),
+					green1.isSelected(), yellow1.isSelected(),
+					blue1.isSelected());
+			break;
+		case 3:
+			players[0] = playerBuilder(firstName.getText(), nickName.getText(),
+					red.isSelected(), green.isSelected(), yellow.isSelected(),
+					blue.isSelected());
+			players[1] = playerBuilder(firstName1.getText(),
+					nickName1.getText(), red1.isSelected(),
+					green1.isSelected(), yellow1.isSelected(),
+					blue1.isSelected());
+			players[2] = playerBuilder(firstName2.getText(),
+					nickName2.getText(), red2.isSelected(),
+					green2.isSelected(), yellow2.isSelected(),
+					blue2.isSelected());
+			break;
+		case 4:
+			players[0] = playerBuilder(firstName.getText(), nickName.getText(),
+					red.isSelected(), green.isSelected(), yellow.isSelected(),
+					blue.isSelected());
+			players[1] = playerBuilder(firstName1.getText(),
+					nickName1.getText(), red1.isSelected(),
+					green1.isSelected(), yellow1.isSelected(),
+					blue1.isSelected());
+			players[2] = playerBuilder(firstName2.getText(),
+					nickName2.getText(), red2.isSelected(),
+					green2.isSelected(), yellow2.isSelected(),
+					blue2.isSelected());
+			players[3] = playerBuilder(firstName3.getText(),
+					nickName3.getText(), red3.isSelected(),
+					green3.isSelected(), yellow3.isSelected(),
+					blue3.isSelected());
+			break;
+		}
+		// } catch (Exception e) {
+
+		// }
+		new Controller(Integer.parseInt(playersNumber.getText()));
 	}
+
 	public Player playerBuilder(String firstName, String nickName,
 			boolean redColor, boolean greenColor, boolean yellowColor,
 			boolean blueColor) {
@@ -2193,7 +2192,7 @@ public class GameStarterComponents extends javax.swing.JPanel {
 			player.playerGraphics.setColor("blue");
 		}
 		return player;
-		
+
 	}
 
 	// Variables declaration - do not modify

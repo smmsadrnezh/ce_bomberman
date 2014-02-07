@@ -31,14 +31,17 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	Map map;
 	int row;
 	int column;
-	
+	int playersNumber;
+	Timer timer;
+	int interval;
+
 	/**
 	 * creates the components of the main board
 	 */
-	public MainBoardComponents(Player[] players) {
-
+	public MainBoardComponents(Player[] players, int playersNumber) {
+		final JLabel time = new JLabel();
 		// information panel
-		// GameBoardPanel jp2 = new GameBoardPanel();
+		// Panel jp2 = new Panel();
 		// this.add(jp2);
 		// jp2.setBounds(0, 0, 120, 480);
 
@@ -46,6 +49,17 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		// this.add(panel1) ;
 		// panel1.setBounds(0, 0, 120, 480);
 		// panel1.setVisible(true);
+		timer = new Timer();
+		timer.scheduleAtFixedRate(new TimerTask() {
+
+			public void run() {
+				interval--;
+				time.setText(interval + "");
+				if (interval == 0) {
+					timer.cancel();
+				}
+			}
+		}, 1000, 1000);
 
 		// gameBoard panel
 		JPanel gameBoard = new JPanel();
@@ -56,11 +70,11 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		// gameBoard.setFocusable(true);
 		// gameBoard.requestFocusInWindow() ;
 		// gameBoard.grabFocus();
-
+		this.playersNumber = playersNumber;
 		this.players = players;
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < playersNumber; i++) {
 			gameBoard.add(players[i].playerGraphics);
-			players[i].playerGraphics.setBounds(32 * i, 32 * i, 32, 32);
+			players[i].playerGraphics.setBounds(32, 32, 32, 32);
 
 		}
 
@@ -90,7 +104,29 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		}
 
 		setBoxContent();
+		if (playersNumber == 2) {
+			setPlayers();
+		} else if (playersNumber == 3) {
+			setPlayers();
+			players[2].playerGraphics.setColor("blue");
+			players[2].playerGraphics.setBounds(32, (row - 2) * 32, 32, 32);
+			players[2].playerGraphics.setRightImage();
+		} else if (playersNumber == 4) {
+			setPlayers();
+			players[2].playerGraphics.setColor("blue");
+			players[2].playerGraphics.setBounds(32, (row - 2) * 32, 32, 32);
+			players[2].playerGraphics.setRightImage();
+			players[3].playerGraphics.setColor("red");
+			players[3].playerGraphics.setBounds((column - 2) * 32,
+					(row - 2) * 32, 32, 32);
+			players[3].playerGraphics.setLeftImage();
+		}
 
+		new Thread(this).start();
+
+	}
+
+	void setPlayers() {
 		players[0].playerGraphics.setColor("yellow");
 		players[0].playerGraphics.setRightImage();
 		players[0].playerGraphics.setBounds(32, 32, 32, 32);
@@ -98,18 +134,6 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		players[1].playerGraphics.setColor("green");
 		players[1].playerGraphics.setBounds((column - 2) * 32, 32, 32, 32);
 		players[1].playerGraphics.setLeftImage();
-
-		players[2].playerGraphics.setColor("blue");
-		players[2].playerGraphics.setBounds(32, (row - 2) * 32, 32, 32);
-		players[2].playerGraphics.setRightImage();
-
-		players[3].playerGraphics.setColor("red");
-		players[3].playerGraphics.setBounds((column - 2) * 32, (row - 2) * 32,
-				32, 32);
-		players[3].playerGraphics.setLeftImage();
-
-		new Thread(this).start();
-
 	}
 
 	/**
@@ -119,20 +143,22 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 		int boxNumber = 0;
 
-		int speedupProbability = 3;
-		int bombNumberIncrementProbability = 3;
-		int bombStrengthIncrementProbability = 2;
-		int addLifeProbability = 1;
+		int speedupProbability = 2;
+		int bombNumberIncrementProbability = 1;
+		int bombStrengthIncrementProbability = 1;
+		int addLifeProbability = 2;
 		int passingAbilityProbability = 1;
-		int invertArrowKeysProbability = 1;
+		int invertArrowKeysProbability = 2;
 		int loseLastAbilityProbability = 2;
 		int loseBombingAbilityProbability = 2;
+		int emptyProbability = 2;
 
 		int totalProbability = speedupProbability
 				+ bombNumberIncrementProbability
 				+ bombStrengthIncrementProbability + addLifeProbability
 				+ passingAbilityProbability + invertArrowKeysProbability
-				+ loseLastAbilityProbability + loseBombingAbilityProbability;
+				+ loseLastAbilityProbability + loseBombingAbilityProbability
+				+ emptyProbability;
 
 		for (int i = 0; i < map.getMapWidth(); i++)
 			for (int j = 0; j < map.getMapHeight(); j++) {
@@ -219,6 +245,19 @@ public class MainBoardComponents extends JPanel implements Runnable {
 							+ loseLastAbilityProbability + loseBombingAbilityProbability)
 							/ totalProbability)
 				boxCellPointer[i].box.setContent("loseBombingAbility");
+			if ((float) (speedupProbability + bombNumberIncrementProbability
+					+ bombStrengthIncrementProbability + addLifeProbability
+					+ passingAbilityProbability + invertArrowKeysProbability + loseLastAbilityProbability)
+					/ totalProbability < boxRandomProbability[i]
+					&& boxRandomProbability[i] < (float) (speedupProbability
+							+ bombNumberIncrementProbability
+							+ bombStrengthIncrementProbability
+							+ addLifeProbability + passingAbilityProbability
+							+ invertArrowKeysProbability
+							+ loseLastAbilityProbability
+							+ loseBombingAbilityProbability + emptyProbability)
+							/ totalProbability)
+				boxCellPointer[i].box.setContent("empty");
 
 		}
 
@@ -329,7 +368,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 									setCellImage(cells[i][j],
 											cells[i][j].box
 													.getLoseBombingAbility());
-
+								else if (cells[i][j].box.getContent() == "empty")
+									setCellImage(cells[i][j], "");
 						} else if (cells[i][j].getContent() == "block") {
 							setDefaultImage(i, j);
 						}
@@ -482,8 +522,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 	 */
 	public void fireEffect(final int row, final int column, final int strength,
 			final Player bomber) {
-		final int boardRow = this.row ;
-		final int boardColumn = this.column ;
+		final int boardRow = this.row;
+		final int boardColumn = this.column;
 		final Timer timer1 = new Timer();
 		final Timer timer2 = new Timer();
 		timer1.scheduleAtFixedRate(new TimerTask() {
@@ -516,7 +556,8 @@ public class MainBoardComponents extends JPanel implements Runnable {
 				for (int i = row - strength; i <= row + strength; i++)
 					for (int j = column - strength; j <= column + strength; j++) {
 						if (i == row || j == column)
-							if (i > 0 && i < boardRow && j > 0 && j < boardColumn) {
+							if (i > 0 && i < boardRow && j > 0
+									&& j < boardColumn) {
 								setDefaultImage(i, j);
 								cells[i][j].setIsFired(false);
 							}
@@ -541,7 +582,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 		while (true) {
 			for (int i = 1; i < row; i++)
 				for (int j = 1; j < column; j++) {
-					for (int k = 0; k < 4; k++) {
+					for (int k = 0; k < playersNumber; k++) {
 						if (cells[i][j].isFired()
 								&& players[k].playerGraphics
 										.getCurrentPositionX() == j
@@ -578,7 +619,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 
 			for (int i = 1; i < row; i++)
 				for (int j = 1; j < column; j++)
-					for (int k = 0; k < 4; k++) {
+					for (int k = 0; k < playersNumber; k++) {
 						if (cells[i][j].box.isOpened()) {
 							if (players[k].playerGraphics.getCurrentPositionX() == j
 									&& players[k].playerGraphics
@@ -592,7 +633,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 							}
 						}
 					}
-			for (int k = 0; k < 4; k++)
+			for (int k = 0; k < this.playersNumber; k++)
 				for (int i = 0; i < row; i++)
 					for (int j = 0; j < column; j++) {
 						if (cells[i][j].getContent() == "hole"
@@ -611,6 +652,7 @@ public class MainBoardComponents extends JPanel implements Runnable {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
 								}
+
 								players[k].playerGraphics.setVisible(false);
 								players[k].playerLogic.setDead(true);
 								// System.out.println("test");
