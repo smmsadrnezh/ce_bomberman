@@ -1,8 +1,10 @@
 package com.cebomberman.game.sounds;
 
-import java.applet.*;
-import javax.swing.*;
-import java.net.*;
+import java.applet.Applet;
+import java.applet.AudioClip;
+import java.net.URL;
+
+import javax.swing.JApplet;
 
 public class Music extends JApplet {
 	private AudioClip song; // Sound player

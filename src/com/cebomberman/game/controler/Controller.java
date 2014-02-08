@@ -1,18 +1,17 @@
 package com.cebomberman.game.controler;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.ImageIcon;
 
 import com.cebomberman.game.gameplay.Player;
 import com.cebomberman.game.graphics.CellGraphics;
 import com.cebomberman.game.graphics.MainBoardGraphics;
-
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * 

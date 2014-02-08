@@ -1,11 +1,6 @@
 package com.cebomberman.game.graphics;
 
 import java.awt.Color;
-import java.awt.Panel;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -14,7 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.cebomberman.game.controler.Controller;
 import com.cebomberman.game.gameplay.Map;
 import com.cebomberman.game.gameplay.Player;
 

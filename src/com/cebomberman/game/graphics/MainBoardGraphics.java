@@ -2,6 +2,7 @@ package com.cebomberman.game.graphics;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+
 import com.cebomberman.game.gameplay.Player;
 
 /**
