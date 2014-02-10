@@ -18,9 +18,6 @@ It should work with iOS, OS X, Linux.
 ## Installation
 Installation/uninstallation on Ubuntu, Debian or other Debian-based distributions:
 
-## Authors
-Written by S. M. Masoud Sadrnezhaad & Arman Naeimian
-
 ##TODO
 * clean the project, remove old scripts and keep one working instance
 * improve instructions
@@ -43,4 +40,7 @@ Written by S. M. Masoud Sadrnezhaad & Arman Naeimian
 * MacOs: http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/kepler/SR1/eclipse-standard-kepler-SR1-macosx-cocoa-x86_64.tar.gz
 
 ## License
-[GPL v2](https://www.gnu.org/licenses/gpl-2.0.txt), author [Luka Pusic](http://pusic.si)
+[GPL v3](https://www.gnu.org/licenses/gpl-3.0.txt), authors [S. M. Masoud Sadrnezhaad](http://sadrnezhaad.ir/smm) & [Arman Naeimian](armannaeimian@gmail.com)
+
+This program comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it under certain conditions.
