@@ -40,7 +40,7 @@ Installation/uninstallation on Ubuntu, Debian or other Debian-based distribution
 * MacOs: http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/kepler/SR1/eclipse-standard-kepler-SR1-macosx-cocoa-x86_64.tar.gz
 
 ## License
-[GPL v3](https://www.gnu.org/licenses/gpl-3.0.txt), authors [S. M. Masoud Sadrnezhaad](http://sadrnezhaad.ir/smm) & [Arman Naeimian](armannaeimian@gmail.com)
+[GPL v3](https://www.gnu.org/licenses/gpl-3.0.txt), authors [S. M. Masoud Sadrnezhaad](http://sadrnezhaad.ir/smm) & [Arman Naeimian](https://github.com/arman71)
 
 This program comes with ABSOLUTELY NO WARRANTY.
 This is free software, and you are welcome to redistribute it under certain conditions.
