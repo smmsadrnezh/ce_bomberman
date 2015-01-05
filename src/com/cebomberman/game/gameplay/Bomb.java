@@ -66,4 +66,4 @@ public class Bomb {
 
 }
 
-// test commit from remote to local
+// test commit from local to git
