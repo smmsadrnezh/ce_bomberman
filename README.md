@@ -22,6 +22,7 @@ Installation/uninstallation on Ubuntu, Debian or other Debian-based distribution
 * clean the project, remove old scripts and keep one working instance
 * improve instructions
 * debug
+* build packages
 
 ## Project URL
 * Download latest codes via git:
