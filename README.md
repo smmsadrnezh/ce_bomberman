@@ -32,9 +32,6 @@ Installation/uninstallation on Ubuntu, Debian or other Debian-based distribution
     Open one of these links with your browser:
         https://github.com/smmsadrnezh/CE-Bomberman
 
-* Home Pages:
-    https://github.com/smmsadrnezh/CE-Bomberman
-
 ##Eclipse Download links
 * Windows: http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/kepler/SR1/eclipse-standard-kepler-SR1-win32-x86_64.zip
 * Linux: http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/kepler/SR1/eclipse-standard-kepler-SR1-linux-gtk-x86_64.tar.gz
