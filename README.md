@@ -1,7 +1,7 @@
 # CE-Bomberman
 
 ## Description
-bombreman is a maze-based game.
+Bombreman is a maze-based game.
 It should work with iOS, OS X, Linux.
 
 ## System requirements
@@ -18,7 +18,7 @@ It should work with iOS, OS X, Linux.
 ## Installation
 Installation/uninstallation on Ubuntu, Debian or other Debian-based distributions:
 
-##TODO
+## TODO
 * clean the project, remove old scripts and keep one working instance
 * improve instructions
 * debug
@@ -32,7 +32,7 @@ Installation/uninstallation on Ubuntu, Debian or other Debian-based distribution
     Open one of these links with your browser:
         https://github.com/smmsadrnezh/CE-Bomberman
 
-##Eclipse Download links
+## Eclipse Download links
 * Windows: http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/kepler/SR1/eclipse-standard-kepler-SR1-win32-x86_64.zip
 * Linux: http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/kepler/SR1/eclipse-standard-kepler-SR1-linux-gtk-x86_64.tar.gz
 * MacOs: http://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/kepler/SR1/eclipse-standard-kepler-SR1-macosx-cocoa-x86_64.tar.gz
